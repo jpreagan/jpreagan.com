@@ -5,12 +5,15 @@
   "version": "0.1.0",
   "author": "James Reagan",
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@mdx-js/react": "^2.1.1",
     "gatsby": "^4.14.1",
     "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-manifest": "^4.14.0",
     "gatsby-plugin-offline": "^5.14.1",
     "gatsby-plugin-react-helmet": "^5.14.0",
     "gatsby-plugin-sharp": "^4.14.1",
+    "gatsby-plugin-theme-ui": "^0.14.5",
     "gatsby-source-filesystem": "^4.14.0",
     "gatsby-transformer-sharp": "^4.14.0",
     "prop-types": "^15.8.1",
@@ -18,7 +21,8 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "theme-ui": "^0.14.5"
   },
   "devDependencies": {
     "prettier": "^2.6.2"
