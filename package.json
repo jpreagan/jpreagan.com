@@ -1,0 +1,43 @@
+{
+  "name": "jpreagan.com",
+  "private": true,
+  "description": "My personal website",
+  "version": "0.1.0",
+  "author": "James Reagan",
+  "dependencies": {
+    "gatsby": "^4.14.1",
+    "gatsby-plugin-image": "^2.14.1",
+    "gatsby-plugin-manifest": "^4.14.0",
+    "gatsby-plugin-offline": "^5.14.1",
+    "gatsby-plugin-react-helmet": "^5.14.0",
+    "gatsby-plugin-sharp": "^4.14.1",
+    "gatsby-source-filesystem": "^4.14.0",
+    "gatsby-transformer-sharp": "^4.14.0",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  }
+}
