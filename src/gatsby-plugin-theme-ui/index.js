@@ -17,11 +17,12 @@ const theme = {
     heading: 1.125,
   },
   colors: {
-    text: "#000",
-    background: "#fff",
-    primary: "#07c",
-    secondary: "#30c",
-    muted: "#f6f6f6",
+    text: "#d6deeb",
+    background: "#021320",
+    primary: "#c792ea",
+    secondary: "#82aaff",
+    emphasis: "#fff",
+    muted: "#637777",
   },
   text: {
     heading: {
