@@ -28,6 +28,7 @@ const theme = {
       fontFamily: "heading",
       lineHeight: "heading",
       fontWeight: "heading",
+      letterSpacing: "-0.015em",
     },
   },
   styles: {
