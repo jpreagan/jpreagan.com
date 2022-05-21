@@ -10198,6 +10198,7 @@ __metadata:
     redux: ^4.2.0
     redux-thunk: ^2.4.1
     theme-ui: ^0.14.5
+    typeface-inter: ^3.18.1
   languageName: unknown
   linkType: soft
 
@@ -15044,6 +15045,13 @@ __metadata:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 33b39f3d0e8463985eeaeeacc3cb2e28bc3dfaf2a5ed219628c0b629d5d7b810b0eb2165f9f607c34871d5daa92ba1dc69f49051cf7d578b4cbd26c340b9d1b1
+  languageName: node
+  linkType: hard
+
+"typeface-inter@npm:^3.18.1":
+  version: 3.18.1
+  resolution: "typeface-inter@npm:3.18.1"
+  checksum: 7a31415cdb420f84b63e4ce2e1974e004f2d7c7b5cf2f693356c49e67fe9e947e2ee5f7b57844073873b9cbafd4c68ed36462a95e2b22cff696541327ae0db11
   languageName: node
   linkType: hard
 
