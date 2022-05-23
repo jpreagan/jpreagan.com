@@ -6,10 +6,18 @@ const theme = {
     heading: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     monospace: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 42, 64, 96],
+  fontSizes: [
+    "0.75rem",
+    "0.875rem",
+    "1rem",
+    "1.25rem",
+    "1.5rem",
+    "2rem",
+    "2.625rem",
+  ],
   fontWeights: {
     body: 400,
-    heading: 700,
+    heading: 800,
     bold: 700,
   },
   lineHeights: {
@@ -41,26 +49,32 @@ const theme = {
     h1: {
       variant: "text.heading",
       fontSize: 5,
+      color: "emphasis",
     },
     h2: {
       variant: "text.heading",
       fontSize: 4,
+      color: "emphasis",
     },
     h3: {
       variant: "text.heading",
       fontSize: 3,
+      color: "emphasis",
     },
     h4: {
       variant: "text.heading",
       fontSize: 2,
+      color: "emphasis",
     },
     h5: {
       variant: "text.heading",
       fontSize: 1,
+      color: "emphasis",
     },
     h6: {
       variant: "text.heading",
       fontSize: 0,
+      color: "emphasis",
     },
     pre: {
       fontFamily: "monospace",
