@@ -25,12 +25,12 @@ const theme = {
     heading: 1.125,
   },
   colors: {
+    primary: "#f472b6",
+    secondary: "#8b5cf6",
+    heading: "#fff",
     text: "#d6deeb",
-    background: "#021320",
-    primary: "#c792ea",
-    secondary: "#82aaff",
-    emphasis: "#fff",
     muted: "#637777",
+    background: "#021320",
   },
   text: {
     heading: {
@@ -49,32 +49,32 @@ const theme = {
     h1: {
       variant: "text.heading",
       fontSize: 5,
-      color: "emphasis",
+      color: "heading",
     },
     h2: {
       variant: "text.heading",
       fontSize: 4,
-      color: "emphasis",
+      color: "heading",
     },
     h3: {
       variant: "text.heading",
       fontSize: 3,
-      color: "emphasis",
+      color: "heading",
     },
     h4: {
       variant: "text.heading",
       fontSize: 2,
-      color: "emphasis",
+      color: "heading",
     },
     h5: {
       variant: "text.heading",
       fontSize: 1,
-      color: "emphasis",
+      color: "heading",
     },
     h6: {
       variant: "text.heading",
       fontSize: 0,
-      color: "emphasis",
+      color: "heading",
     },
     pre: {
       fontFamily: "monospace",
