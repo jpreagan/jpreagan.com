@@ -40,6 +40,14 @@ const theme = {
       letterSpacing: "-0.015em",
     },
   },
+  sizes: {
+    container: 640,
+  },
+  layout: {
+    page: {
+      px: 3,
+    },
+  },
   styles: {
     root: {
       fontFamily: "body",
