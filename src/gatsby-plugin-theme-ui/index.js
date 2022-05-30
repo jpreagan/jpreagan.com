@@ -50,13 +50,20 @@ const theme = {
   },
   forms: {
     label: {
+      fontFamily: "heading",
       fontSize: 1,
     },
     input: {
+      color: "black",
       backgroundColor: "white",
+      fontFamily: "body",
+      fontSize: 2,
     },
     textarea: {
+      color: "black",
       backgroundColor: "white",
+      fontFamily: "body",
+      fontSize: 2,
     },
   },
   styles: {
