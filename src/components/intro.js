@@ -20,7 +20,8 @@ const Intro = () => {
   return (
     <section
       sx={{
-        my: [4, 6, 6],
+        mt: [5, 6, 6],
+        mb: 6,
       }}
     >
       <div
@@ -37,6 +38,7 @@ const Intro = () => {
                 color: "heading",
                 fontFamily: "heading",
                 fontWeight: "heading",
+                letterSpacing: "-0.015em",
                 lineHeight: 1,
               }}
             >
@@ -57,6 +59,7 @@ const Intro = () => {
             `,
                 fontFamily: "heading",
                 fontWeight: "heading",
+                letterSpacing: "-0.015em",
                 lineHeight: 1,
               }}
             >
