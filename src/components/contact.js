@@ -4,14 +4,7 @@ import { Heading, Box, Textarea, Label, Input, Button, jsx } from "theme-ui"
 const Contact = () => {
   return (
     <section sx={{ my: 6 }}>
-      <Heading
-        as="h2"
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        variant="styles.h2"
-        sx={{ mb: 2 }}
-      >
+      <Heading as="h2" variant="styles.h2" sx={{ mb: 2 }}>
         Get in touch
       </Heading>
       <Box as="form" name="contact" method="POST" data-netlify="true">
