@@ -14,7 +14,7 @@ const Contact = () => {
       >
         Get in touch
       </Heading>
-      <Box as="form" onSubmit={e => e.preventDefault()}>
+      <Box as="form" name="contact" method="POST" data-netlify="true">
         <Label htmlFor="username">Name</Label>
         <Input name="username" id="username" mb={3} />
         <Label htmlFor="email">Email</Label>
