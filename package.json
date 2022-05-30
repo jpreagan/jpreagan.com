@@ -7,6 +7,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@mdx-js/react": "^2.1.1",
+    "@theme-ui/color": "^0.14.5",
     "gatsby": "^4.14.1",
     "gatsby-plugin-image": "^2.14.1",
     "gatsby-plugin-manifest": "^4.14.0",

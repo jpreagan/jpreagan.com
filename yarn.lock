@@ -1400,6 +1400,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.17.8":
+  version: 7.18.3
+  resolution: "@babel/runtime@npm:7.18.3"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: db8526226aa02cfa35a5a7ac1a34b5f303c62a1f000c7db48cb06c6290e616483e5036ab3c4e7a84d0f3be6d4e2148d5fe5cec9564bf955f505c3e764b83d7f1
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.16.7":
   version: 7.16.7
   resolution: "@babel/template@npm:7.16.7"
@@ -3640,6 +3649,16 @@ __metadata:
     "@emotion/react": ^11
     react: ">16"
   checksum: df977821cec76290c63ba41c4278767825c76928c2991265c947d3f1731a2d03e909e9b4acb57b1882dfd3830dc8968ab707e521c1f751906718184c2ad810c4
+  languageName: node
+  linkType: hard
+
+"@theme-ui/color@npm:^0.14.5":
+  version: 0.14.5
+  resolution: "@theme-ui/color@npm:0.14.5"
+  dependencies:
+    "@theme-ui/css": 0.14.5
+    polished: ^4.0.5
+  checksum: 24682409a7113a5ae9979c0c270134afb0650c7b70206af740205df606c7d30be53e894b155b9682f214747dbd59de97ad85be4b5e6d3496ba65bb17cbe7f681
   languageName: node
   linkType: hard
 
@@ -10181,6 +10200,7 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.9.0
     "@mdx-js/react": ^2.1.1
+    "@theme-ui/color": ^0.14.5
     gatsby: ^4.14.1
     gatsby-plugin-image: ^2.14.1
     gatsby-plugin-manifest: ^4.14.0
@@ -12320,6 +12340,15 @@ __metadata:
   version: 3.4.0
   resolution: "pngjs@npm:3.4.0"
   checksum: 8bd40bd698abd16b72c97b85cb858c80894fbedc76277ce72a784aa441e14795d45d9856e97333ca469b34b67528860ffc8a7317ca6beea349b645366df00bcd
+  languageName: node
+  linkType: hard
+
+"polished@npm:^4.0.5":
+  version: 4.2.2
+  resolution: "polished@npm:4.2.2"
+  dependencies:
+    "@babel/runtime": ^7.17.8
+  checksum: 97fb927dc55cd34aeb11b31ae2a3332463f114351c86e8aa6580d7755864a0120164fdc3770e6160c8b1775052f0eda14db9a6e34402cd4b08ab2d658a593725
   languageName: node
   linkType: hard
 
