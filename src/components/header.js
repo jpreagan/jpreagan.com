@@ -1,15 +1,21 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
 
 const Header = ({ siteTitle }) => (
   <header>
-    <Link
+    <h1
       sx={{
-        color: "primary"
+        position: "absolute",
+        left: -10000,
+        top: "auto",
+        width: 1,
+        height: 1,
+        overflow: "hidden",
       }}
-      to="/">{siteTitle}</Link>
+    >
+      {siteTitle}
+    </h1>
   </header>
 )
 
