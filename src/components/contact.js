@@ -8,6 +8,7 @@ const Contact = () => {
         Get in touch
       </Heading>
       <Box as="form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
         <Label htmlFor="username">Name</Label>
         <Input name="username" id="username" mb={3} />
         <Label htmlFor="email">Email</Label>
