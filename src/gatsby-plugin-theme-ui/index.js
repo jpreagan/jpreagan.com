@@ -48,6 +48,17 @@ const theme = {
       px: 3,
     },
   },
+  forms: {
+    label: {
+      fontSize: 1,
+    },
+    input: {
+      backgroundColor: "white",
+    },
+    textarea: {
+      backgroundColor: "white",
+    },
+  },
   styles: {
     root: {
       fontFamily: "body",
