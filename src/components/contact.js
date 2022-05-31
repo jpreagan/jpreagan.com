@@ -13,8 +13,8 @@ const Contact = () => {
         <Input name="username" id="username" mb={3} />
         <Label htmlFor="email">Email</Label>
         <Input name="email" id="email" mb={3} />
-        <Label htmlFor="comment">Comment</Label>
-        <Textarea name="comment" id="comment" rows={6} mb={3} />
+        <Label htmlFor="message">Message</Label>
+        <Textarea name="message" id="message" rows={6} mb={3} />
         <Button>Submit</Button>
       </Box>
     </section>
