@@ -27,6 +27,8 @@
     "typeface-inter": "^3.18.1"
   },
   "devDependencies": {
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "prettier": "^2.6.2"
   },
   "keywords": [
@@ -40,10 +42,14 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jpreagan/jpreagan.com.git"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md,css}": "yarn format"
   }
 }
