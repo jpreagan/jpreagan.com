@@ -1,10 +1,14 @@
+import { getColor } from "@theme-ui/color"
+
 const theme = {
   breakpoints: ["40em", "52em", "64em"],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    heading: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    monospace: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+    heading:
+      'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    monospace:
+      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
   fontSizes: [
     "0.75rem",
@@ -25,8 +29,8 @@ const theme = {
     heading: 1.125,
   },
   colors: {
-    primary: "#f472b6",
-    secondary: "#8b5cf6",
+    primary: ["#f472b6", "#ec4899", "#db2777"],
+    secondary: ["#8b5cf6", "#6d28d9", "#5b21b6"],
     heading: "#fff",
     text: "#d6deeb",
     muted: "#637777",
@@ -64,6 +68,26 @@ const theme = {
       backgroundColor: "white",
       fontFamily: "body",
       fontSize: 2,
+    },
+  },
+  buttons: {
+    primary: {
+      backgroundImage: theme => `
+        linear-gradient(
+          to right,
+          ${getColor(theme, "secondary.2")},
+          ${getColor(theme, "primary.2")}
+        )
+      `,
+      "&:hover": {
+        backgroundImage: theme => `
+        linear-gradient(
+          to right,
+          ${getColor(theme, "secondary.1")},
+          ${getColor(theme, "primary.1")}
+        )
+      `,
+      },
     },
   },
   styles: {
