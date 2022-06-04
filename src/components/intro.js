@@ -53,8 +53,9 @@ const Intro = () => {
                 backgroundImage: theme => `
               linear-gradient(
                 to right,
-                ${getColor(theme, "primary.0")},
-                ${getColor(theme, "secondary.0")}
+                ${getColor(theme, "#67e8f9")},
+                ${getColor(theme, "#6366f1")},
+                ${getColor(theme, "#e879f9")}
               )
             `,
                 fontFamily: "heading",
