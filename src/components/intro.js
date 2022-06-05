@@ -102,10 +102,17 @@ const Intro = () => {
           placeholder="blurred"
           formats={["auto", "webp", "avif"]}
           quality={90}
+          style={{ minWidth: "200px" }}
           imgStyle={{ borderRadius: "100%" }}
         />
       </div>
-      <div sx={{ display: "flex", gap: "0.125rem", marginTop: [3, 0, 0] }}>
+      <div
+        sx={{
+          display: "flex",
+          gap: "0.125rem",
+          margin: ["1rem auto", "1rem auto", 0],
+        }}
+      >
         <Link
           href={social?.twitter}
           rel="noreferrer"
