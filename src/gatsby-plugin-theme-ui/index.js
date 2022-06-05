@@ -70,6 +70,14 @@ const theme = {
       fontSize: 2,
     },
   },
+  links: {
+    social: {
+      color: "text",
+      "&:hover": {
+        color: "heading",
+      },
+    },
+  },
   buttons: {
     primary: {
       backgroundImage: theme => `

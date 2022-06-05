@@ -4,6 +4,11 @@ module.exports = {
     description: `My personal website.`,
     author: `James Reagan`,
     siteUrl: `https://jpreagan.com/`,
+    social: {
+      twitter: `https://twitter.com/jpreagan_`,
+      linkedin: `https://www.linkedin.com/in/jpreagan/`,
+      github: `https://github.com/jpreagan`,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
