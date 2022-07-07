@@ -35,7 +35,7 @@ const theme = {
     heading: "#fff",
     text: "#d6deeb",
     muted: "#637777",
-    background: "#021320",
+    background: "#1d001d",
   },
   text: {
     heading: {
