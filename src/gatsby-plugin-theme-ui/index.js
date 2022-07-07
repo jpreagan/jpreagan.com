@@ -1,4 +1,5 @@
 import { getColor } from "@theme-ui/color"
+import nightOwl from "@theme-ui/prism/presets/night-owl.json"
 
 const theme = {
   breakpoints: ["40em", "52em", "64em"],
@@ -71,6 +72,20 @@ const theme = {
     },
   },
   links: {
+    heading: {
+      color: "heading",
+      textDecoration: "none",
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    },
+    subheading: {
+      color: "text",
+      textDecoration: "none",
+      "&:hover": {
+        textDecoration: "underline",
+      },
+    },
     social: {
       color: "text",
       "&:hover": {
@@ -135,11 +150,10 @@ const theme = {
       color: "heading",
     },
     pre: {
-      fontFamily: "monospace",
       overflowX: "auto",
-      code: {
-        color: "inherit",
-      },
+      padding: 3,
+      borderRadius: 6,
+      ...nightOwl,
     },
     code: {
       fontFamily: "monospace",
@@ -157,6 +171,12 @@ const theme = {
     td: {
       textAlign: "left",
       borderBottomStyle: "solid",
+    },
+    a: {
+      color: "primary.0",
+      "&:hover": {
+        textDecoration: "none",
+      },
     },
   },
 }

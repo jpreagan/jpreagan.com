@@ -7,8 +7,8 @@
 
 /** @jsx jsx */
 import { Container, jsx } from "theme-ui"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import PropTypes from "prop-types"
 
 import Header from "./header"
 import Footer from "./footer"

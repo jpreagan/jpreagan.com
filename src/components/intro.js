@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui"
+import { jsx, Link } from "theme-ui"
 import { getColor } from "@theme-ui/color"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { Link } from "theme-ui"
 import {
   AiFillLinkedin as LinkedIn,
   AiOutlineTwitter as Twitter,
@@ -78,23 +77,13 @@ const Intro = () => {
             >
               James Reagan
             </span>
-            <br />a software engineer in Hawaiʻi.
           </p>
-          <p>
-            I build{" "}
-            <span sx={{ color: "heading", fontWeight: "bold" }}>
-              accessible
-            </span>{" "}
-            and{" "}
-            <span sx={{ color: "heading", fontWeight: "bold" }}>
-              performant
-            </span>{" "}
-            web applications in JavaScript.
-          </p>
+          <p>💻 I'm a software engineer 🌴 living in Hawaiʻi.</p>
+          <p>💕 Lover of 80's love songs and 🍜 udon noodles!</p>
         </div>
         <StaticImage
           src="../images/profile_pic.jpeg"
-          alt={{ author }}
+          alt={author}
           loading="eager"
           layout="fixed"
           width={200}
@@ -120,7 +109,7 @@ const Intro = () => {
           variant="social"
           sx={{ color: "currentColor" }}
         >
-          <Twitter size={40} />
+          <Twitter size={40} title="Twitter" />
         </Link>
         <Link
           href={social?.linkedin}
@@ -129,7 +118,7 @@ const Intro = () => {
           variant="social"
           sx={{ color: "currentColor" }}
         >
-          <LinkedIn size={40} />
+          <LinkedIn size={40} title="LinkedIn" />
         </Link>
         <Link
           href={social?.github}
@@ -138,7 +127,7 @@ const Intro = () => {
           variant="social"
           sx={{ color: "currentColor" }}
         >
-          <GitHub size={40} />
+          <GitHub size={40} title="GitHub" />
         </Link>
       </div>
     </section>
