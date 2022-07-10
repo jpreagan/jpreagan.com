@@ -6,7 +6,7 @@ import { BsCheckCircleFill as Check } from "react-icons/bs"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const NotFoundPage = () => (
+const SuccessPage = () => (
   <Layout>
     <Seo title="Success" />
     <header sx={{ mt: 5, textAlign: "center" }}>
@@ -27,4 +27,4 @@ const NotFoundPage = () => (
   </Layout>
 )
 
-export default NotFoundPage
+export default SuccessPage
