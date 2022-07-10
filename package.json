@@ -56,5 +56,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,md,css}": "yarn format"
-  }
+  },
+  "packageManager": "yarn@3.2.1"
 }
