@@ -21,7 +21,7 @@ const ProjectPostTemplate = ({ data }) => {
           sx={{
             borderRadius: 6,
             px: 3,
-            py: 5,
+            py: [5, 6],
             my: 3,
             backgroundImage: theme => `
               linear-gradient(
@@ -33,17 +33,22 @@ const ProjectPostTemplate = ({ data }) => {
             `,
           }}
         >
-          <Heading
-            as="h1"
-            variant="styles.h1"
-            sx={{ fontSize: 6 }}
-            itemProp="headline"
-          >
-            {project.frontmatter.title}
-          </Heading>
-          <p sx={{ fontSize: 3 }}>{project.frontmatter.description}</p>
+          <div sx={{ maxWidth: 680, mx: "auto" }}>
+            <Heading
+              as="h1"
+              variant="styles.h1"
+              sx={{ fontSize: [5, 7], mt: 0 }}
+              itemProp="headline"
+            >
+              {project.frontmatter.title}
+            </Heading>
+            <p sx={{ fontSize: [3, 4] }}>{project.frontmatter.description}</p>
+          </div>
         </header>
-        <section itemProp="articleBody" sx={{ my: 3 }}>
+        <section
+          itemProp="articleBody"
+          sx={{ my: [3, 5], maxWidth: 680, mx: "auto" }}
+        >
           <MDXRenderer>{project.body}</MDXRenderer>
         </section>
       </article>

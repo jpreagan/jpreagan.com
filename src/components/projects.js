@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading, Grid, Link, Flex } from "theme-ui"
+import { jsx, Heading, Grid, Link, Flex, Themed } from "theme-ui"
 import { getColor } from "@theme-ui/color"
 import {
   SiGatsby as Gatsby,
@@ -66,7 +66,8 @@ const Projects = () => {
                 color: "heading",
                 textDecoration: "none",
                 borderRadius: 6,
-                padding: 3,
+                px: 3,
+                py: 4,
                 backgroundImage: theme => `
                   linear-gradient(
                     to right,
@@ -80,7 +81,7 @@ const Projects = () => {
                 },
               }}
             >
-              <Heading as="h3" variant="styles.h3" sx={{ mb: 3 }}>
+              <Heading as="h3" variant="styles.h3" sx={{ mb: 3, mt: 0 }}>
                 {title}
               </Heading>
               <Flex sx={{ gap: 1 }}>
@@ -93,7 +94,7 @@ const Projects = () => {
                   }
                 })}
               </Flex>
-              <p>{description}</p>
+              <Themed.p sx={{ mb: 0 }}>{description}</Themed.p>
             </Link>
           )
         })}

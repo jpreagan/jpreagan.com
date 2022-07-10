@@ -26,9 +26,11 @@ const IndexPage = () => (
     </header>
     <Layout>
       <Seo title="Aloha" />
-      <Intro />
-      <Projects />
-      <Contact />
+      <div sx={{ maxWidth: 680, mx: "auto" }}>
+        <Intro />
+        <Projects />
+        <Contact />
+      </div>
     </Layout>
   </>
 )

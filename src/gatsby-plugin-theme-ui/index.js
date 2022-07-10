@@ -19,6 +19,7 @@ const theme = {
     "1.5rem",
     "2rem",
     "2.625rem",
+    "4rem",
   ],
   fontWeights: {
     body: 400,
@@ -43,10 +44,12 @@ const theme = {
       lineHeight: "heading",
       fontWeight: "heading",
       letterSpacing: "-0.015em",
+      marginTop: 5,
+      marginBottom: 3,
     },
   },
   sizes: {
-    container: 640,
+    container: 1000,
   },
   layout: {
     page: {
@@ -126,27 +129,27 @@ const theme = {
     },
     h2: {
       variant: "text.heading",
-      fontSize: 4,
+      fontSize: [4, 5],
       color: "heading",
     },
     h3: {
       variant: "text.heading",
-      fontSize: 3,
+      fontSize: [3, 4],
       color: "heading",
     },
     h4: {
       variant: "text.heading",
-      fontSize: 2,
+      fontSize: [2, 3],
       color: "heading",
     },
     h5: {
       variant: "text.heading",
-      fontSize: 1,
+      fontSize: [1, 2],
       color: "heading",
     },
     h6: {
       variant: "text.heading",
-      fontSize: 0,
+      fontSize: [0, 1],
       color: "heading",
     },
     pre: {
@@ -177,6 +180,12 @@ const theme = {
       "&:hover": {
         textDecoration: "none",
       },
+    },
+    p: {
+      fontSize: [2, 3],
+    },
+    li: {
+      fontSize: [2, 3],
     },
   },
 }

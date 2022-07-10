@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Link } from "theme-ui"
+import { jsx, Link, Themed } from "theme-ui"
 import { getColor } from "@theme-ui/color"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
@@ -38,6 +38,7 @@ const Intro = () => {
       <div
         sx={{
           display: "flex",
+          gap: 3,
           flexDirection: ["column", "column", "row"],
         }}
       >
@@ -45,7 +46,7 @@ const Intro = () => {
           <p>
             <span
               sx={{
-                fontSize: 6,
+                fontSize: [5, 7],
                 color: "heading",
                 fontFamily: "heading",
                 fontWeight: "heading",
@@ -58,7 +59,7 @@ const Intro = () => {
             <br />
             <span
               sx={{
-                fontSize: 6,
+                fontSize: [5, 7],
                 color: "transparent",
                 backgroundClip: "text",
                 backgroundImage: theme => `
@@ -78,8 +79,8 @@ const Intro = () => {
               James Reagan
             </span>
           </p>
-          <p>💻 I'm a software engineer 🌴 living in Hawaiʻi.</p>
-          <p>💕 Lover of 80's love songs and 🍜 udon noodles!</p>
+          <Themed.p>💻 I'm a software engineer 🌴 living in Hawaiʻi.</Themed.p>
+          <Themed.p>💕 Lover of 80's love songs and 🍜 udon noodles!</Themed.p>
         </div>
         <StaticImage
           src="../images/profile_pic.jpeg"
