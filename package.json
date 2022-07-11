@@ -39,6 +39,7 @@
     "@types/react-helmet": "^6.1.5",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
   },
@@ -54,7 +55,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "type-check": "tsc --noEmit",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "test": "npm-run-all type-check format",
     "postinstall": "husky install"
   },
   "repository": {
