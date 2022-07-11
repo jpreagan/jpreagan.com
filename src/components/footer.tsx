@@ -3,7 +3,11 @@ import { jsx, Link, Themed } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 import PropTypes from "prop-types"
 
-const Footer = ({ author }) => {
+interface Props {
+  author: string
+}
+
+const Footer = ({ author }: Props) => {
   return (
     <footer sx={{ mb: 4 }}>
       <Themed.p sx={{ m: 0 }}>

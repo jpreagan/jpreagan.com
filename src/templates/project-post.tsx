@@ -7,7 +7,13 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const ProjectPostTemplate = ({ data }) => {
+interface Props {
+  data: {
+    mdx: any
+  }
+}
+
+const ProjectPostTemplate = ({ data }: Props) => {
   const project = data.mdx
 
   return (

@@ -1,4 +1,3 @@
-import * as React from "react"
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
@@ -9,7 +8,7 @@ import Projects from "../components/projects"
 import Contact from "../components/contact"
 
 const IndexPage = () => (
-  <>
+  <div>
     <header>
       <h1
         sx={{
@@ -32,7 +31,7 @@ const IndexPage = () => (
         <Contact />
       </div>
     </Layout>
-  </>
+  </div>
 )
 
 export default IndexPage

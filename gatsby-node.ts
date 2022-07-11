@@ -1,11 +1,16 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+import path from "path"
+import { createFilePath } from "gatsby-source-filesystem"
+import type { GatsbyNode } from "gatsby"
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
-  const projectPost = path.resolve(`./src/templates/project-post.js`)
+  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
+  const projectPost = path.resolve(`./src/templates/project-post.tsx`)
 
   const allPosts = await graphql(
     `
@@ -86,7 +91,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({
+  node,
+  actions,
+  getNode,
+}) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {

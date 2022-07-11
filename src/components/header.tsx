@@ -3,7 +3,11 @@ import { jsx, Flex, Heading, Link, Themed } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 import PropTypes from "prop-types"
 
-const Header = ({ siteTitle }) => (
+interface Props {
+  siteTitle: string
+}
+
+const Header = ({ siteTitle }: Props) => (
   <header sx={{ pt: 4 }}>
     <Flex sx={{ flexWrap: "wrap" }}>
       <Heading as="span" variant="styles.h3" sx={{ mb: [2, 0, 0], mt: 0 }}>

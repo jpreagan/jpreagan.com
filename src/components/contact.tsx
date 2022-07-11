@@ -7,13 +7,7 @@ const Contact = () => {
       <Heading as="h2" variant="styles.h2" sx={{ mb: 3 }}>
         Get in touch
       </Heading>
-      <Box
-        as="form"
-        name="contact"
-        action="/success"
-        method="POST"
-        data-netlify="true"
-      >
+      <form name="contact" action="/success" method="POST" data-netlify="true">
         <input type="hidden" name="form-name" value="contact" />
         <Label htmlFor="username">Name</Label>
         <Input name="username" id="username" mb={3} />
@@ -22,7 +16,7 @@ const Contact = () => {
         <Label htmlFor="message">Message</Label>
         <Textarea name="message" id="message" rows={6} mb={3} />
         <Button>Submit</Button>
-      </Box>
+      </form>
     </section>
   )
 }

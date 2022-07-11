@@ -13,7 +13,11 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import Footer from "./footer"
 
-const Layout = ({ children }) => {
+interface Props {
+  children?: any
+}
+
+const Layout = ({ children }: Props) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
