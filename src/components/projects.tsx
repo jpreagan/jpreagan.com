@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading, Grid, Link, Flex, Themed } from "theme-ui"
+import { jsx, Heading, Grid, Flex, Themed } from "theme-ui"
 import { getColor } from "@theme-ui/color"
 import {
   SiGatsby as Gatsby,
@@ -8,7 +8,9 @@ import {
   SiJest as Jest,
   SiCypress as Cypress,
 } from "react-icons/si"
-import { Link as GatsbyLink, useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
+
+import { Link } from "./link"
 
 const components = {
   gatsby: Gatsby,
@@ -61,7 +63,6 @@ const Projects = () => {
             <Link
               key={project.fields.slug}
               to={project.fields.slug}
-              as={GatsbyLink}
               sx={{
                 color: "heading",
                 textDecoration: "none",

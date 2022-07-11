@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, Heading, Link } from "theme-ui"
-import { Link as GatsbyLink } from "gatsby"
+import { jsx, Heading } from "theme-ui"
 import { BsCheckCircleFill as Check } from "react-icons/bs"
 
+import { Link } from "../components/link"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -20,7 +20,7 @@ const SuccessPage = () => (
       <p>
         I appreciate you reaching out, and I typically respond within 48 hours.
       </p>
-      <Link as={GatsbyLink} to="/">
+      <Link to="/" sx={{ variant: "styles.a" }}>
         &larr; Return home
       </Link>
     </section>
