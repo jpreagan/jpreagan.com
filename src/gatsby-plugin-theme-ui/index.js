@@ -98,19 +98,19 @@ const theme = {
   },
   buttons: {
     primary: {
-      backgroundImage: theme => `
+      backgroundImage: t => `
         linear-gradient(
           to right,
-          ${getColor(theme, "secondary.2")},
-          ${getColor(theme, "primary.2")}
+          ${getColor(t, "secondary.2")},
+          ${getColor(t, "primary.2")}
         )
       `,
       "&:hover": {
-        backgroundImage: theme => `
+        backgroundImage: t => `
         linear-gradient(
           to right,
-          ${getColor(theme, "secondary.1")},
-          ${getColor(theme, "primary.1")}
+          ${getColor(t, "secondary.1")},
+          ${getColor(t, "primary.1")}
         )
       `,
       },
