@@ -15,7 +15,7 @@ function Footer({ author }: Props) {
         <Link to="/" sx={{ variant: "links.subheading" }}>
           {author}
         </Link>{" "}
-        ©{new Date().getFullYear()}
+        © {new Date().getFullYear()}
       </Themed.p>
     </footer>
   )
