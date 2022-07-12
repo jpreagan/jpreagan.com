@@ -9,8 +9,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
-  const projectPost = path.resolve(`./src/templates/project-post.tsx`)
+  const blogPost = path.resolve("./src/templates/blog-post.tsx")
+  const projectPost = path.resolve("./src/templates/project-post.tsx")
 
   const allPosts = await graphql(
     `
@@ -34,7 +34,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   if (allPosts.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      "There was an error loading your blog posts",
       allPosts.errors
     )
     return
@@ -58,7 +58,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   if (allProjects.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your project posts`,
+      "There was an error loading your project posts",
       allProjects.errors
     )
     return
@@ -68,7 +68,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const projects = allProjects.data.allMdx.nodes
 
   if (posts.length > 0) {
-    posts.forEach((post, index) => {
+    posts.forEach(post => {
       createPage({
         path: post.fields.slug,
         component: blogPost,
@@ -79,7 +79,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     })
   }
   if (projects.length > 0) {
-    projects.forEach((project, index) => {
+    projects.forEach(project => {
       createPage({
         path: project.fields.slug,
         component: projectPost,
@@ -98,17 +98,17 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
 }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `Mdx`) {
+  if (node.internal.type === "Mdx") {
     const { sourceInstanceName } = getNode(node.parent)
     const filePath = createFilePath({ node, getNode })
 
     createNodeField({
-      name: `sourceInstanceName`,
+      name: "sourceInstanceName",
       node,
       value: sourceInstanceName,
     })
     createNodeField({
-      name: `slug`,
+      name: "slug",
       node,
       value: `/${sourceInstanceName}${filePath}`,
     })

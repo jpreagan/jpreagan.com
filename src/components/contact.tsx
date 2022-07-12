@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { Heading, Box, Textarea, Label, Input, Button, jsx } from "theme-ui"
+import { Heading, Textarea, Label, Input, Button, jsx } from "theme-ui"
 
-const Contact = () => {
+function Contact() {
   return (
     <section id="contact" sx={{ my: 6 }}>
       <Heading as="h2" variant="styles.h2" sx={{ mb: 3 }}>

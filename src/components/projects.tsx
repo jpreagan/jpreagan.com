@@ -20,7 +20,7 @@ const components = {
   cypress: Cypress,
 }
 
-const Projects = () => {
+function Projects() {
   const data = useStaticQuery(graphql`
     query ProjectsQuery {
       allMdx(
@@ -76,9 +76,9 @@ const Projects = () => {
                     ${getColor(theme, linearGradientEnd)}
                   )
                 `,
-                transition: `all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)`,
+                transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
                 "&:hover": {
-                  transform: `translateY(-5px)`,
+                  transform: "translateY(-5px)",
                 },
               }}
             >
@@ -90,9 +90,8 @@ const Projects = () => {
                   if (components[icon]) {
                     const Icon = components[icon]
                     return <Icon key={icon} size={25} title={icon} />
-                  } else {
-                    return null
                   }
+                  return null
                 })}
               </Flex>
               <Themed.p sx={{ mb: 0 }}>{description}</Themed.p>

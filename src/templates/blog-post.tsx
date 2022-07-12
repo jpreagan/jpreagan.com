@@ -13,7 +13,7 @@ interface Props {
   }
 }
 
-const PostTemplate = ({ data }: Props) => {
+function PostTemplate({ data }: Props) {
   const post = data.mdx
 
   return (

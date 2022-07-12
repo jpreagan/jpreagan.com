@@ -9,7 +9,7 @@ import {
   AiFillGithub as GitHub,
 } from "react-icons/ai"
 
-const Intro = () => {
+function Intro() {
   const data = useStaticQuery(graphql`
     query IntroQuery {
       site {
@@ -54,7 +54,7 @@ const Intro = () => {
                 lineHeight: 1,
               }}
             >
-              Aloha, I'm
+              Aloha, I&apos;m
             </span>
             <br />
             <span
@@ -79,8 +79,12 @@ const Intro = () => {
               James Reagan
             </span>
           </p>
-          <Themed.p>💻 I'm a software engineer 🌴 living in Hawaiʻi.</Themed.p>
-          <Themed.p>💕 Lover of 80's love songs and 🍜 udon noodles!</Themed.p>
+          <Themed.p>
+            💻 I&apos;m a software engineer 🌴 living in Hawaiʻi.
+          </Themed.p>
+          <Themed.p>
+            💕 Lover of 80&apos;s love songs and 🍜 udon noodles!
+          </Themed.p>
         </div>
         <StaticImage
           src="../images/profile_pic.jpeg"
