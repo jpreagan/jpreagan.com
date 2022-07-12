@@ -60,12 +60,15 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "prettier": "prettier \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "format": "yarn prettier --write",
+    "check-format": "yarn prettier --list-different",
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "type-check": "tsc --noEmit",
-    "test": "npm-run-all type-check format",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx .",
+    "check-types": "tsc --noEmit",
+    "test": "npm-run-all --parallel check-types check-format lint build",
     "postinstall": "husky install"
   },
   "repository": {

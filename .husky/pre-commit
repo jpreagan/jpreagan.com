@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn type-check && yarn lint-staged
+yarn check-types && yarn lint-staged
