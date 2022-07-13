@@ -67,8 +67,13 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const posts = allPosts.data.allMdx.nodes
   const projects = allProjects.data.allMdx.nodes
 
+  interface Post {
+    fields: { slug: string }
+    id: string
+  }
+
   if (posts.length > 0) {
-    posts.forEach(post => {
+    posts.forEach((post: Post): void => {
       createPage({
         path: post.fields.slug,
         component: blogPost,
@@ -78,8 +83,14 @@ export const createPages: GatsbyNode["createPages"] = async ({
       })
     })
   }
+
+  interface Project {
+    fields: { slug: string }
+    id: string
+  }
+
   if (projects.length > 0) {
-    projects.forEach(project => {
+    projects.forEach((project: Project): void => {
       createPage({
         path: project.fields.slug,
         component: projectPost,
