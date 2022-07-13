@@ -2,7 +2,7 @@
 import { jsx, Themed } from "theme-ui"
 import PropTypes from "prop-types"
 
-import { Link } from "./link"
+import Link from "./link"
 
 interface Props {
   author: string

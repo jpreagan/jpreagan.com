@@ -2,7 +2,7 @@
 import { jsx, Heading } from "theme-ui"
 import { BsCheckCircleFill as Check } from "react-icons/bs"
 
-import { Link } from "../components/link"
+import Link from "../components/link"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 

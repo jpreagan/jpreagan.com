@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading, Grid, Flex, Themed } from "theme-ui"
+import { jsx, Heading, Grid, Flex, Themed, Theme } from "theme-ui"
 import { getColor } from "@theme-ui/color"
 import {
   SiGatsby as Gatsby,
@@ -10,7 +10,7 @@ import {
 } from "react-icons/si"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { Link } from "./link"
+import Link from "./link"
 
 const components = {
   gatsby: Gatsby,
@@ -54,7 +54,7 @@ function Projects() {
       </Heading>
 
       <Grid gap={3} columns={[1, 2]}>
-        {projects.map((project, index) => {
+        {projects.map((project, index: number) => {
           const linearGradientStart = index % 2 === 0 ? "#6b21a8" : "#db2777"
           const linearGradientEnd = index % 2 === 0 ? "#db2777" : "#fb923c"
           const { title, description, icons } = project.frontmatter
@@ -69,11 +69,11 @@ function Projects() {
                 borderRadius: 6,
                 px: 3,
                 py: 4,
-                backgroundImage: theme => `
+                backgroundImage: (t: Theme) => `
                   linear-gradient(
                     to right,
-                    ${getColor(theme, linearGradientStart)},
-                    ${getColor(theme, linearGradientEnd)}
+                    ${getColor(t, linearGradientStart)},
+                    ${getColor(t, linearGradientEnd)}
                   )
                 `,
                 transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",

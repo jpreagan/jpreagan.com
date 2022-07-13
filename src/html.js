@@ -1,3 +1,7 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable jsx-a11y/html-has-lang */
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import PropTypes from "prop-types"

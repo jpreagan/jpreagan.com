@@ -1,25 +1,28 @@
 /** @jsx jsx */
-import { jsx, ThemeUIStyleObject } from "theme-ui"
-import { FunctionComponent, AnchorHTMLAttributes } from "react"
+import { AnchorHTMLAttributes } from "react"
 import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
+import { jsx, ThemeUIStyleObject } from "theme-ui"
 
-export interface LinkProps
+interface LinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
     GatsbyLinkProps<{}> {
   sx?: ThemeUIStyleObject
 }
 
-export const Link: FunctionComponent<LinkProps> = ({
-  children,
-  to,
-  sx,
-  ...rest
-}) => (
-  <GatsbyLink
-    to={to}
-    sx={{ ...sx }}
-    {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
-  >
-    {children}
-  </GatsbyLink>
-)
+function Link({ children, to, sx, ...rest }: LinkProps) {
+  return (
+    <GatsbyLink
+      to={to}
+      sx={{ ...sx }}
+      {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+    >
+      {children}
+    </GatsbyLink>
+  )
+}
+
+Link.defaultProps = {
+  sx: undefined,
+}
+
+export default Link
