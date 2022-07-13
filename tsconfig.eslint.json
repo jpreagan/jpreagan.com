@@ -1,11 +1,16 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
   "include": [
-    "./.eslintrc.js",
     "./src/**/*",
     "./gatsby-browser.ts",
     "./gatsby-config.ts",
     "./gatsby-node.ts",
-    "./plugins/**/*"
+    "./plugins/**/*",
+    "./.eslintrc.js",
+    "./cypress.config.js",
+    "./cypress/**/*"
   ]
 }
