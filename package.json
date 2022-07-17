@@ -63,7 +63,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "prettier": "prettier \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "prettier": "prettier \"**/*.{js,jsx,ts,tsx,json,md,mdx,css}\"",
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
     "start": "gatsby develop",
