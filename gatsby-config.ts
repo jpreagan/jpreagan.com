@@ -8,6 +8,8 @@ module.exports = {
       twitter: "https://twitter.com/jpreagan_",
       linkedin: "https://www.linkedin.com/in/jpreagan/",
       github: "https://github.com/jpreagan",
+      youtube: "https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg",
+      tiktok: "https://www.tiktok.com/@jpreagan.js",
     },
   },
   plugins: [
@@ -21,7 +23,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 608,
+              maxWidth: 700,
             },
           },
         ],

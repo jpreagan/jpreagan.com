@@ -7,7 +7,9 @@ import {
   AiFillLinkedin as LinkedIn,
   AiOutlineTwitter as Twitter,
   AiFillGithub as GitHub,
+  AiFillYoutube as YouTube,
 } from "react-icons/ai"
+import { SiTiktok as TikTok } from "react-icons/si"
 
 function Intro() {
   const data = useStaticQuery(graphql`
@@ -19,6 +21,8 @@ function Intro() {
             twitter
             linkedin
             github
+            youtube
+            tiktok
           }
         }
       }
@@ -133,6 +137,24 @@ function Intro() {
           sx={{ color: "currentColor" }}
         >
           <GitHub size={40} title="GitHub" />
+        </Link>
+        <Link
+          href={social?.youtube}
+          rel="noreferrer"
+          target="_blank"
+          variant="social"
+          sx={{ color: "currentColor" }}
+        >
+          <YouTube size={40} title="YouTube" />
+        </Link>
+        <Link
+          href={social?.tiktok}
+          rel="noreferrer"
+          target="_blank"
+          variant="social"
+          sx={{ color: "currentColor" }}
+        >
+          <TikTok size={34} title="TikTok" />
         </Link>
       </div>
     </section>
