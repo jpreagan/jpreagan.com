@@ -43,8 +43,8 @@
     "cypress": "^10.3.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "latest",
-    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -77,9 +77,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jpreagan/jpreagan.com.git"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md,css}": "yarn format"
   },
   "packageManager": "yarn@3.2.1"
 }
