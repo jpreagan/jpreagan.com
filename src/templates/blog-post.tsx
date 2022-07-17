@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Heading } from "theme-ui"
+import { jsx, Heading, Themed } from "theme-ui"
 import { getColor } from "@theme-ui/color"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -9,7 +9,16 @@ import Seo from "../components/seo"
 
 interface Props {
   data: {
-    mdx: any
+    mdx: {
+      id: string
+      excerpt: string
+      body: string
+      frontmatter: {
+        title: string
+        date: string
+        description: string
+      }
+    }
   }
 }
 
@@ -26,8 +35,8 @@ function PostTemplate({ data }: Props) {
         <header
           sx={{
             borderRadius: 6,
-            px: 3,
-            py: 5,
+            px: [3, 5],
+            py: [5, 6],
             my: 3,
             backgroundImage: theme => `
               linear-gradient(
@@ -42,14 +51,24 @@ function PostTemplate({ data }: Props) {
           <Heading
             as="h1"
             variant="styles.h1"
-            sx={{ fontSize: 6 }}
+            sx={{ fontSize: [5, 7], mt: 0 }}
             itemProp="headline"
           >
             {post.frontmatter.title}
           </Heading>
-          <p sx={{ fontSize: 3 }}>{post.frontmatter.description}</p>
+          <p sx={{ fontFamily: "heading", fontSize: [1, 3], mb: 0 }}>
+            {post.frontmatter.date}
+          </p>
         </header>
-        <section itemProp="articleBody" sx={{ my: 3 }}>
+        <section
+          itemProp="articleBody"
+          sx={{ maxWidth: 700, mx: "auto", my: [4, 5] }}
+        >
+          <Themed.blockquote sx={{ my: [5, 6] }}>
+            <Themed.p sx={{ fontSize: [3, 4] }}>
+              {post.frontmatter.description}
+            </Themed.p>
+          </Themed.blockquote>
           <MDXRenderer>{post.body}</MDXRenderer>
         </section>
       </article>

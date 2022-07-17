@@ -33,8 +33,8 @@ function Header({ siteTitle }: Props) {
               </Link>
             </Themed.li>
             <Themed.li>
-              <Link to="/#projects" sx={{ variant: "links.subheading" }}>
-                Projects
+              <Link to="/#blog" sx={{ variant: "links.subheading" }}>
+                Blog
               </Link>
             </Themed.li>
             <Themed.li>

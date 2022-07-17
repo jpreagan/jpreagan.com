@@ -5,7 +5,7 @@ import { jsx } from "theme-ui"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Intro from "../components/intro"
-import Projects from "../components/projects"
+import Posts from "../components/posts"
 import Contact from "../components/contact"
 
 function IndexPage() {
@@ -29,7 +29,7 @@ function IndexPage() {
         <Seo title="Aloha" />
         <div sx={{ maxWidth: 680, mx: "auto" }}>
           <Intro />
-          <Projects />
+          <Posts />
           <Contact />
         </div>
       </Layout>
