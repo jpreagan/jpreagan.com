@@ -2,7 +2,7 @@ import { getColor } from "@theme-ui/color"
 import nightOwl from "@theme-ui/prism/presets/night-owl.json"
 
 const theme = {
-  breakpoints: ["40em", "52em", "64em"],
+  breakpoints: ["43.75em", "43.75em", "64em"],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
@@ -186,6 +186,16 @@ const theme = {
     },
     li: {
       fontSize: [2, 3],
+    },
+    blockquote: {
+      borderLeftColor: "primary",
+      borderLeftStyle: "solid",
+      borderLeftWidth: "6px",
+      mx: 0,
+      pl: 4,
+      p: {
+        fontStyle: "italic",
+      },
     },
   },
 }
