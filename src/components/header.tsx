@@ -27,19 +27,16 @@ function Header({ siteTitle }: Props) {
               p: 0,
             }}
           >
-            {/* eslint-disable-next-line react/jsx-pascal-case */}
             <Themed.li>
               <Link to="/" sx={{ variant: "links.subheading" }}>
                 About
               </Link>
             </Themed.li>
-            {/* eslint-disable-next-line react/jsx-pascal-case */}
             <Themed.li>
               <Link to="/#projects" sx={{ variant: "links.subheading" }}>
                 Projects
               </Link>
             </Themed.li>
-            {/* eslint-disable-next-line react/jsx-pascal-case */}
             <Themed.li>
               <Link to="/#contact" sx={{ variant: "links.subheading" }}>
                 Contact
