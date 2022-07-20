@@ -64,7 +64,7 @@ function PostTemplate({ data }: Props) {
           itemProp="articleBody"
           sx={{ maxWidth: 700, mx: "auto", my: [4, 5] }}
         >
-          <Themed.blockquote sx={{ my: [5, 6] }}>
+          <Themed.blockquote sx={{ my: 5 }}>
             <Themed.p sx={{ fontSize: [3, 4] }}>
               {post.frontmatter.description}
             </Themed.p>
