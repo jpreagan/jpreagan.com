@@ -1,12 +1,12 @@
 ---
 title: "Making a Create React App template with TypeScript and static testing tools"
 date: "2022-07-16"
-description: "Why I made a Create React App template that uses TypeScript and static testing tools like eslint, prettier, husky, lint-staged while using the Airbnb style guide"
+description: "Why I made a Create React App template that uses TypeScript and static testing tools like eslint, prettier, husky, lint-staged while using the Airbnb style guide."
 ---
 
 `youtube: https://www.youtube.com/watch?v=PkT0MieM9dM`
 
-I made a Create React App template with TypeScript and an ESLint configuration using the Airbnb style guide. I also included other tools and scripts for static testing.
+I made a [Create React App template](https://github.com/jpreagan/cra-template-typescript) with TypeScript and an ESLint configuration using the Airbnb style guide. I also included other tools and scripts for static testing.
 
 At the time, I could not find an up-to-date template that put all these things together at once. I didn't enjoy needing to solve this problem each time starting up a new project. So, I decided to publish my own template which I'm sharing in hopes that it can be of use to others and improved.
 
@@ -32,7 +32,7 @@ This freedom that JavaScript has with the lack of types makes possible rapid dev
 
 Open sourced in 2012 by Microsoft, TypeScript solves this problem by bringing a strongly typed system to JavaScript.
 
-At JSConf a few years ago, staff software engineer Brie Bunge gave a talk in which she discussed this problem at Airbnb. She revealed an internal study with surprising results. In the study, it was determined 38% of bugs that reached production could have been prevented by using TypeScript.
+At JSConf a few years ago, staff software engineer [Brie Bunge](https://twitter.com/briebunge) gave a talk in which she discussed this problem at Airbnb. She revealed an internal study with surprising results. In the study, it was determined 38% of bugs that reached production could have been prevented by using TypeScript.
 
 `youtube: https://www.youtube.com/watch?v=P-J9Eg7hJwE`
 
@@ -76,7 +76,7 @@ That is why I've included `eslint-config-prettier`, which is the currently prefe
 
 We don't rely on the code editor for things like formatting and linting because not everyone uses the same editor nor perhaps has them configured in the same way.
 
-You can and should install extensions to your code editor for eslint at a minimum, but we need a way to test things outside of the editor so we're all on the same page in a collaborative effort.
+You can and should install extensions to your code editor for ESLint at a minimum, but we need a way to test things outside of the editor so we're all on the same page in a collaborative effort.
 
 You can format the code from the command line with:
 
@@ -114,7 +114,7 @@ If there is a problem with the types, linting, or formatting the commit will not
 
 ## Go forth and make something fabulous
 
-At the end of the day, these are just tools to help us maintain a better codebase. Static testing analysis is the base layer upon which our testing framework rests. The upper layers include unit, integration and end-to-end testing.
+At the end of the day, these are just tools to help us maintain a better codebase. Static testing analysis is the base layer upon which our testing framework rests. The upper layers include unit, integration, and end-to-end testing.
 
 Now go forward and make something fabulous!
 
