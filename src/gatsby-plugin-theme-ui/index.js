@@ -36,7 +36,7 @@ const theme = {
     heading: "#fff",
     text: "#d6deeb",
     muted: "#637777",
-    background: "#1d001d",
+    background: "#021320",
   },
   text: {
     heading: {
@@ -156,11 +156,11 @@ const theme = {
       overflowX: "auto",
       padding: 3,
       borderRadius: 6,
-      ...nightOwl,
     },
     code: {
       fontFamily: "monospace",
       fontSize: "inherit",
+      ...nightOwl,
     },
     table: {
       width: "100%",
