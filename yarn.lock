@@ -11129,6 +11129,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-remark-embed-video@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "gatsby-remark-embed-video@npm:3.2.1"
+  dependencies:
+    get-video-id: ^3.6.4
+    remark-burger: ^1.0.1
+    unist-util-visit: ^2.0.3
+  checksum: d4eb541f92a973af11eacf79e19282ec52b7fd3f3d3a8b52f954133fbff2e98024c210dc5bb291b4717f5e8a2f11b1a7cb128fb25276d9d42ab1fde4901618e7
+  languageName: node
+  linkType: hard
+
 "gatsby-remark-images@npm:^6.18.0":
   version: 6.18.0
   resolution: "gatsby-remark-images@npm:6.18.0"
@@ -11148,6 +11159,21 @@ __metadata:
     gatsby: ^4.0.0-next
     gatsby-plugin-sharp: ^4.0.0-next
   checksum: f9c35dfe4830e5ea26247d4e007335e371c0b26c861d68823f41e7b5eec07f23c96a6b1b4002ee768d294d63d74b68ef9025322363440fcf84f850be09d6fb2d
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-responsive-iframe@npm:^5.19.0":
+  version: 5.19.0
+  resolution: "gatsby-remark-responsive-iframe@npm:5.19.0"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+    cheerio: ^1.0.0-rc.10
+    common-tags: ^1.8.2
+    lodash: ^4.17.21
+    unist-util-visit: ^2.0.3
+  peerDependencies:
+    gatsby: ^4.0.0-next
+  checksum: 0e1b2dca2d6dac709554a486b848ee7e99ee8e0925bea0631ea3a25c9dc7dfb513dfdc3b2856ac9b22f235232e6309bd1fc4e22731830c0945441cd0614d5b51
   languageName: node
   linkType: hard
 
@@ -11525,6 +11551,13 @@ __metadata:
     call-bind: ^1.0.2
     get-intrinsic: ^1.1.1
   checksum: 9ceff8fe968f9270a37a1f73bf3f1f7bda69ca80f4f80850670e0e7b9444ff99323f7ac52f96567f8b5f5fbe7ac717a0d81d3407c7313e82810c6199446a5247
+  languageName: node
+  linkType: hard
+
+"get-video-id@npm:^3.6.4":
+  version: 3.6.4
+  resolution: "get-video-id@npm:3.6.4"
+  checksum: 3f4eef46c999c41c1d09da2e8c83a32e45a6c9c71ec1980c0a7151d004c561349b962c9e0a241437f8d99107d4cf0172d5e1b64ace0d5513de3a74d48f770260
   languageName: node
   linkType: hard
 
@@ -13220,7 +13253,9 @@ __metadata:
     gatsby-plugin-react-helmet: ^5.18.0
     gatsby-plugin-sharp: ^4.18.0
     gatsby-plugin-theme-ui: ^0.14.6
+    gatsby-remark-embed-video: ^3.2.1
     gatsby-remark-images: ^6.18.0
+    gatsby-remark-responsive-iframe: ^5.19.0
     gatsby-source-filesystem: ^4.18.0
     gatsby-transformer-sharp: ^4.18.0
     husky: ^8.0.1
@@ -17238,6 +17273,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remark-burger@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "remark-burger@npm:1.0.1"
+  checksum: d1248fed6f5bc2b5b6d2cfe65c63b78251a498bae6816de98a8f56682e0d39e2fcfeb3e9c0539c314505dde250be72d922f37722e1b7e7e8a4fe5d61a527082f
+  languageName: node
+  linkType: hard
+
 "remark-footnotes@npm:2.0.0":
   version: 2.0.0
   resolution: "remark-footnotes@npm:2.0.0"
@@ -19716,7 +19758,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit@npm:2.0.3, unist-util-visit@npm:^2.0.0":
+"unist-util-visit@npm:2.0.3, unist-util-visit@npm:^2.0.0, unist-util-visit@npm:^2.0.3":
   version: 2.0.3
   resolution: "unist-util-visit@npm:2.0.3"
   dependencies:

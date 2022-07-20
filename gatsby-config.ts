@@ -15,7 +15,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-image",
-    "gatsby-remark-images",
     {
       resolve: "gatsby-plugin-mdx",
       options: {
@@ -26,9 +25,18 @@ module.exports = {
               maxWidth: 700,
             },
           },
+          {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              width: 700,
+              loadingStrategy: "lazy", // Optional: Enable support for lazy-load offscreen iframes. Default is disabled.
+            },
+          },
+          "gatsby-remark-responsive-iframe",
         ],
       },
     },
+    "gatsby-remark-images",
     {
       resolve: "gatsby-source-filesystem",
       options: {
