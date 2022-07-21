@@ -8,4 +8,3 @@
 
 🚀 It's built with Gatsby and hosted on Netlify.
 
-📖 I wrote [a post](https://jpreagan.com/projects/my-portfolio/) explaining how and why I built it.
