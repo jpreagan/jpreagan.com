@@ -7,4 +7,3 @@
 👀 Have a look: [jpreagan.com](https://jpreagan.com)
 
 🚀 It's built with Gatsby and hosted on Netlify.
-
