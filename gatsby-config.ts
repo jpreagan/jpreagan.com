@@ -24,9 +24,46 @@ const config: GatsbyConfig = {
         icon: "src/images/profile_pic.jpg",
       },
     },
-    "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              width: 800,
+              loadingStrategy: "lazy",
+              urlOverrides: [
+                {
+                  id: "youtube",
+                  embedURL: (videoId: string) =>
+                    `https://www.youtube-nocookie.com/embed/${videoId}`,
+                },
+              ],
+            },
+          },
+          "gatsby-remark-responsive-iframe",
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              aliases: {
+                sh: "bash",
+              },
+            },
+          },
+          "gatsby-remark-images",
+        ],
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/posts`,
+        name: `blog`,
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {

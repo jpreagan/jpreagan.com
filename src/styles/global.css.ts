@@ -83,3 +83,15 @@ globalStyle("a", {
 globalStyle("a:hover", {
   textDecoration: "none",
 });
+
+globalStyle("#content > p", {
+  margin: "1rem 0",
+});
+
+globalStyle("#content > h2", {
+  margin: "3rem 0 1rem",
+});
+
+globalStyle("#content > h3", {
+  margin: "3rem 0 1rem",
+});
