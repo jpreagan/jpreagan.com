@@ -26,7 +26,7 @@ createGlobalTheme(":root", vars, {
   color: {
     text: "#d6deeb",
     heading: "white",
-    background: "#021320",
+    background: "black",
     primary: "#f472b6",
     muted: "#637777",
   },
