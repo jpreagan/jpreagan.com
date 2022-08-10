@@ -42,15 +42,6 @@ export default function Header({ siteTitle }: HeaderProps) {
               Projects
             </Link>
           </li>
-          <li>
-            <Link
-              to="/contact"
-              className={styles.link}
-              activeClassName={styles.activeLink}
-            >
-              Contact
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>
