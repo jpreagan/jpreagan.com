@@ -1,0 +1,13 @@
+.cache/
+.DS_Store
+.eslintcache
+.env*
+.netlify/
+node_modules/
+.npm
+.pnp/
+.pnp.js
+public
+src/gatsby-types.d.ts
+yarn-error.log
+.yarn-integrity
