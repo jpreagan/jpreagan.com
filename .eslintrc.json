@@ -2,7 +2,17 @@
   "globals": {
     "__PATH_PREFIX__": true
   },
-  "extends": ["react-app", "airbnb", "airbnb/hooks", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "react-app",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import"],
+  "root": true,
   "settings": {
     "import/resolver": {
       "node": {
