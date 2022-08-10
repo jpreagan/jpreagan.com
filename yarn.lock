@@ -1128,6 +1128,16 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/inter@^4.5.12":
+  version "4.5.12"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.12.tgz#a6236379bf710658db048d7087ec588754962cb6"
+  integrity sha512-bGKk4/8tube/nCk8hav0ZDBVbzJzc7m0Vt4xF5p15IN4YImwGdtKG38Oq5bU8xHNS+VfvbFFCepgQNj7Pr/Lvg==
+
+"@fontsource/source-sans-pro@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/source-sans-pro/-/source-sans-pro-4.5.11.tgz#06b3f08ef1a5250d78c8198e5a0482b5d87a4d52"
+  integrity sha512-f7iw44q1EjBv3MNcHCGAgrW/QVyweaEouFsJzykPhTOGnZFSwFJRISToXornOmuAy7xUUGiVdqOLiykgZoYB8A==
+
 "@gatsbyjs/parcel-namer-relative-to-cwd@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@gatsbyjs/parcel-namer-relative-to-cwd/-/parcel-namer-relative-to-cwd-1.5.0.tgz#ec4691e834f3c3b6fa1f36846454dd43cf8e04f4"
