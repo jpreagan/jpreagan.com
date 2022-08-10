@@ -1,27 +1,16 @@
 import React from "react";
-import { Link } from "gatsby";
+
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
 
 export default function NotFoundPage() {
   return (
-    <main>
-      <h1>Page not found</h1>
-      <p>
-        Sorry 😔, the page you're looking for cannot be found.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Layout>
+      <p>404: Page not found.</p>
+    </Layout>
   );
 }
 
 export function Head() {
-  return <title>Not found</title>;
+  return <Seo title="404: Not Found" />;
 }

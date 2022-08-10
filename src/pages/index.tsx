@@ -1,11 +1,18 @@
 import React from "react";
 
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
+
 import "../styles/global.css";
 
 export default function IndexPage() {
-  return <p>Hello, World!</p>;
+  return (
+    <Layout>
+      <p>Hello, World!</p>
+    </Layout>
+  );
 }
 
 export function Head() {
-  return <title>Home Page</title>;
+  return <Seo title="Aloha" />;
 }

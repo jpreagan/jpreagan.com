@@ -6,6 +6,12 @@ const config: GatsbyConfig = {
     description: "My personal website built with Gatsby.",
     siteUrl: "https://www.jpreagan.com",
     author: "James Reagan",
+    social: {
+      twitter: "https://twitter.com/jpreagan_",
+      linkedin: "https://www.linkedin.com/in/jpreagan/",
+      github: "https://github.com/jpreagan",
+      youtube: "https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg",
+    },
   },
   graphqlTypegen: true,
   plugins: [
