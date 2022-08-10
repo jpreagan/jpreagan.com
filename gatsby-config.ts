@@ -3,7 +3,9 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: "James Reagan",
+    description: "My personal website built with Gatsby.",
     siteUrl: "https://www.jpreagan.com",
+    author: "James Reagan",
   },
   graphqlTypegen: true,
   plugins: [
