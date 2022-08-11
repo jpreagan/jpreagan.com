@@ -57,8 +57,6 @@ export default function ProjectsPage({
 export async function getServerData() {
   const url = "https://api.github.com/graphql";
   const headers = {
-    "Cache-Control":
-      "public, max-age=600, s-maxage=604800, stale-while-revalidate=3154000000",
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
   };
@@ -102,6 +100,9 @@ export async function getServerData() {
     }
 
     return {
+      headers: {
+        "Cache-Control": `public, max-age=600, s-maxage=604800, stale-while-revalidate=3154000000`,
+      },
       props: await response.json(),
     };
   } catch (error) {
