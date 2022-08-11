@@ -64,7 +64,7 @@ export async function getServerData() {
 
   return {
     headers: {
-      "Cache-Control": `public, max-age=60, s-maxage=604800, stale-while-revalidate=3154000000`,
+      "Cache-Control": `public, max-age=1, stale-while-revalidate=3154000000`,
     },
     props: items,
   };
