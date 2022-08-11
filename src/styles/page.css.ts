@@ -9,3 +9,7 @@ export const container = style({
 export const title = style({
   margin: "4rem 0",
 });
+
+export const heading = style({
+  margin: "2rem 0 1rem",
+});
