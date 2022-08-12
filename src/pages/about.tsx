@@ -63,9 +63,6 @@ export async function getServerData() {
   const { items } = await response.json();
 
   return {
-    headers: {
-      "Cache-Control": `public, max-age=1, stale-while-revalidate=31536000`,
-    },
     props: items,
   };
 }
