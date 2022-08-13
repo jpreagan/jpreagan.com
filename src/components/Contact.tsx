@@ -24,10 +24,19 @@ export default function Contact() {
       <ValidationError prefix="Email" field="email" errors={state.errors} />
       <label htmlFor="message">
         Message
-        <textarea id="message" name="message" className={styles.textarea} rows={10} />
+        <textarea
+          id="message"
+          name="message"
+          className={styles.textarea}
+          rows={10}
+        />
       </label>
       <ValidationError prefix="Message" field="message" errors={state.errors} />
-      <button type="submit" disabled={state.submitting} className={styles.button}>
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className={styles.button}
+      >
         Submit
       </button>
       <ValidationError errors={state.errors} />
