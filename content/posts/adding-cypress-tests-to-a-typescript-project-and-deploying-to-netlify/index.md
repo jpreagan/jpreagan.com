@@ -312,8 +312,8 @@ Let's adjust the `netlify.toml` again:
     TERM = "xterm"
 [[plugins]]
   package = "netlify-plugin-cypress"
-  [plugins.inputs] // highlight-line
-    spec = "cypress/e2e/smoke.cy.ts" // highlight-line
+  [plugins.inputs]
+    spec = "cypress/e2e/smoke.cy.ts"
   [plugins.inputs.preBuild]
     enable = true
     start = 'yarn start'
