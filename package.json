@@ -15,7 +15,7 @@
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx .",
-    "prettier": "prettier \"**/*.{js,jsx,ts,tsx,json,md,mdx,css}\"",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.{js,jsx,ts,tsx,json,md,mdx,css}\"",
     "format": "yarn prettier --write",
     "check-format": "yarn prettier --list-different",
     "validate": "run-p typecheck check-format lint build",
