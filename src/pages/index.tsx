@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import Aloha from "../components/Aloha";
 import Posts from "../components/Posts";
+import Contact from "../components/Contact";
 
 import "../styles/global.css";
 import * as styles from "../styles/index.css";
@@ -20,6 +21,10 @@ export default function IndexPage() {
       <section className={styles.section}>
         <h2 className={styles.heading}>Recent posts</h2>
         <Posts />
+      </section>
+      <section className={styles.section}>
+        <h2 className={styles.heading}>Get in touch</h2>
+        <Contact />
       </section>
     </Layout>
   );
