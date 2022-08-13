@@ -1128,15 +1128,20 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/ibm-plex-mono@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-4.5.11.tgz#b03b52319ac4c561595fb8b27992e94128b9622c"
+  integrity sha512-+rhtTK+/0P1GExwz8hBnlVPKX66KZgZcXod5S0FjDpMrfsbZ95SXw/s2gtrUSoze6dPH3nBYrgrkhYPAH63A2A==
+
+"@fontsource/ibm-plex-sans@^4.5.12":
+  version "4.5.12"
+  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-sans/-/ibm-plex-sans-4.5.12.tgz#fe6ee097cf6adf688361898e48cf1951cffb3d3b"
+  integrity sha512-ZwLqgUcYP9ihsi+G7CvILCRy0P2lCac1T8zN8FkvO5iX8+ZRor5wre+Sm8WUrDl+jy2opP8DQQ8BVJrc8TPT9Q==
+
 "@fontsource/inter@^4.5.12":
   version "4.5.12"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.12.tgz#a6236379bf710658db048d7087ec588754962cb6"
   integrity sha512-bGKk4/8tube/nCk8hav0ZDBVbzJzc7m0Vt4xF5p15IN4YImwGdtKG38Oq5bU8xHNS+VfvbFFCepgQNj7Pr/Lvg==
-
-"@fontsource/source-sans-pro@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/source-sans-pro/-/source-sans-pro-4.5.11.tgz#06b3f08ef1a5250d78c8198e5a0482b5d87a4d52"
-  integrity sha512-f7iw44q1EjBv3MNcHCGAgrW/QVyweaEouFsJzykPhTOGnZFSwFJRISToXornOmuAy7xUUGiVdqOLiykgZoYB8A==
 
 "@formspree/core@^2.7.1":
   version "2.7.1"
@@ -10092,10 +10097,10 @@ pretty-error@^2.1.2:
     lodash "^4.17.20"
     renderkid "^2.0.4"
 
-prism-theme-night-owl@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/prism-theme-night-owl/-/prism-theme-night-owl-1.4.0.tgz#af8a215ba75c081e22e74be41661dc40d7ad0c34"
-  integrity sha512-1N1GVbVorGd5t1Vw76yL/3rhqdiCpDrJg26Is+jGeMV7qiIMZL+bC7Mjx7HMMuVKZoi+2nWSbU5IutBYNy9tiQ==
+prism-themes@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/prism-themes/-/prism-themes-1.9.0.tgz#19c034f3205f1e28d75d89728e54ccd745f7e3dd"
+  integrity sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==
 
 prismjs@^1.28.0:
   version "1.28.0"

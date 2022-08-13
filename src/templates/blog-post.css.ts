@@ -33,7 +33,7 @@ export const title = style({
   },
 });
 
-export const content = style({
+export const markdown = style({
   margin: "4rem auto",
   maxWidth: "40em",
   padding: "0 1rem",

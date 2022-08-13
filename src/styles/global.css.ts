@@ -20,7 +20,7 @@ globalStyle("html", {
 
 globalStyle("body", {
   fontSize: "1rem",
-  fontFamily: `"Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  fontFamily: vars.font.body,
   lineHeight: "1.5",
   minHeight: "100vh",
   textRendering: "optimizeSpeed",
@@ -37,7 +37,7 @@ globalStyle("input, button, textarea, select", {
 
 globalStyle("h1, h2, h3, h4, h5, h6", {
   color: vars.color.heading,
-  fontFamily: `Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  fontFamily: vars.font.heading,
   fontWeight: "800",
   letterSpacing: "-0.015em",
   lineHeight: "1.125",
@@ -71,7 +71,7 @@ globalStyle("p, a, li", {
   fontSize: "1.125rem",
   "@media": {
     "screen and (min-width: 62.5em)": {
-      fontSize: "1.25rem",
+      fontSize: "1.125rem",
     },
   },
 });
@@ -82,16 +82,4 @@ globalStyle("a", {
 
 globalStyle("a:hover", {
   textDecoration: "none",
-});
-
-globalStyle("#content > p", {
-  margin: "1rem 0",
-});
-
-globalStyle("#content > h2", {
-  margin: "3rem 0 1rem",
-});
-
-globalStyle("#content > h3", {
-  margin: "3rem 0 1rem",
 });

@@ -56,8 +56,8 @@ export default function BlogPostTemplate({
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
-          className={styles.content}
-          id="content"
+          className={styles.markdown}
+          id="markdown"
         />
       </article>
       {/* <nav>
