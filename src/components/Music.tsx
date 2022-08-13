@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as styles from "./Music.css";
+import * as styles from "./music.css";
 
 export default function Music({ tracks }) {
   return (

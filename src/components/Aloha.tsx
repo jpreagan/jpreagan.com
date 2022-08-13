@@ -8,7 +8,7 @@ import {
   AiFillYoutube as YouTube,
 } from "react-icons/ai";
 
-import * as styles from "./Aloha.css";
+import * as styles from "./aloha.css";
 
 export default function Aloha() {
   const data = useStaticQuery(graphql`
@@ -38,7 +38,7 @@ export default function Aloha() {
           <span className={styles.author}>James Reagan</span>.
         </h2>
         <p className={styles.text}>
-          💻 I&apos;m a software engineer 🌴 living in Hawai&#x02BB;i.
+          💻 I&apos;m a software engineer 🌴 living in Hawaii.
         </p>
         <p className={styles.text}>
           💕 Lover of 80&apos;s music and 🍜 udon noodles!

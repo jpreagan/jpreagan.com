@@ -2,10 +2,10 @@
 import React from "react";
 import querystring from "query-string";
 
-import Layout from "../components/Layout";
-import Seo from "../components/Seo";
-import About from "../components/About";
-import Music from "../components/Music";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import About from "../components/about";
+import Music from "../components/music";
 
 import * as styles from "../styles/page.css";
 

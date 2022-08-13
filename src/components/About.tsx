@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import * as styles from "./About.css";
+import * as styles from "./about.css";
 
 export default function About() {
   return (
     <div className={styles.container}>
       <p className={styles.paragraph}>
-        I&apos;m a software engineer living in Hawai&#x02BB;i.
+        I&apos;m a software engineer living in Hawaii.
       </p>
       <p className={styles.paragraph}>
         These days I write full stack web applications with a focus on

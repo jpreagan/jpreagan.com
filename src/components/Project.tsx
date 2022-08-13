@@ -1,8 +1,8 @@
 import React from "react";
 
-import Language from "./Language";
+import Language from "./language";
 
-import * as styles from "./Project.css";
+import * as styles from "./project.css";
 
 import type {
   Project as ProjectType,

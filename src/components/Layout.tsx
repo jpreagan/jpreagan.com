@@ -1,8 +1,8 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "./header";
+import Footer from "./footer";
 
 type LayoutProps = {
   children: React.ReactNode;

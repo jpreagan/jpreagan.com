@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-import * as styles from "./Posts.css";
+import * as styles from "./posts.css";
 
 type Post = {
   excerpt: string;

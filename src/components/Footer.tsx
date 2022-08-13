@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import * as styles from "./Footer.css";
+import * as styles from "./footer.css";
 
 type FooterProps = {
   author: string;

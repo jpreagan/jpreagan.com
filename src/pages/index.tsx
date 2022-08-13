@@ -1,10 +1,10 @@
 import React from "react";
 
-import Layout from "../components/Layout";
-import Seo from "../components/Seo";
-import Aloha from "../components/Aloha";
-import Posts from "../components/Posts";
-import Contact from "../components/Contact";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import Aloha from "../components/aloha";
+import Posts from "../components/posts";
+import Contact from "../components/contact";
 
 import "../styles/global.css";
 import * as styles from "../styles/index.css";
