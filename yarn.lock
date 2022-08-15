@@ -2762,6 +2762,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/spotify-api@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@types/spotify-api/-/spotify-api-0.0.17.tgz#cdd3834508f171939340bdf813cc10af05cf4083"
+  integrity sha512-9CM+iRqR3EBF3pw2WTXKcKPghiEV4HYxIfRvdHstT6QRrcYOQMjLNvI0qCwab/w5RkupNxDgnGHvOrsalLCUWQ==
+
 "@types/tmp@^0.0.33":
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/@types/tmp/-/tmp-0.0.33.tgz#1073c4bc824754ae3d10cfab88ab0237ba964e4d"
