@@ -24,11 +24,11 @@ export const vars = createGlobalThemeContract({
 
 createGlobalTheme(":root", vars, {
   color: {
-    text: "#d6deeb",
+    text: "#b3b3b3",
     heading: "white",
     background: "black",
     primary: "#f472b6",
-    muted: "#637777",
+    muted: "#111",
   },
   font: {
     body: "IBM Plex Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",

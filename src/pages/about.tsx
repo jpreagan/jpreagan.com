@@ -1,3 +1,4 @@
+/// <reference types="spotify-api" />
 /* eslint-disable camelcase */
 import React from "react";
 import querystring from "query-string";
@@ -9,7 +10,28 @@ import Music from "../components/music";
 
 import * as styles from "../styles/page.css";
 
-export default function AboutPage({ serverData }) {
+export type Artist = {
+  id: string;
+  name: string;
+  url: string;
+};
+
+export type Track = {
+  artists: Artist[];
+  album: string;
+  albumUrl: string;
+  id: string;
+  image: string;
+  trackName: string;
+  trackUrl: string;
+  duration: string;
+};
+
+type ServerDataProps = {
+  serverData: Track[];
+};
+
+export default function AboutPage({ serverData }: ServerDataProps) {
   return (
     <Layout>
       <section className={styles.container}>
@@ -33,7 +55,7 @@ export async function getServerData() {
   const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=10`;
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
-  const getAccessToken = async () => {
+  async function getAccessToken() {
     const response = await fetch(TOKEN_ENDPOINT, {
       method: "POST",
       headers: {
@@ -47,9 +69,9 @@ export async function getServerData() {
     });
 
     return response.json();
-  };
+  }
 
-  const getRecentlyPlayed = async () => {
+  async function getRecentlyPlayed() {
     const { access_token } = await getAccessToken();
 
     return fetch(RECENTLY_PLAYED_ENDPOINT, {
@@ -57,13 +79,37 @@ export async function getServerData() {
         Authorization: `Bearer ${access_token}`,
       },
     });
-  };
+  }
 
   const response = await getRecentlyPlayed();
-  const { items } = await response.json();
+  const { items }: SpotifyApi.UsersRecentlyPlayedTracksResponse =
+    await response.json();
+
+  const tracks = items.map(({ track }) => {
+    const minutes = Math.floor(track.duration_ms / 1000 / 60);
+    const seconds = Math.floor(track.duration_ms / 1000) % 60;
+    const duration = `${minutes}:${seconds}`;
+
+    return {
+      artists: track.artists.map(
+        ({ external_urls: { spotify: url }, id, name }) => ({
+          url,
+          id,
+          name,
+        })
+      ),
+      album: track.album.name,
+      albumUrl: track.album.external_urls.spotify,
+      id: track.id,
+      image: track.album.images[2].url,
+      trackName: track.name,
+      trackUrl: track.external_urls.spotify,
+      duration,
+    };
+  });
 
   return {
-    props: items,
+    props: tracks,
   };
 }
 
