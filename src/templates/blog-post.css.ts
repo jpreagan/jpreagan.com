@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { vars } from "../styles/theme.css";
 
 export const heading = style({
   backgroundImage:
@@ -31,6 +32,10 @@ export const title = style({
       fontSize: "4rem",
     },
   },
+});
+
+export const date = style({
+  fontFamily: vars.font.heading,
 });
 
 export const markdown = style({

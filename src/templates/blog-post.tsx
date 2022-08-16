@@ -49,7 +49,7 @@ export default function BlogPostTemplate({
             <h1 itemProp="headline" className={styles.title}>
               {post.frontmatter.title}
             </h1>
-            <p>{post.frontmatter.date}</p>
+            <p className={styles.date}>{post.frontmatter.date}</p>
           </div>
         </header>
         <section

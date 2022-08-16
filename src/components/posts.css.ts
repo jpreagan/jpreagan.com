@@ -34,6 +34,7 @@ export const title = style({
 
 export const date = style({
   color: vars.color.text,
+  fontFamily: vars.font.heading,
   fontSize: "0.9375rem",
   margin: "1rem 0",
   "@media": {
