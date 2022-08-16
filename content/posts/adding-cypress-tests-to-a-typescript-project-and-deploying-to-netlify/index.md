@@ -42,7 +42,6 @@ Next, add two more configuration files so that we import our commands and tell t
 ```ts
 // cypress/support/e2e.ts
 import "./commands";
-import "cypress-axe";
 import "@testing-library/cypress/add-commands";
 ```
 
@@ -97,6 +96,14 @@ Now the real fun begins! Let's write our first test to check the accessibility o
 yarn add -D cypress-axe axe-core
 ```
 
+And update `cypress/support/e2e.ts`:
+
+```ts
+import "./commands";
+import "cypress-axe";
+import "@testing-library/cypress/add-commands";
+```
+
 It is said we can [find an average of 57% of WCAG issues](https://www.deque.com/blog/automated-testing-study-identifies-57-percent-of-digital-accessibility-issues/) automatically by using this library. In addition, this tool will direct our attention to a number of manual checks where we should take a closer look.
 
 It is my favorite accessibility automation tool at present and can help you write more accessible, better code. Refer to the [documentation](https://www.deque.com/axe/core-documentation/api-documentation/) for further reference.
@@ -110,7 +117,7 @@ And don't forget to update the TypeScript configuration too:
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "@testing-library/cypress", "cypress-axe"], // highlight-line
+    "types": ["cypress", "@testing-library/cypress", "cypress-axe"],
     "noEmit": true
   },
   "include": ["./**/*.ts"]
