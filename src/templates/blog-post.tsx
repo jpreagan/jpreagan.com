@@ -52,6 +52,11 @@ export default function BlogPostTemplate({
             <p className={styles.date}>{post.frontmatter.date}</p>
           </div>
         </header>
+        <section className={styles.description}>
+          <blockquote>
+            <p>{post.frontmatter.description}</p>
+          </blockquote>
+        </section>
         <section
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: post.html }}

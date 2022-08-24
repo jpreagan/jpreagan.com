@@ -71,7 +71,7 @@ globalStyle("p, a, li", {
   fontSize: "1.125rem",
   "@media": {
     "screen and (min-width: 62.5em)": {
-      fontSize: "1.125rem",
+      fontSize: "1.25rem",
     },
   },
 });
@@ -82,4 +82,21 @@ globalStyle("a", {
 
 globalStyle("a:hover", {
   textDecoration: "none",
+});
+
+globalStyle("blockquote", {
+  borderLeft: `6px solid ${vars.color.secondary}`,
+  color: vars.color.text,
+  fontStyle: "italic",
+  margin: "2rem 0",
+  padding: "0 2rem",
+});
+
+globalStyle("blockquote p", {
+  fontSize: "1.25rem",
+  "@media": {
+    "screen and (min-width: 62.5em)": {
+      fontSize: "1.5rem",
+    },
+  },
 });

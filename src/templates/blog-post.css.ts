@@ -38,8 +38,14 @@ export const date = style({
   fontFamily: vars.font.heading,
 });
 
+export const description = style({
+  margin: "4rem auto",
+  maxWidth: "43.75em",
+  padding: "0 1rem",
+});
+
 export const markdown = style({
   margin: "4rem auto",
-  maxWidth: "40em",
+  maxWidth: "43.75em",
   padding: "0 1rem",
 });
