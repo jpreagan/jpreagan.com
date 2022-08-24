@@ -1,6 +1,6 @@
 ---
 title: "Four ways to fetch data from the GitHub GraphQL API in Next.js"
-date: "2022-08-19"
+date: "2022-08-24"
 description: "There are several ways to render fetched data in Next.js. One of the great features of Next.js is we can mix and match rendering methods within our application. Using this hybrid approach, we have great flexibility. In this post, I will cover four ways to render fetched data from the GitHub GraphQL API in a Next.js application. You’ll learn the benefits and drawbacks of each option, and you’ll walk away knowing when to consider each one in writing your own application."
 ---
 
