@@ -4,6 +4,8 @@ date: "2022-07-29"
 description: "End-to-end testing gives us a lot of bang for our buck when it comes to software testing. By adding even a single test, we can cover quite a bit of ground in terms of checking an application's functionality from an end user's perspective. Here is how I would set up Cypress in a TypeScript project and deploy to Netlify taking advantage of the CI."
 ---
 
+`youtube: [Four ways to fetch data from the GitHub GraphQL API in Next.js](https://www.youtube.com/watch?v=G86Qcdws6E0)`
+
 ## Getting started
 
 In this blog post, I'll assume you have a project with at a minimum TypeScript and ESLint already configured. Let's jump straight into how to add Cypress!

@@ -32,7 +32,7 @@ Open sourced in 2012 by Microsoft, TypeScript solves this problem by bringing a 
 
 At JSConf a few years ago, staff software engineer [Brie Bunge](https://twitter.com/briebunge) gave a talk in which she discussed this problem at Airbnb. She revealed an internal study with surprising results. In the study, it was determined 38% of bugs that reached production could have been prevented by using TypeScript.
 
-`youtube: [Cool Youtube Video](https://www.youtube.com/watch?v=P-J9Eg7hJwE)`
+`youtube: [Adopting Typescript at Scale](https://www.youtube.com/watch?v=P-J9Eg7hJwE)`
 
 [Another study](https://ieeexplore.ieee.org/document/7985711) found that a static type system, such as TypeScript or Flow, could have detected at least 15% of JavaScript bugs in open source codebases on GitHub.
 
