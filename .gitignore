@@ -1,4 +1,6 @@
 .cache/
+cypress/screenshots/
+cypress/videos/
 .DS_Store
 .eslintcache
 .env*
