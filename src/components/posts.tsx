@@ -46,7 +46,7 @@ export default function Posts() {
             itemProp="url"
           >
             <article itemScope itemType="http://schema.org/Article">
-              <header className={styles.header}>
+              <header>
                 <h2 className={styles.title}>
                   <span itemProp="headline">{title}</span>
                 </h2>
