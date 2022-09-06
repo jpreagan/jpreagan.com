@@ -88,7 +88,8 @@ export async function getServerData() {
   const tracks = items.map(({ track }) => {
     const minutes = Math.floor(track.duration_ms / 1000 / 60);
     const seconds = Math.floor(track.duration_ms / 1000) % 60;
-    const duration = `${minutes}:${seconds}`;
+    const paddedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    const duration = `${minutes}:${paddedSeconds}`;
 
     return {
       artists: track.artists.map(
