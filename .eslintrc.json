@@ -3,8 +3,6 @@
     "__PATH_PREFIX__": true
   },
   "extends": [
-    "eslint:recommended",
-    "react-app",
     "airbnb",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
