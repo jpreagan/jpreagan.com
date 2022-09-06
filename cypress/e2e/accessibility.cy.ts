@@ -1,5 +1,5 @@
 const axeRunContext = {
-  exclude: [[".prism-code"]],
+  exclude: [[".gatsby-highlight"]],
 };
 
 describe("Accessibility tests", () => {
