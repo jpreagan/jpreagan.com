@@ -35,8 +35,11 @@ export default function Posts() {
 
   return (
     <div className={styles.posts}>
-      {posts.map((post: Post) => {
+      {posts.map((post: Post, index: number) => {
         const title = post.frontmatter.title || post.fields.slug;
+        const even = "linear-gradient(to right, #6b21a8, #db2777)";
+        const odd = "linear-gradient(to right, #db2777, #fb923c)";
+        const linearGradient = index % 2 === 0 ? even : odd;
 
         return (
           <Link
@@ -44,6 +47,7 @@ export default function Posts() {
             to={post.fields.slug}
             className={styles.link}
             itemProp="url"
+            style={{ background: linearGradient }}
           >
             <article itemScope itemType="http://schema.org/Article">
               <header>
