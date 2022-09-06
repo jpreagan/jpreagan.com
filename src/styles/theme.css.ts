@@ -7,6 +7,7 @@ export const vars = createGlobalThemeContract({
   color: {
     text: "color-text",
     heading: "color-heading",
+    highlight: "color-highlight",
     background: "color-background",
     primary: "color-primary",
     secondary: "color-secondary",
@@ -27,6 +28,7 @@ createGlobalTheme(":root", vars, {
   color: {
     text: "#b3b3b3",
     heading: "white",
+    highlight: "#d6deeb",
     background: "black",
     primary: "#f472b6",
     secondary: "#db2777",

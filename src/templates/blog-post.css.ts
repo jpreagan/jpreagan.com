@@ -35,6 +35,7 @@ export const title = style({
 });
 
 export const date = style({
+  color: vars.color.highlight,
   fontFamily: vars.font.heading,
 });
 

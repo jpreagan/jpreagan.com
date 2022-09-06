@@ -13,7 +13,7 @@ export const posts = style({
 });
 
 export const link = style({
-  backgroundImage: "linear-gradient( to right, #6b21a8, #db2777 )",
+  backgroundColor: "#db2777",
   borderRadius: "6px",
   padding: "2rem",
   textDecoration: "none",
@@ -35,7 +35,7 @@ export const title = style({
 });
 
 export const date = style({
-  color: vars.color.text,
+  color: vars.color.highlight,
   fontFamily: vars.font.heading,
   fontSize: "0.9375rem",
   "@media": {
