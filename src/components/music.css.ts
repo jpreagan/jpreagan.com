@@ -84,6 +84,7 @@ export const album = style({
 
 export const duration = style({
   display: "none",
+  fontSize: "inherit",
   "@media": {
     "screen and (min-width: 40em)": {
       display: "block",
