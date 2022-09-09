@@ -1,0 +1,464 @@
+---
+title: "Starting a personal dashboard with the Spotify API"
+date: "2022-09-08"
+description: "I've recently been inspired by Lee Robinson's personal dashboard, which is a fun and interesting project in which Lee pulls various data sources together using Next.js API Routes and renders them onto a single dashboard page. In this post, I'll walk you through how I fetch data from the Spotify API and display my ten most recently played tracks using server side rendering in a Gatsby application."
+---
+
+`youtube: [Starting a personal dashboard with the Spotify API](https://youtu.be/ncYrUMWnFLQ)`
+
+You can see my page [here](https://jpreagan.com/about/), and the code lives [here](https://github.com/jpreagan/jpreagan.com/blob/main/src/pages/about.tsx). Also, be sure to check out Lee Robinson's [personal dashboard](https://leerob.io/dashboard) for more inspiration.
+
+In the near future, I'll add other data sources such as GitHub statistics or any others that seem cool to play with. I just love the idea of live personal data from multiple APIs on one page, server rendered, and then seeing how I can push the performance through caching and other measures.
+
+I'll walk you through my process so that you can play too. If you don't have a Spotify account, you can make one for free. And you don't need to be a premium member to use the API!
+
+After you have an account, the first step is authorizing your application.
+
+## Authorization
+
+The Spotify API has numerous [flows for authorization](https://developer.spotify.com/documentation/general/guides/authorization/) based on what you're trying to achieve. Since we only want to authorize one time and need to make use of the refresh token, we'll use the [Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization/code-flow/).
+
+You'll need two things to get started: (1) a client ID, and (2) you'll need to decide on the scope.
+
+To obtain a client ID, login to Spotify, visit the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/login), and click on Create an App.
+
+Make a name for the app and click Create. Save the Client ID and the Client Secret as well.
+
+Finally, click on Edit Settings, and set the Redirect URI to any address you wish. I used `http://localhost:8000` as that is my development server.
+
+Secondly, decide on the [scope](https://developer.spotify.com/documentation/general/guides/authorization/scopes/). Scopes operate with the principle of least privilege in which we have to explicitly declare which information we wish to share.
+
+For example, we can access listening history, playlists, user data and so on, but everything is off by default, so we'll have to define the scope we need.
+
+I'm going with `user-read-recently-played`, but you could easily add more or others if you wish too.
+
+So with your client ID and scopes in mind, let's form a URL.
+
+```
+https://accounts.spotify.com/authorize?client_id=izAmH5OZiDyk2GDidj65qxeuYpyr5MFs9&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:8000&scope=user-read-recently-played
+```
+
+If you visit that URL in your browser, you'll be redirected to another URL that looks something like this.
+
+```
+http://localhost:8000/?code=NApCCg..BkWtQ
+```
+
+Save that code as we'll need it to grab a refresh token.
+
+Make a base64 encoded string of `client_id:client_secret` from the command line with the following.
+
+```bash
+echo -n 'aDHh1ZV8kybR7kvxECjeYMrXpjnnOSO:1HvW1I3yTGkyBuaUfh4d2E0xiCAljSiJd' | base64
+```
+
+You'll get back a base64 encoded string, which we'll use in the next step.
+
+```
+YURIaDFaVjhreWJSN2t2eEVDamVZTXJYcGpubk9TTzoxSHZXMUkzeVRHa3lCdWFVZmg0ZDJFMHhpQ0FsalNpSmQ=
+```
+
+Now do a curl command and you'll need the following: (1) the above base64 encoded string, (2) the code from the Redirect URI, (3) and also that Redirect URI.
+
+```bash
+curl -H "Authorization: Basic YURIa..mQ=" \
+  -d grant_type=authorization_code \
+  -d code=NApCCg..BkWtQ \
+  -d redirect_uri=http%3A%2F%2Flocalhost:8000 https://accounts.spotify.com/api/token
+```
+
+We should get back a JSON response that has an object that contains a `refresh_token`, and that is the final step for gathering what we need.
+
+In the end, we should have a client ID, a client secret, and the refresh token.
+
+So let's put that in a `.env` file:
+
+```
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+SPOTIFY_REFRESH_TOKEN=
+```
+
+Enter your particular values for those environmental variables, and as a reminder, double check that your `.env` is included in the `.gitignore` as we don't want to share these credentials.
+
+## The server-side code
+
+Now that we have what we need for authorization, let's turn our attention to the server side code. I'm using Gatsby which as of version 4 can also do [server side rendering](https://www.gatsbyjs.com/docs/how-to/rendering-options/using-server-side-rendering/).
+
+Gatsby's `getServerData` is pretty similar to `getServerSideProps` in Next.js. We export a function called `getServerData` on a page and we can then access via `serverData` in the props.
+
+`getServerData` is done on the server and is therefore safe to include sensitive environmental variables as everything inside this function is not accessible to the client.
+
+Let's start by adding our `client_id`, `client_secret`, and `refresh_token`.
+
+```ts
+// ./src/pages/about.tsx
+export default function AboutPage(/* ... */) {
+  return (/* ... */);
+}
+
+export async function getServerData() {
+  const client_id = process.env.SPOTIFY_CLIENT_ID;
+  const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+  const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+}
+```
+
+Next, let's encode a base64 string of `client_id:client_secret` similar to how we did above, but we're doing it with JavaScript this time and storing it in a variable called `basic`.
+
+```ts
+export async function getServerData() {
+  const client_id = process.env.SPOTIFY_CLIENT_ID;
+  const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+  const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+
+  const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+}
+```
+
+Now let's define a couple of endpoints.
+
+```ts
+export async function getServerData() {
+  const client_id = process.env.SPOTIFY_CLIENT_ID;
+  const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+  const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+
+  const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+  const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=10`;
+  const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+}
+```
+
+The first is our recently played tracks endpoint, which by default is fifty, but we can also add a limit parameter and set it to ten. So this API endpoint will give me the ten most recently played tracks.
+
+Also, we need to define the token endpoint. I'll need two functions: `getAccessToken` and `getRecentlyPlayed`, which I'll use to fetch.
+
+Every time this code executes, it will grab a new access token, which we do programmatically thanks to the refresh token.
+
+```ts
+export async function getServerData() {
+  /* ... */
+  async function getAccessToken() {
+    const response = await fetch(TOKEN_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${basic}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: querystring.stringify({
+        grant_type: "refresh_token",
+        refresh_token,
+      }),
+    });
+
+    return response.json();
+  }
+
+  async function getRecentlyPlayed() {
+    /* ... */
+  }
+}
+```
+
+For `getAccessToken`, I'll make a POST request to the token endpoint, sending the base64 encoded string in the headers and set the content type to form data.
+
+In the body of the request, I'll use `querystring` which needs to be added as a package dependency, and set the grant type along with the refresh token.
+
+And finally return the response as JSON data.
+
+Next, let's finish our other helper function `getRecentlyPlayed`.
+
+```ts
+export async function getServerData() {
+  /* ... */
+  async function getRecentlyPlayed() {
+    const { access_token } = await getAccessToken();
+
+    return fetch(RECENTLY_PLAYED_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+  }
+}
+```
+
+All we are after here is the `access_token` so I'll destructure that while awaiting an asynchronous response from invoking `getAccessToken`.
+
+Now we can make a fetch request to our endpoint and sending it the `access_token` in the headers.
+
+Now let's actually use that `getRecentlyPlayed` function.
+
+```ts
+export async function getServerData() {
+  /* ... */
+  async function getAccessToken() {
+    /* ... */
+  }
+
+  async function getRecentlyPlayed() {
+    /* ... */
+  }
+
+  const response = await getRecentlyPlayed();
+  const data = await response.json();
+
+  return {
+    props: data,
+  };
+}
+```
+
+And we get back... a lot of data.
+
+![Too much data](./too-much-data.jpg)
+
+Most definitely more data than I desire! And there is a lot we can still improve here.
+
+First of all, let's add the [Spotify API types](https://www.npmjs.com/package/@types/spotify-api) as a dev dependency. We can now type that response as well as the destructure items while we're at it.
+
+I could now just make a return statement as is. But as I mentioned that would give a lot of extraneous information to the front end, which is something that I'm not fond of doing.
+
+```ts
+export async function getServerData() {
+  /* ... */
+  async function getAccessToken() {
+    /* ... */
+  }
+
+  async function getRecentlyPlayed() {
+    /* ... */
+  }
+
+  const response = await getRecentlyPlayed();
+  const { items }: SpotifyApi.UsersRecentlyPlayedTracksResponse =
+    await response.json();
+
+  return {
+    props: items,
+  };
+}
+```
+
+So let's whittle down that data a bit more.
+
+I'll make a `tracks` object, and map over my items, destructure each track in items, and then return the individual values that I care to keep.
+
+```ts
+export async function getServerData() {
+  /* ... */
+  async function getAccessToken() {
+    /* ... */
+  }
+
+  async function getRecentlyPlayed() {
+    /* ... */
+  }
+
+  const response = await getRecentlyPlayed();
+  const { items }: SpotifyApi.UsersRecentlyPlayedTracksResponse =
+    await response.json();
+
+  const tracks = items.map(({ track }) => {
+    return {
+      artists: track.artists.map(
+        ({ external_urls: { spotify: url }, id, name }) => ({
+          url,
+          id,
+          name,
+        })
+      ),
+      album: track.album.name,
+      albumUrl: track.album.external_urls.spotify,
+      id: track.id,
+      image: track.album.images[2].url,
+      trackName: track.name,
+      trackUrl: track.external_urls.spotify,
+    };
+  });
+
+  return {
+    props: tracks,
+  };
+}
+```
+
+`album`, `album`, `url`, `id`, `trackName`, and `trackUrl` are all pretty straightforward.
+
+For the album `image`, there is a third element in every array that contains a URL pointing to the particular dimensions I found most suitable.
+
+Some tracks can have multiple artists though, so we'll have to store them in an array with a `name`, `id`, and `url` and we can use that on the front end.
+
+Finally, the track length is returned in milliseconds by the API, so let's make it more human readable.
+
+```ts
+export async function getServerData() {
+  /* ... */
+  async function getAccessToken() {
+    /* ... */
+  }
+
+  async function getRecentlyPlayed() {
+    /* ... */
+  }
+
+  const response = await getRecentlyPlayed();
+  const { items }: SpotifyApi.UsersRecentlyPlayedTracksResponse =
+    await response.json();
+
+  const tracks = items.map(({ track }) => {
+    const minutes = Math.floor(track.duration_ms / 1000 / 60);
+    const seconds = Math.floor(track.duration_ms / 1000) % 60;
+    const paddedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    const duration = `${minutes}:${paddedSeconds}`;
+
+    return {
+      artists: track.artists.map(
+        ({ external_urls: { spotify: url }, id, name }) => ({
+          url,
+          id,
+          name,
+        })
+      ),
+      album: track.album.name,
+      albumUrl: track.album.external_urls.spotify,
+      id: track.id,
+      image: track.album.images[2].url,
+      trackName: track.name,
+      trackUrl: track.external_urls.spotify,
+      duration,
+    };
+  });
+
+  return {
+    props: tracks,
+  };
+}
+```
+
+We'll need a `minutes`, `seconds`, and format the string as minutes and seconds and call it `duration`.
+
+But we also need a single zero digit extra padding before values less than ten seconds, and we can do that with a quick conditional check using the ternary operator.
+
+Now let's type those props.
+
+```ts
+export type Artist = {
+  id: string;
+  name: string;
+  url: string;
+};
+
+export type Track = {
+  artists: Artist[];
+  album: string;
+  albumUrl: string;
+  id: string;
+  image: string;
+  trackName: string;
+  trackUrl: string;
+  duration: string;
+};
+
+type ServerDataProps = {
+  serverData: Track[];
+};
+```
+
+And we're ready to ship it off as a component I'm calling Music.
+
+```ts
+/* ... */
+export default function AboutPage({ serverData }: ServerDataProps) {
+  return (
+    <Layout>
+      <h1>About me</h1>
+      <section>
+        <h2>Recently played</h2>
+        <Music tracks={serverData} />
+      </section>
+    </Layout>
+  );
+}
+
+export async function getServerData() {
+  /* ... */
+}
+```
+
+### The front end code
+
+Moving on to the front end code, we can immediately reuse the Track type in the Music component, and now it's as easy as mapping over all those tracks.
+
+```ts
+import React from "react";
+
+import type { Track } from "../pages/about";
+
+type MusicProps = {
+  tracks: Track[];
+};
+
+export default function Music({ tracks }: MusicProps) {
+  return (
+    <>
+      {tracks.map(
+        (
+          {
+            artists,
+            album,
+            albumUrl,
+            id,
+            image,
+            trackName,
+            trackUrl,
+            duration,
+          },
+          trackNumber
+        ) => (
+          <article key={id}>
+            <p>{trackNumber + 1}</p>
+            <div>
+              <a href={albumUrl}>
+                <img src={image} alt={album} width={40} height={40} />
+              </a>
+              <div>
+                <p>
+                  <a href={trackUrl}>{trackName}</a>
+                </p>
+                <p>
+                  {artists.map(({ name, url, id: artistId }, index) => (
+                    <span key={artistId}>
+                      {index > 0 && ", "}
+                      <a href={url}>{name}</a>
+                    </span>
+                  ))}
+                </p>
+              </div>
+            </div>
+            <p>
+              <a href={albumUrl}>{album}</a>
+            </p>
+            <p>{duration}</p>
+          </article>
+        )
+      )}
+    </>
+  );
+}
+```
+
+I also added an index called `trackNumber` in that function, which I can plus one to that and that will give me my track numbers one through ten.
+
+I needed to add a comma after every artist except the last one if there is more than one artist for that track. I can do that with conditional rendering by checking the index.
+
+As for styles, I got inspired by Spotify's beautiful user interface and tried to match that relatively close. I'm using grid and responsive styles with more information being displayed on the desktop versus the mobile.
+
+And recently, I've also switched to using [Vanilla Extract](https://vanilla-extract.style/) for CSS, which I'm enjoying quite a lot as well, and I'll make another post about that soon too.
+
+I needed a way to cut off long artist or track titles with an ellipsis, and I found a way to do so by inspecting the user interface on Spotify.com and that CSS looks like this.
+
+In the end, you can see how it turned out on my [about page](https://jpreagan.com/about/)! Please feel free to reach out to me if you have questions or comments. I'm easily available on [Twitter](https://twitter.com/jpreagan_), and you can also check out my [YouTube channel](https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg).
+
+Thanks for reading!
