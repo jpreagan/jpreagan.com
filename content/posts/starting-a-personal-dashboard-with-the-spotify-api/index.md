@@ -459,6 +459,16 @@ And recently, I've also switched to using [Vanilla Extract](https://vanilla-extr
 
 I needed a way to cut off long artist or track titles with an ellipsis, and I found a way to do so by inspecting the user interface on Spotify.com and that CSS looks like this.
 
+```css
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
+display: -webkit-box;
+white-space: unset;
+word-break: break-all;
+overflow: hidden;
+text-overflow: ellipsis;
+```
+
 In the end, you can see how it turned out on my [about page](https://jpreagan.com/about/)! Please feel free to reach out to me if you have questions or comments. I'm easily available on [Twitter](https://twitter.com/jpreagan_), and you can also check out my [YouTube channel](https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg).
 
 Thanks for reading!
