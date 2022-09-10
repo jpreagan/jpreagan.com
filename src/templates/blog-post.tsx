@@ -38,8 +38,7 @@ type DataProps = {
 };
 
 export default function BlogPostTemplate({
-  // eslint-disable-next-line no-unused-vars
-  data: { previous, next, markdownRemark: post },
+  data: { markdownRemark: post },
 }: DataProps) {
   return (
     <Layout>

@@ -1,41 +1,18 @@
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
 
 import * as styles from "./posts.css";
 
-type Post = {
-  excerpt: string;
-  fields: {
-    slug: string;
-  };
-  frontmatter: {
-    date: string;
-    title: string;
-    description: string;
-  };
+import { PostType } from "../../types";
+
+type PostProps = {
+  posts: PostType[];
 };
 
-export default function Posts() {
-  const data = useStaticQuery(graphql`
-    query PostsQuery {
-      allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-        nodes {
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
-        }
-      }
-    }
-  `);
-  const posts = data.allMarkdownRemark.nodes;
-
+export default function Post({ posts }: PostProps) {
   return (
     <div className={styles.posts}>
-      {posts.map((post: Post, index: number) => {
+      {posts.map((post: PostType, index: number) => {
         const title = post.frontmatter.title || post.fields.slug;
         const even = "linear-gradient(to right, #6b21a8, #db2777)";
         const odd = "linear-gradient(to right, #db2777, #fb923c)";
