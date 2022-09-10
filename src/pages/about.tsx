@@ -35,7 +35,9 @@ export default function AboutPage({ serverData }: ServerDataProps) {
   return (
     <Layout>
       <section className={styles.container}>
-        <h1 className={styles.title}>About me</h1>
+        <header>
+          <h1 className={styles.title}>About me</h1>
+        </header>
         <About />
       </section>
       <section className={styles.container}>
