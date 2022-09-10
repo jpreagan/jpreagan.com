@@ -13,8 +13,11 @@
   },
   "include": [
     "./src/**/*",
-    "./gatsby-node.ts",
+    "./gatsby-browser.tsx",
     "./gatsby-config.ts",
-    "./plugins/**/*"
+    "./gatsby-node.ts",
+    "./gatsby-ssr.tsx",
+    "./cypress.config.ts",
+    "./cypress/**/*.ts"
   ]
 }
