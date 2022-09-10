@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /// <reference types="spotify-api" />
-/* eslint-disable camelcase */
 import React from "react";
 import querystring from "query-string";
 
