@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
+import Date from "../components/date";
 import { getBlogPostData } from "../lib/posts";
 
 type Props = {
@@ -29,7 +30,7 @@ export default function IndexPage({ allPostsData }: Props) {
         <Link href={`/blog/${slug}`} key={slug}>
           <article>
             <h2>{title}</h2>
-            <p>{date}</p>
+            <Date dateString={date} />
           </article>
         </Link>
       ))}

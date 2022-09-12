@@ -18,6 +18,7 @@
     "@fontsource/ibm-plex-mono": "^4.5.11",
     "@fontsource/ibm-plex-sans": "^4.5.12",
     "@fontsource/inter": "^4.5.12",
+    "date-fns": "^2.29.2",
     "esbuild": "^0.15.7",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.1",

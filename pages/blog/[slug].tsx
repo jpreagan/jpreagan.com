@@ -3,6 +3,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getAllPostSlugs, getPostData } from "../../lib/posts";
 import Layout from "../../components/layout";
+import Date from "../../components/date";
 import type { Frontmatter } from "../../lib/types";
 
 type Props = {
@@ -18,7 +19,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
       <article itemScope itemType="http://schema.org/Article">
         <header>
           <h1 itemProp="headline">{frontmatter.title}</h1>
-          <p>{frontmatter.date}</p>
+          <Date dateString={frontmatter.date} />
         </header>
         <section itemProp="articleBody">
           <blockquote>{frontmatter.description}</blockquote>
