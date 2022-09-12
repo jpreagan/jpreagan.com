@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import Head from "next/head";
 import { getMDXComponent } from "mdx-bundler/client";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getAllPostSlugs, getPostData } from "../../lib/posts";
@@ -16,6 +17,11 @@ export default function BlogPost({ code, frontmatter }: Props) {
 
   return (
     <Layout>
+      <Head>
+        <title>{frontmatter.title}</title>
+        <meta name="description" content={frontmatter.description} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <article itemScope itemType="http://schema.org/Article">
         <header>
           <h1 itemProp="headline">{frontmatter.title}</h1>
