@@ -18,11 +18,16 @@
     "@fontsource/ibm-plex-mono": "^4.5.11",
     "@fontsource/ibm-plex-sans": "^4.5.12",
     "@fontsource/inter": "^4.5.12",
+    "esbuild": "^0.15.7",
+    "gray-matter": "^4.0.3",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "mdx-bundler": "^9.0.1",
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "rehype-prism-plus": "^1.5.0",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.3.0",

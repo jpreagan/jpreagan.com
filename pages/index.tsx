@@ -1,12 +1,23 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Layout from "../components/layout";
+import { getBlogPostData } from "../lib/posts";
 
-export default function IndexPage() {
+type Props = {
+  allPostsData: {
+    date: string;
+    title: string;
+    slug: string;
+    description: string;
+  }[];
+};
+
+export default function IndexPage({ allPostsData }: Props) {
   return (
     <Layout>
       <Head>
-        <title>Untitled</title>
+        <title>Aloha</title>
         <meta
           name="description"
           content="My personal website built with Next.js"
@@ -14,7 +25,23 @@ export default function IndexPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Hello, World!</h1>
+      {allPostsData.map(({ slug, date, title }) => (
+        <Link href={`/blog/${slug}`} key={slug}>
+          <article>
+            <h2>{title}</h2>
+            <p>{date}</p>
+          </article>
+        </Link>
+      ))}
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const allPostsData = getBlogPostData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 }
