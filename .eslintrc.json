@@ -1,17 +1,14 @@
 {
-  "globals": {
-    "__PATH_PREFIX__": true
-  },
-  "extends": ["airbnb", "airbnb-typescript", "prettier"],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@next/next/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "overrides": [
-    {
-      "files": ["**/*.css.ts"],
-      "rules": {
-        "import/prefer-default-export": "off"
-      }
-    }
-  ]
+  "rules": {
+    "react/jsx-props-no-spreading": "off"
+  }
 }
