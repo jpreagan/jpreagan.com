@@ -1,0 +1,403 @@
+---
+title: "Adding Cypress tests to a TypeScript project and deploying to Netlify"
+date: "2022-07-29"
+description: "End-to-end testing gives us a lot of bang for our buck when it comes to software testing. By adding even a single test, we can cover quite a bit of ground in terms of checking an application's functionality from an end user's perspective. Here is how I would set up Cypress in a TypeScript project and deploy to Netlify taking advantage of the CI."
+---
+
+## Getting started
+
+In this blog post, I'll assume you have a project with at a minimum TypeScript and ESLint already configured. Let's jump straight into how to add Cypress!
+
+### Add dependencies
+
+Let's start by adding Cypress and Cypress Testing Library to the dependencies.
+
+```sh
+yarn add -D cypress @testing-library/cypress
+```
+
+Cypress Testing Library gives us additional commands, `findBy`, `findAllBy`, `queryBy`, and `queryAllBy`, which make things even nicer to work with. It is optional, but recommended. See the [documentation](https://testing-library.com/docs/queries/about) for details.
+
+### Configure Cypress
+
+To configure Cypress so that we may write tests in TypeScript, we'll need the following files: `cypress.config.ts`, `cypress/support/e2e.ts`, `cypress/support/commands.ts`, and a `cypress/tsconfig.json`.
+
+Let's take a look at each one.
+
+```ts
+// cypress.config.ts
+import { defineConfig } from "cypress";
+
+export default defineConfig({
+  e2e: {
+    baseUrl: "http://localhost:8000",
+  },
+});
+```
+
+Note the baseUrl will be the one you use for your development server. That might be `http://localhost:3000` or `http://localhost:8080` or something similar.
+
+Next, add two more configuration files so that we import our commands and tell the TypeScript compiler to use Cypress global types in our tests.
+
+```ts
+// cypress/support/e2e.ts
+import "./commands";
+import "@testing-library/cypress/add-commands";
+```
+
+```ts
+// cypress/support/commands.ts
+/// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
+```
+
+👌 It's all about that code completion!
+
+And, finally, the recommended `tsconfig.json` is as follows:
+
+```json
+// cypress/tsconfig.json
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "@testing-library/cypress"],
+    "noEmit": true
+  },
+  "include": ["./**/*.ts"]
+}
+```
+
+### Configure ESLint
+
+We'll get a bunch of red squiggles if we don't configure ESLint, so let's make our linter happy and our life easier.
+
+```sh
+yarn add -D eslint-plugin-cypress
+```
+
+And add the following file to the `cypress` directory:
+
+```json
+// cypress/.eslintrc.json
+{
+  "plugins": ["cypress"]
+}
+```
+
+That's it!
+
+## Write tests
+
+Now the real fun begins! Let's write our first test to check the accessibility of our pages. In order to do so, we'll need to add a dependency to use the axe-core Web Testing API.
+
+```sh
+yarn add -D cypress-axe axe-core
+```
+
+And update `cypress/support/e2e.ts`:
+
+```ts
+import "./commands";
+import "cypress-axe";
+import "@testing-library/cypress/add-commands";
+```
+
+It is said we can [find an average of 57% of WCAG issues](https://www.deque.com/blog/automated-testing-study-identifies-57-percent-of-digital-accessibility-issues/) automatically by using this library. In addition, this tool will direct our attention to a number of manual checks where we should take a closer look.
+
+It is my favorite accessibility automation tool at present and can help you write more accessible, better code. Refer to the [documentation](https://www.deque.com/axe/core-documentation/api-documentation/) for further reference.
+
+And don't forget to update the TypeScript configuration too:
+
+```json
+// cypress/tsconfig.json
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "@testing-library/cypress", "cypress-axe"],
+    "noEmit": true
+  },
+  "include": ["./**/*.ts"]
+}
+```
+
+Now let's write that first test!
+
+```ts
+// cypress/e2e/accessibility.cy.ts
+describe("Accessibility tests", () => {
+  it("Has no detectable accessibility violations on load", () => {
+    cy.visit("/").get("main").injectAxe();
+    cy.checkA11y(null, {
+      includedImpacts: ["critical", "serious", "moderate"],
+    });
+  });
+});
+```
+
+So, what is going on here? Well, we have a single test loading up the main page, looking at `main`, and running our accessibility tests. We are concerned with "critical", "serious", and "moderate" violations, which you can alter to suit your own needs.
+
+Now let's expand that out a little to load the main page and let's say a particular blog post that is reachable by the user from that page:
+
+```ts
+// cypress/e2e/accessibility.cy.ts
+const axeRunContext = {
+  exclude: [[".prism-code"]],
+};
+
+const axeRunOptions = {
+  includedImpacts: ["critical", "serious", "moderate"],
+};
+
+describe("Accessibility tests", () => {
+  beforeEach(() => {
+    cy.visit("/").get("main").injectAxe();
+  });
+  it("Has no detectable accessibility violations on load", () => {
+    cy.checkA11y(null, axeRunOptions);
+  });
+  it("Navigates to blog post and checks for accessibility violations", () => {
+    cy.findByText(/making a create react app template/i)
+      .click()
+      .checkA11y(axeRunContext, axeRunOptions);
+  });
+});
+```
+
+We can exclude specific CSS selectors, and in this case, we are excluding `.prism-code`. It can be expensive to check the code blocks many times. Ideally, we can test them in separate tests one time and skip them everywhere else. This is a convenient way to do that.
+
+## Run the tests locally
+
+With Cypress installed, configured, and our first test written, we're ready to get this party started.
+
+You can start the tests with:
+
+```sh
+yarn run cypress open
+```
+
+🥳 Hooray! We're end-to-end testing all the things!
+
+😍 If this is your first time running Cypress, you might fall in love with it as did I. It makes testing so much simpler and a pleasure to work with compared to the alternatives I've looked at.
+
+Let's look at some ways we can improve the experience.
+
+### Add npm scripts
+
+Now add a few scripts to `package.json` to make our life easier:
+
+```json
+"scripts": {
+  "cy:open": "cypress open",
+  "cy:run": "cypress run",
+  "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open",
+  "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run",
+}
+```
+
+We'll also need to add `start-server-and-test` so that we can run our tests without having to worry about if the development server is running in another terminal.
+
+```sh
+yarn add -D start-server-and-test
+```
+
+And one other detail, be sure to add `cypress/videos` and `cypress/screenshots` to your `.gitignore` as we won't need to keep track of these with version control.
+
+To run our tests locally we'll use:
+
+```sh
+yarn test:e2e
+```
+
+And you'll notice we can also run Cypress headless, which is useful while running from the command line and using with the Continuous Integration (CI):
+
+```sh
+yarn test:e2e:ci
+```
+
+## Continuous Integration
+
+This last step will look different depending on which CI you are using and how you have it set up.
+
+What we're trying to achieve here though is the code that we send to production should always be passing. In other words, we define our requirements within the tests. As our logic changes with time, we can be a lot more confident that we don't accidentally send something to production that is broken, i.e., doesn't meet those requirements.
+
+Ideally, that will come with at least two safeguards: testing before deploy in the CI and testing on GitHub before a merge is allowed.
+
+In this example, I'll show you how to do that with Netlify, which has a well-designed and developer-friendly CI platform.
+
+### Configure Netlify
+
+First, we'll need `netlify-plugin-cypress`
+
+```sh
+yarn add -D netlify-plugin-cypress
+```
+
+The most basic recommended setup is as follows:
+
+```toml
+# explicit commands for building the site
+# and the folder to publish
+[build]
+command = "yarn build"
+publish = "public"
+
+[build.environment]
+# cache Cypress binary in local "node_modules" folder
+# so Netlify caches it
+CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+# set TERM variable for terminal output
+TERM = "xterm"
+
+[[plugins]]
+# runs Cypress tests against the deployed URL
+package = "netlify-plugin-cypress"
+```
+
+This, however, leads to a particular problem: by default Netlify will run the Cypress tests after a successful build and deployment. We may have a perfectly working build technically speaking but with potentially failing tests and we don't want this to reach production.
+
+With a few more lines, we can require the tests at two other points: (1) before the build (`preBuild`), and (2) after the build (`postBuild`) but before the deployment (`onSuccess`).
+
+I recommend you choose one or the other of the first two or both to run all your tests, and then run a quick sanity check after deployment. That sort of test is often called a smoke test.
+
+I chose to run the tests before the build like so:
+
+```toml
+# netlify.toml
+[build]
+  command = "yarn build"
+  publish = "public"
+[build.environment]
+  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+  TERM = "xterm"
+[[plugins]]
+  package = "netlify-plugin-cypress"
+  [plugins.inputs.preBuild]
+    enable = true
+    start = 'yarn start'
+    wait-on = 'http://localhost:8000'
+    wait-on-timeout = '30'
+```
+
+OK, great, now if somehow code is sent to deployment and the tests fail, the deployment will be halted. That's what we want.
+
+But now this way we're running all of our tests twice, which can get kinda long and computationally expensive as our application grows. Let's do that smoke test thing I just mentioned and just do a quick sanity check to make sure things are OK.
+
+### Add a smoke test
+
+Let's add another test:
+
+```ts
+// cypress/e2e/smoke.cy.ts
+describe("Smoke test", () => {
+  it("should visit the index page and particular blog post", () => {
+    cy.visit("/")
+      .get("main")
+      .should("exist")
+      .findByText(/making a create react app template/i)
+      .click()
+      .get("main")
+      .should("exist");
+  });
+});
+```
+
+Like I said, just a quick sanity check to make sure the index page loads and we can click on a particular link and that page also loads. If that fails then, well, something is really wrong.
+
+Let's adjust the `netlify.toml` again:
+
+```toml
+# netlify.toml
+[build]
+  command = "yarn build"
+  publish = "public"
+[build.environment]
+    CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+    TERM = "xterm"
+[[plugins]]
+  package = "netlify-plugin-cypress"
+  [plugins.inputs]
+    spec = "cypress/e2e/smoke.cy.ts"
+  [plugins.inputs.preBuild]
+    enable = true
+    start = 'yarn start'
+    wait-on = 'http://localhost:8000'
+    wait-on-timeout = '30'
+```
+
+Now the tests will run before the build (`preBuild`) and only the smoke test will run after the deployment (`onSuccess`).
+
+### But wait there's more
+
+So far so good, but this is just about to get better.
+
+🍰 How about now we put some icing on that cake?
+
+You know how when you're developing locally you get screenshots and videos of the tests? Well, there is no way to get a hold of those assets inside the Netlify CI so far as I'm aware without some extra effort.
+
+If you haven't already, head over to [cypress.io](https://cypress.io) and make an account. If you want to stay free tier you'll have to make everything public by the way, which is fine by me.
+
+😂 Now you can watch your failures replay in public. It builds character.
+
+But for real though, I've had some edge cases in which I've had things pass locally but fail within the CI most likely warranting another look. So, we really do need to look at those assets from time to time, and Cypress Dashboard is the answer!
+
+We'll need to do a couple more things to make that happen.
+
+First, let's adjust `netlify.toml` one more time:
+
+```toml
+# netlify.toml
+[build]
+  command = "yarn build"
+  publish = "public"
+[build.environment]
+    CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+    TERM = "xterm"
+[[plugins]]
+  package = "netlify-plugin-cypress"
+  [plugins.inputs]
+    record = true // highlight-line
+    spec = "cypress/e2e/smoke.cy.ts"
+  [plugins.inputs.preBuild]
+    enable = true
+    start = 'yarn start'
+    wait-on = 'http://localhost:8000'
+    wait-on-timeout = '30'
+    record = true // highlight-line
+```
+
+With that done, grab two things from your Cypress account: the Project ID and a Record Key both under Project Settings.
+
+Now update `cypress.config.ts`:
+
+```ts
+import { defineConfig } from "cypress";
+
+export default defineConfig({
+  projectId: "a7bq2k",
+  e2e: {
+    baseUrl: "http://localhost:8000",
+  },
+});
+```
+
+And declare a CYPRESS_RECORD_KEY build environment variable in Netlify. If you're unsure how to do that, read about how to do so [here](https://docs.netlify.com/configure-builds/environment-variables/). Set the CYPRESS_RECORD_KEY to the Record Key you grabbed from your Cypress account.
+
+🔌 We're connected! Now we are recording our tests from the Netlify build process and can see those videos and screenshots when we need to look too.
+
+## GitHub Integration
+
+🍒 And for the cherry on top we can integrate with GitHub. Check out the [Cypress GitHub App](https://docs.cypress.io/guides/dashboard/github-integration).
+
+I recommend you do this and configure your repository in such a way that requires the Netlify process to turn green before you can merge. That will offer one more layer of protection.
+
+## Wrapping up
+
+This is how I've been setting up Cypress in my recent projects. I'm always learning, growing, and open to other ways of doing things, so I'd be pleased if you reached out and let me know if you might do things differently.
+
+I hope this might help some folks in any way possible. If any questions, let me know, and I'll do my best to answer.
+
+Comment below or tweeter at me on the [Twitter](https://twitter.com/jpreagan_).
