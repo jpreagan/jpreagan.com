@@ -18,6 +18,9 @@ module.exports = {
       fontFamily: {
         mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],
       },
+      screens: {
+        tablet: "400px",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
