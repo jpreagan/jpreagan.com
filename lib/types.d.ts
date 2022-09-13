@@ -3,3 +3,10 @@ export type Frontmatter = {
   date: string;
   description: string;
 };
+
+export type PostData = {
+  title: string;
+  date: string;
+  description: string;
+  slug: string;
+};

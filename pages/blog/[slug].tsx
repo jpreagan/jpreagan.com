@@ -27,8 +27,10 @@ export default function BlogPost({ code, frontmatter }: Props) {
           <h1 itemProp="headline">{frontmatter.title}</h1>
           <Date dateString={frontmatter.date} />
         </header>
-        <section itemProp="articleBody">
-          <p>{frontmatter.description}</p>
+        <section
+          itemProp="articleBody"
+          className="prose mx-auto px-4 prose-a:text-sky-500 md:prose-lg lg:prose-xl"
+        >
           <Component />
         </section>
       </article>

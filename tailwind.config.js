@@ -11,6 +11,9 @@ module.exports = {
       display: ["Inter", ...defaultTheme.fontFamily.sans],
       body: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
     },
+    letterSpacing: {
+      tight: "-0.015em",
+    },
     extend: {
       fontFamily: {
         mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],

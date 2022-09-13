@@ -1,19 +1,19 @@
 import React from "react";
 import Head from "next/head";
-import Layout from "../components/layout";
-import Posts from "../components/posts";
-import { getBlogPostData } from "../lib/posts";
-import type { PostData } from "../lib/types";
+import Layout from "../../components/layout";
+import Posts from "../../components/posts";
+import { getBlogPostData } from "../../lib/posts";
+import type { PostData } from "../../lib/types";
 
 type Props = {
   allPostsData: PostData[];
 };
 
-export default function IndexPage({ allPostsData }: Props) {
+export default function BlogPage({ allPostsData }: Props) {
   return (
     <Layout>
       <Head>
-        <title>Aloha</title>
+        <title>Blog</title>
         <meta
           name="description"
           content="My personal website built with Next.js"
@@ -22,13 +22,12 @@ export default function IndexPage({ allPostsData }: Props) {
       </Head>
 
       <header>
-        <h1 className="sr-only">Aloha</h1>
+        <h1 className="mb-8 text-4xl font-bold text-black md:mb-10 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+          Blog
+        </h1>
       </header>
 
       <section>
-        <h2 className="mb-4 text-2xl font-bold text-black md:text-3xl lg:text-4xl">
-          Recent posts
-        </h2>
         <Posts allPostsData={allPostsData} />
       </section>
     </Layout>
@@ -36,7 +35,7 @@ export default function IndexPage({ allPostsData }: Props) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getBlogPostData().slice(0, 4);
+  const allPostsData = getBlogPostData();
   return {
     props: {
       allPostsData,
