@@ -28,7 +28,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
           <Date dateString={frontmatter.date} />
         </header>
         <section itemProp="articleBody">
-          <blockquote>{frontmatter.description}</blockquote>
+          <p>{frontmatter.description}</p>
           <Component />
         </section>
       </article>
