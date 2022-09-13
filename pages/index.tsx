@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
+import Aloha from "../components/aloha";
 import Posts from "../components/posts";
 import { getBlogPostData } from "../lib/posts";
 import type { PostData } from "../lib/types";
@@ -25,7 +26,11 @@ export default function IndexPage({ allPostsData }: Props) {
         <h1 className="sr-only">Aloha</h1>
       </header>
 
-      <section>
+      <section className="my-16 lg:my-32">
+        <Aloha />
+      </section>
+
+      <section className="my-16 lg:my-32">
         <h2 className="mb-4 text-2xl font-bold text-black md:text-3xl lg:text-4xl">
           Recent posts
         </h2>

@@ -22,12 +22,12 @@ export default function BlogPage({ allPostsData }: Props) {
       </Head>
 
       <header>
-        <h1 className="mb-8 text-4xl font-bold text-black md:mb-10 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+        <h1 className="my-16 mb-8 text-4xl font-bold text-black md:mb-10 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
           Blog
         </h1>
       </header>
 
-      <section>
+      <section className="mb-16">
         <Posts allPostsData={allPostsData} />
       </section>
     </Layout>
