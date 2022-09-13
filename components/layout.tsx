@@ -11,7 +11,7 @@ export default function Layout({ children }: Props) {
     <>
       <Header />
 
-      <main>{children}</main>
+      <main className="mx-auto max-w-5xl px-4">{children}</main>
 
       <Footer />
     </>
