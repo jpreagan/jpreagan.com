@@ -1,8 +1,10 @@
 ---
 title: "Starting a personal dashboard with the Spotify API"
 date: "2022-09-08"
-description: "I've recently been inspired by Lee Robinson's personal dashboard, which is a fun and interesting project in which Lee pulls various data sources together using Next.js API Routes and renders them onto a single dashboard page. In this post, I'll walk you through how I fetch data from the Spotify API and display my ten most recently played tracks using server side rendering in a Gatsby application."
+description: "Use the Spotify API to start your own personal dashboard."
 ---
+
+I've recently been inspired by Lee Robinson's personal dashboard, which is a fun and interesting project in which Lee pulls various data sources together using Next.js API Routes and renders them onto a single dashboard page. In this post, I'll walk you through how I fetch data from the Spotify API and display my ten most recently played tracks using server side rendering in a Gatsby application.
 
 You can see my page [here](https://jpreagan.com/about/), and the code lives [here](https://github.com/jpreagan/jpreagan.com/blob/main/src/pages/about.tsx). Also, be sure to check out Lee Robinson's [personal dashboard](https://leerob.io/dashboard) for more inspiration.
 
@@ -209,8 +211,6 @@ export async function getServerData() {
 ```
 
 And we get back... a lot of data.
-
-![Too much data](./too-much-data.jpg)
 
 Most definitely more data than I desire! And there is a lot we can still improve here.
 
