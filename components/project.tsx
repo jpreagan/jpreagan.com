@@ -1,0 +1,41 @@
+import React from "react";
+import type { Repository } from "../lib/types";
+
+type Props = {
+  project: Repository;
+};
+
+export default function Project({
+  project: { name, description, url, primaryLanguage, stargazerCount },
+}: Props) {
+  return (
+    <a
+      href={url}
+      className="border-gray-[#e0e0e0] block cursor-pointer rounded-md border p-4 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5"
+    >
+      <article>
+        <h2 className="text-2xl font-bold">
+          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            {name}
+          </span>
+        </h2>
+        <p className="my-2">{description}</p>
+        <p>
+          <span
+            style={{ backgroundColor: primaryLanguage?.color }}
+            className="color"
+          />{" "}
+          <span itemProp="programmingLanguage">{primaryLanguage?.name}</span>
+          {stargazerCount > 0 && (
+            <span>
+              <span role="img" aria-label="star" className="pl-4 pr-1">
+                ⭐️
+              </span>
+              {stargazerCount}
+            </span>
+          )}
+        </p>
+      </article>
+    </a>
+  );
+}

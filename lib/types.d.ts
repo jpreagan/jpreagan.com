@@ -10,3 +10,15 @@ export type PostData = {
   description: string;
   slug: string;
 };
+
+export type Repository = {
+  description: string;
+  id: string;
+  primaryLanguage: {
+    name: string;
+    color: string;
+  };
+  name: string;
+  stargazerCount: number;
+  url: string;
+};

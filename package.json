@@ -20,6 +20,8 @@
     "@fontsource/inter": "^4.5.12",
     "date-fns": "^2.29.2",
     "esbuild": "^0.15.7",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
     "gray-matter": "^4.0.3",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
