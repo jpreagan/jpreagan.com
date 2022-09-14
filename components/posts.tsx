@@ -20,12 +20,12 @@ export default function Posts({ allPostsData }: Props) {
             <article
               itemScope
               itemType="http://schema.org/Article"
-              className={`cursor-pointer rounded-md px-10 py-16 transition-transform duration-300 ease-in-out hover:-translate-y-1.5 ${linearGradient}`}
+              className={`cursor-pointer rounded-md px-4 py-16 transition-transform duration-300 ease-in-out hover:-translate-y-1.5 md:px-10 ${linearGradient}`}
             >
               <header>
                 <h2
                   itemProp="headline"
-                  className="mb-4 text-xl font-bold tracking-tight text-white"
+                  className="mb-4 text-2xl font-bold tracking-tight text-white"
                 >
                   {title}
                 </h2>

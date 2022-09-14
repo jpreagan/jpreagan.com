@@ -23,13 +23,20 @@ export default function BlogPost({ code, frontmatter }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <article itemScope itemType="http://schema.org/Article">
-        <header>
-          <h1 itemProp="headline">{frontmatter.title}</h1>
-          <Date dateString={frontmatter.date} />
+        <header className="mx-auto mb-8 rounded-md bg-gradient-to-r from-purple-800 via-pink-600 to-orange-400 py-16 px-4 md:px-8 md:py-24 lg:py-32 lg:px-16">
+          <h1
+            itemProp="headline"
+            className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl lg:text-6xl"
+          >
+            {frontmatter.title}
+          </h1>
+          <p className="text-gray-200">
+            <Date dateString={frontmatter.date} />
+          </p>
         </header>
         <section
           itemProp="articleBody"
-          className="prose mx-auto px-4 prose-a:text-sky-500 md:prose-lg lg:prose-xl"
+          className="prose mx-auto my-4 prose-a:text-sky-500 md:prose-lg lg:prose-xl"
         >
           <Component />
         </section>

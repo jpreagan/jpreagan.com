@@ -31,7 +31,7 @@ export default function IndexPage({ allPostsData }: Props) {
       </section>
 
       <section className="my-16 lg:my-32">
-        <h2 className="mb-4 text-2xl font-bold text-black md:text-3xl lg:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold text-black md:text-3xl lg:text-4xl">
           Recent posts
         </h2>
         <Posts allPostsData={allPostsData} />
