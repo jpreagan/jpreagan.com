@@ -1,8 +1,9 @@
 # jpreagan.com
 
 - **Framework**: [Next.js](https://nextjs.org/)
-- **Deployment**: [Vercel](https://vercel.com)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **MDX**: [mdx-bundler](https://github.com/kentcdodds/mdx-bundler)
+- **Deployment**: [Vercel](https://vercel.com)
 
 ## Running Locally
 
