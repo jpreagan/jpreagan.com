@@ -3,6 +3,7 @@ import Head from "next/head";
 import Layout from "../components/layout";
 import Aloha from "../components/aloha";
 import Posts from "../components/posts";
+import ContactForm from "../components/contact-form";
 import { getBlogPostData } from "../lib/posts";
 import type { PostData } from "../lib/types";
 
@@ -31,10 +32,16 @@ export default function IndexPage({ allPostsData }: Props) {
       </section>
 
       <section className="my-16 lg:my-32">
-        <h2 className="mb-8 text-2xl font-bold text-black md:text-3xl lg:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold text-gray-900 md:text-3xl lg:text-4xl">
           Recent posts
         </h2>
         <Posts allPostsData={allPostsData} />
+      </section>
+      <section className="my-16 lg:my-32">
+        <h2 className="mb-8 text-2xl font-bold text-gray-900 md:text-3xl lg:text-4xl">
+          Get in touch
+        </h2>
+        <ContactForm />
       </section>
     </Layout>
   );
