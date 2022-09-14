@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="mx-auto my-8 max-w-5xl px-4 tracking-tight tablet:flex">
       <Link href="/">
-        <a className="font-display text-xl font-bold text-black hover:underline tablet:text-2xl">
+        <a className="font-display text-xl font-bold text-gray-900 hover:underline tablet:text-2xl">
           James Reagan
         </a>
       </Link>
