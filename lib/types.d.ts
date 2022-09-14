@@ -22,3 +22,20 @@ export type Repository = {
   stargazerCount: number;
   url: string;
 };
+
+export type Artist = {
+  id: string;
+  name: string;
+  url: string;
+};
+
+export type Track = {
+  artists: Artist[];
+  album: string;
+  albumUrl: string;
+  id: string;
+  image: string;
+  trackName: string;
+  trackUrl: string;
+  duration: string;
+};
