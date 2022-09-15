@@ -23,7 +23,7 @@ export default function ContactForm() {
           type="text"
           name="name"
           autoComplete="name"
-          className="border-gray-[#e0e0e0] mt-2 block w-full rounded-md border p-2 shadow-sm"
+          className="mt-2 block w-full rounded-md border border-gray-500 p-2 shadow-sm"
         />
       </label>
       <ValidationError prefix="Name" field="name" errors={state.errors} />
@@ -34,7 +34,7 @@ export default function ContactForm() {
           type="email"
           name="email"
           autoComplete="email"
-          className="border-gray-[#e0e0e0] mt-2 block w-full rounded-md border p-2 shadow-sm"
+          className="mt-2 block w-full rounded-md border border-gray-500 p-2 shadow-sm"
         />
       </label>
       <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -44,7 +44,7 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={10}
-          className="border-gray-[#e0e0e0] mt-2 block w-full rounded-md border p-2 shadow-sm"
+          className="mt-2 block w-full rounded-md border border-gray-500 p-2 shadow-sm"
         />
       </label>
       <ValidationError prefix="Message" field="message" errors={state.errors} />
