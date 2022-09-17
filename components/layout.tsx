@@ -9,10 +9,13 @@ type Props = {
 export default function Layout({ children }: Props) {
   return (
     <>
+      <a href="#main" className="sr-only focus:not-sr-only">
+        Skip to content
+      </a>
       <Header />
-
-      <main className="mx-auto max-w-5xl px-4">{children}</main>
-
+      <main id="main" className="mx-auto max-w-5xl px-4">
+        {children}
+      </main>
       <Footer />
     </>
   );
