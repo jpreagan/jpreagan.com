@@ -19,7 +19,7 @@ export default function Aloha() {
   return (
     <div className="md:flex">
       <div>
-        <h2 className="my-8 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl md:text-[text-4rem] lg:text-[5.5rem] lg:leading-none">
+        <h2 className="my-8 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl md:text-[text-4rem] lg:text-[5.5rem] lg:leading-none">
           Aloha, I&apos;m <br />{" "}
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             James Reagan
@@ -44,7 +44,7 @@ export default function Aloha() {
             </a>
           </Link>
           <Link href={social?.github} rel="noreferrer" target="_blank">
-            <a className="hover:text-[#040404]">
+            <a className="hover:text-[#040404] dark:hover:text-gray-100">
               <GitHub size={40} title="GitHub" />
             </a>
           </Link>

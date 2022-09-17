@@ -36,7 +36,10 @@ export default function Spotify({ tracks }: Props) {
               </a>
               <div>
                 <p className="track-title">
-                  <a href={trackUrl} className="text-gray-900 hover:underline">
+                  <a
+                    href={trackUrl}
+                    className="text-gray-900 hover:underline dark:text-gray-100"
+                  >
                     {trackName}
                   </a>
                 </p>

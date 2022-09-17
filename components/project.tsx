@@ -11,7 +11,7 @@ export default function Project({
   return (
     <a
       href={url}
-      className="border-gray-[#e0e0e0] block cursor-pointer rounded-md border p-4 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5"
+      className="block cursor-pointer rounded-md border border-gray-300 p-4 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5 dark:border-gray-700"
     >
       <article>
         <h2 className="text-2xl font-bold">

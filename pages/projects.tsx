@@ -22,7 +22,7 @@ export default function ProjectsPage({ projects }: Props) {
       </Head>
 
       <header>
-        <h1 className="mb-8 text-4xl font-bold text-gray-900 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+        <h1 className="mb-8 text-4xl font-bold text-gray-900 dark:text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
           Projects
         </h1>
       </header>

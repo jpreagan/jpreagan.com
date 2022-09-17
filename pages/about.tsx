@@ -25,12 +25,12 @@ export default function AboutPage({ tracks }: Props) {
       </Head>
 
       <header>
-        <h1 className="mb-8 text-4xl font-bold text-gray-900 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+        <h1 className="mb-8 text-4xl font-bold text-gray-900 dark:text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
           About
         </h1>
       </header>
 
-      <section className="prose mb-16 prose-a:text-sky-700 md:prose-lg lg:prose-xl lg:mb-32">
+      <section className="prose mb-16 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:prose-xl lg:mb-32">
         <p>I&apos;m a software engineer living in Hawaii.</p>
         <p>
           I write full stack web applications with a focus on accessibility and
@@ -55,7 +55,7 @@ export default function AboutPage({ tracks }: Props) {
         </p>
       </section>
       <section className="my-16 lg:my-32">
-        <h2 className="mb-8 text-2xl font-bold text-gray-900 md:text-3xl lg:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100 md:text-3xl lg:text-4xl">
           Recently played
         </h2>
         <Spotify tracks={tracks} />

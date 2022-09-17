@@ -34,7 +34,11 @@ th {
 }
 
 .spotify:hover {
-  background-color: #f0f9ff;
+  background-color: #e0f2fe;
+}
+
+html.dark .spotify:hover {
+  background-color: #1f2937;
 }
 
 .track-title,
@@ -55,12 +59,9 @@ th {
 }
 
 .prose pre {
-  border: 1px solid #e0e0e0;
-  background-color: #fbfbfb;
-}
-
-.prose code {
   color: #403f53;
+  background-color: #fbfbfb;
+  border: 1px solid #e0e0e0;
 }
 
 .token.comment,
@@ -141,4 +142,97 @@ th {
 
 .token.italic {
   font-weight: normal;
+}
+
+html.dark .prose pre {
+  color: #d6deeb;
+  border: none;
+  background-color: rgba(29, 59, 83, 0.99);
+}
+
+html.dark .token.comment,
+html.dark .token.prolog,
+html.dark .token.cdata {
+  color: rgb(99, 119, 119);
+  font-style: italic;
+}
+
+html.dark .token.punctuation {
+  color: rgb(199, 146, 234);
+}
+
+html.dark .namespace {
+  color: rgb(178, 204, 214);
+}
+
+html.dark .token.deleted {
+  color: rgba(239, 83, 80, 0.56);
+  font-style: italic;
+}
+
+html.dark .token.symbol,
+html.dark .token.property {
+  color: rgb(128, 203, 196);
+}
+
+html.dark .token.tag,
+html.dark .token.operator,
+html.dark .token.keyword {
+  color: rgb(127, 219, 202);
+}
+
+html.dark .token.boolean {
+  color: rgb(255, 88, 116);
+}
+
+html.dark .token.number {
+  color: rgb(247, 140, 108);
+}
+
+html.dark .token.constant,
+html.dark .token.function,
+html.dark .token.builtin,
+html.dark .token.char {
+  color: rgb(130, 170, 255);
+}
+
+html.dark .token.selector,
+html.dark .token.doctype {
+  color: rgb(199, 146, 234);
+  font-style: italic;
+}
+
+html.dark .token.attr-name,
+html.dark .token.inserted {
+  color: rgb(173, 219, 103);
+  font-style: italic;
+}
+
+html.dark .token.string,
+html.dark .token.url,
+html.dark .token.entity,
+html.dark .language-css .token.string,
+html.dark .style .token.string {
+  color: rgb(173, 219, 103);
+}
+
+html.dark .token.class-name,
+html.dark .token.atrule,
+html.dark .token.attr-value {
+  color: rgb(255, 203, 139);
+}
+
+html.dark .token.regex,
+html.dark .token.important,
+html.dark .token.variable {
+  color: rgb(214, 222, 235);
+}
+
+html.dark .token.important,
+html.dark .token.bold {
+  font-weight: bold;
+}
+
+html.dark .token.italic {
+  font-style: italic;
 }
