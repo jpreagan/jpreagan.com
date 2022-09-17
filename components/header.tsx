@@ -1,20 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
-import { Expand } from "@theme-toggles/react";
+import ThemeToggle from "./theme-toggle";
 
 export default function Header() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
   return (
     <header className="mx-auto my-8 flex max-w-5xl flex-wrap px-4 tracking-tight">
       <Link href="/">
@@ -22,13 +10,7 @@ export default function Header() {
           James Reagan
         </a>
       </Link>
-      <Expand
-        className="ml-auto text-3xl tablet:order-last tablet:ml-4"
-        toggled={theme === "dark"}
-        onToggle={() => {
-          setTheme(theme === "light" ? "dark" : "light");
-        }}
-      />
+      <ThemeToggle />
       <nav className="text-lg tablet:ml-auto tablet:text-xl">
         <ul className="my-4 flex gap-2 tablet:m-0">
           <li>
