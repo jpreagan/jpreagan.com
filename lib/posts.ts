@@ -1,9 +1,10 @@
+/* eslint-disable no-param-reassign */
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import rehypePrism from "rehype-prism-plus";
-import remarkGfm from "remark-gfm";
 import { bundleMDX } from "mdx-bundler";
+import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism-plus";
 import type { Frontmatter } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -23,6 +24,7 @@ export function getBlogPostData() {
       ...(matterResult.data as Frontmatter),
     };
   });
+
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
@@ -48,11 +50,8 @@ export async function getPostData(slug: string) {
 
   const { code, frontmatter } = await bundleMDX({
     source: mdxSource,
-    // eslint-disable-next-line @typescript-eslint/no-shadow, @typescript-eslint/no-unused-vars
-    mdxOptions(options, frontmatter) {
-      // eslint-disable-next-line no-param-reassign
+    mdxOptions(options) {
       options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm];
-      // eslint-disable-next-line no-param-reassign
       options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypePrism];
 
       return options;
