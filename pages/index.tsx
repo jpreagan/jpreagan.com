@@ -48,7 +48,7 @@ export default function IndexPage({ allPostsData }: Props) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getBlogPostData().slice(0, 4);
+  const allPostsData = (await getBlogPostData()).slice(0, 4);
   return {
     props: {
       allPostsData,

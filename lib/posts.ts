@@ -9,7 +9,7 @@ import type { Frontmatter } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export function getBlogPostData() {
+export async function getBlogPostData() {
   const filenames = fs.readdirSync(postsDirectory);
   const allPostsData = filenames.map((filename) => {
     const slug = filename.replace(/\.mdx$/, "");
@@ -33,7 +33,7 @@ export function getBlogPostData() {
   });
 }
 
-export function getAllPostSlugs() {
+export async function getAllPostSlugs() {
   const filenames = fs.readdirSync(postsDirectory);
   return filenames.map((filename) => {
     return {

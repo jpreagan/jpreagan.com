@@ -46,7 +46,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostSlugs();
+  const paths = await getAllPostSlugs();
   return {
     paths,
     fallback: false,
