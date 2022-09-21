@@ -17,23 +17,23 @@ export default function Posts({ allPostsData }: Props) {
 
         return (
           <Link key={slug} href={`/blog/${slug}`} itemProp="url">
-            <article
-              itemScope
-              itemType="http://schema.org/Article"
-              className={`cursor-pointer rounded-md px-4 py-16 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5 md:px-10 ${linearGradient}`}
+            <a
+              className={`rounded-md px-4 py-16 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5 md:px-10 ${linearGradient}`}
             >
-              <header>
-                <h2
-                  itemProp="headline"
-                  className="mb-4 text-2xl font-bold tracking-tight text-white"
-                >
-                  {title}
-                </h2>
-                <p className="text-gray-200">
-                  <Date dateString={date} />
-                </p>
-              </header>
-            </article>
+              <article itemScope itemType="http://schema.org/Article">
+                <header>
+                  <h2
+                    itemProp="headline"
+                    className="mb-4 text-2xl font-bold tracking-tight text-white"
+                  >
+                    {title}
+                  </h2>
+                  <p className="text-gray-200">
+                    <Date dateString={date} />
+                  </p>
+                </header>
+              </article>
+            </a>
           </Link>
         );
       })}
