@@ -13,9 +13,7 @@ export default function Layout({ children }: Props) {
         Skip to content
       </a>
       <Header />
-      <main id="main" className="mx-auto max-w-5xl px-4">
-        {children}
-      </main>
+      <main id="main">{children}</main>
       <Footer />
     </>
   );

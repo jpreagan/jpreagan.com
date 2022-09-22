@@ -23,20 +23,22 @@ export default function BlogPost({ code, frontmatter }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <article itemScope itemType="http://schema.org/Article">
-        <header className="mx-auto mb-8 rounded-md bg-gradient-to-r from-purple-800 via-pink-600 to-orange-400 py-16 px-4 md:px-8 md:py-24 lg:py-32 lg:px-16">
-          <h1
-            itemProp="headline"
-            className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl lg:text-6xl"
-          >
-            {frontmatter.title}
-          </h1>
-          <p className="text-gray-200">
-            <Date dateString={frontmatter.date} />
-          </p>
+        <header className="mx-auto mb-8 max-w-5xl sm:px-4">
+          <div className="bg-gradient-to-r from-purple-800 via-pink-600 to-orange-400 py-16 px-4 sm:rounded-md md:px-8 md:py-24 lg:py-32 lg:px-16">
+            <h1
+              itemProp="headline"
+              className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl lg:text-6xl"
+            >
+              {frontmatter.title}
+            </h1>
+            <p className="text-gray-200">
+              <Date dateString={frontmatter.date} />
+            </p>
+          </div>
         </header>
         <section
           itemProp="articleBody"
-          className="prose mx-auto my-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:prose-xl"
+          className="prose mx-auto my-4 px-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:prose-xl"
         >
           <Component />
         </section>
