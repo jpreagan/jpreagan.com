@@ -21,7 +21,7 @@ module.exports = {
         mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],
       },
       screens: {
-        tablet: "400px",
+        tablet: "520px",
       },
       typography: ({ theme }) => ({
         DEFAULT: {
