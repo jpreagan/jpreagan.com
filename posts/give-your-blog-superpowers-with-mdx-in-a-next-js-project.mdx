@@ -1,0 +1,463 @@
+---
+title: "Give your blog superpowers with MDX in a Next.js project"
+date: "2022-09-21"
+description: "How I used mdx-bundler to create a blog with Next.js and MDX."
+---
+
+In this post, I'll show you how I made my blog with Next.js and MDX.
+
+You'll learn how to easily write long-form content with markdown and then give it superpowers with MDX.
+
+You'll also learn about [static site generation](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) in Next.js and using [dynamic routes](https://nextjs.org/docs/routing/dynamic-routes).
+
+First, let's go over what is markdown. Where might you use it? Then we'll bump it up a notch with MDX.
+
+## What's good about markdown?
+
+Markdown is a simple and lightweight markup language that adds formatting and other features to a plain text document. Being in plain text, this makes it convenient to add to version control software such as in a git repository.
+
+In this way, we can avoid the need for having a content management system (CMS). It's portable and future-proof! No need to mess with any databases or third party software.
+
+But why can't I just write my content in HTML or JSX? Well, you can. Nothing is stopping you. But if you were writing a blog post or some long-form content does this seem convenient?
+
+```jsx
+export default function MyPost() {
+  return (
+    <>
+      <h1>Is this inconvenient?</h1>
+      <h2>Has to be a better way</h2>
+      <p>Shucks, now I have to wrap each paragraph in its own tags.</p>
+      <p>
+        And I'll also have to add <strong>importance like this</strong>.
+      </p>
+      <p>
+        And don't get me started with <a href="example.com/">links</a>
+      </p>
+    </>
+  );
+}
+```
+
+Let's look at how that might look in markdown instead:
+
+```
+# A simple header
+
+## Isn't this nicer?
+
+No more tags needed for paragraphs!
+
+List em out:
+- Strawberries
+- Bananas
+- Papaya
+
+And I can say something **important like this**.
+
+This is how we do [links](https://example.com).
+```
+
+Check out the [Markdown Guide](https://www.markdownguide.org/) for more reference on the syntax of markdown. I won't cover them here, but just mention we can do all sorts of formatting, headings, lists, tables, and things like code blocks in markdown. And if you're looking to get some practice with markdown also try the [Markdown Tutorial](https://www.markdowntutorial.com/).
+
+### 🦸 MDX: markdown with superpowers
+
+That's a lot more comfortable than writing in JSX or HTML, but it's still a bit limiting though isn't it? What if I wanted to add a component to my markdown?
+
+```
+import { Chart } from "../components/chart";
+
+# Is this possible?
+
+It'd be nice to be able to render JSX components in my markdown!
+
+<Chart description={description} />
+```
+
+Ah, but we can! We need markdown with superpowers. We need MDX! With MDX, you get the simplicity of markdown, but with the awesome flexibility to include JSX where we need it too.
+
+## How to use MDX with Next.js
+
+Sounds great, yea? Let's talk about how to put this into practice. I'll share with you how I made my blog with MDX and Next.js.
+
+First of all, we have four options when it comes to using MDX in a Next.js project:
+
+- [@next/mdx](https://nextjs.org/docs/advanced-features/using-mdx)
+- [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)
+- ~~next-mdx-enhanced~~
+- [mdx-bundler](https://github.com/kentcdodds/mdx-bundler)
+
+The first is the officially supported option. If you want to go that route, there is a [good blog post about how to do that](https://nextjs.org/blog/markdown). `next-mdx-remote` and `next-mdx-enhanced` are offered by HashiCorp, but only `next-mdx-remote` is still maintained. It will give you more control and options should you go that way.
+
+I chose `mdx-bundler`, a project maintained by Kent C. Dodds. With `mdx-bundler` you get a MDX compiler and bundler, which distinguishes it from the other options. You can bundle at build time or run time. This capability makes it a suitable option for server-side rendering in addition to static site generation.
+
+With `mdx-bundler`, your MDX source can come from the local filesystem, some other repository, or a remote content management system. It is also not tied to any one specific framework. In other words, it will work just fine with Next.js, Gatsby, Remix, Create React App, or any other React framework.
+
+In my case, I'm bundling at build time from the local filesystem. I'm using Next.js's static site generation via `getStaticProps` and dynamic routes with `getStaticPaths`.
+
+Actually, I've two good options here: static site generation or server-side rendering since `mdx-bundler` will work with either. If I had a lot of posts (perhaps one day), or my posts were being updated frequently, I'd consider using server-side rendering.
+
+Even though projects like Next.js and Remix have made server-side rendering a high-performance option again, it's still hard to beat the reliability and speed that you get from static site generation. The tradeoff for static site generation is longer build times. The data will also be stale until next build, but for blog posts thats usually not a problem.
+
+### 🏗️ Building the foundation
+
+My directory structure looks a bit like this:
+
+```
+jpreagan.com/
+├── components # React components
+├── lib        # Helper functions
+├── pages      # Page routes
+├── posts      # MDX content
+├── public     # Static assets
+├── styles     # CSS
+```
+
+Let's say I've all my posts in `*.mdx` files in the `/posts` directory. An individual post will look something like this:
+
+```markdown
+---
+title: "Starting a personal dashboard with the Spotify API"
+date: "2022-09-08"
+description: "Use the Spotify API to start your own personal dashboard."
+---
+
+My MDX content follows here...
+```
+
+Everything inside the `---` is referred to as the frontmatter. In a moment, I'll explain how to make use of this information in your code.
+
+For now, let's make a new directory in the `/pages` directory: `/pages/blog`. And in that directory let's create a `/pages/blog/index.tsx` and a `/pages/blog/[slug].tsx`.
+
+The index page is where I list all of the blog posts, and later as my posts grow, I'll have to paginate it too. The oddly named `/pages/blog/[slug].tsx` is like a template for an individual post.
+
+By adding brackets `[ ]` to a route, we create a dynamic route. So now if I visit the URL `https://jpreagan.com/blog/`, it will take me to the index as expected. But if I visit `https://jpreagan.com/blog/not-a-page`, then I'll get a 404. This outcome should also be expected because that URL doesn't exist.
+
+What we need here is `getStaticPaths`: that will allow us to define a list of paths to be statically generated. That list will come from our `/posts` directory: one for each of the filenames minus the `*.mdx` extension.
+
+Let's give those two new files some basic structure:
+
+```tsx
+// ./pages/blog/index.tsx
+import React from "react";
+import { GetStaticProps } from "next";
+
+export default function BlogPage(props) {
+  return (/* render list of blog posts */);
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  /* fetch list of blog posts  */
+}
+```
+
+```tsx
+// ./pages/blog/[slug].tsx
+import React from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
+
+export default function BlogPost(props) {
+  return (/* render individual blog post */);
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  /* get list of all slugs */
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  /* fetch the individual post */
+};
+```
+
+### 🫶 Make the helper functions
+
+Now make a `/lib/posts.ts` and in there will live the helper functions to make this show happen. After we write the helpers, we can make use of them in the above two routes.
+
+We'll need to install some dependencies:
+
+```bash
+yarn add mdx-bundler esbuild
+```
+
+This will install `mdx-bundler`, which also uses `esbuild`. Next, let's install `gray-matter`, which is used to parse the frontmatter from a post.
+
+```bash
+yarn add gray-matter
+```
+
+For our `getStaticPaths` in `/pages/blog/[slug].tsx` we need an array of all the filenames in `/posts` minus the `*.mdx`. Let's work on that function first:
+
+```ts
+import fs from "fs";
+import path from "path";
+
+const postsDirectory = path.join(process.cwd(), "posts");
+
+export async function getAllPostSlugs() {
+  const filenames = fs.readdirSync(postsDirectory);
+  return filenames.map((filename) => {
+    return {
+      params: {
+        slug: filename.replace(/\.mdx$/, ""),
+      },
+    };
+  });
+}
+```
+
+This will give us an array of objects `[{ params: { slug: my-slug } }, ...]`, which is just what we need!
+
+Next, we need a sorted array of all the posts containing the slug and frontmatter for each object. This will be useful for rendering a list of all posts in the blog index:
+
+```ts
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+type Frontmatter = {
+  title: string;
+  date: string;
+  description: string;
+};
+
+const postsDirectory = path.join(process.cwd(), "posts");
+
+export async function getBlogPostData() {
+  const filenames = fs.readdirSync(postsDirectory);
+  const allPostsData = filenames.map((filename) => {
+    const slug = filename.replace(/\.mdx$/, "");
+
+    const fullPath = path.join(postsDirectory, filename);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+
+    const matterResult = matter(fileContents);
+
+    return {
+      slug,
+      ...(matterResult.data as Frontmatter),
+    };
+  });
+
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    }
+    return -1;
+  });
+}
+```
+
+Now it's time to do some bundling! This function will be used to render an individual blog post:
+
+```ts
+import fs from "fs";
+import path from "path";
+import { bundleMDX } from "mdx-bundler";
+import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism-plus";
+
+const postsDirectory = path.join(process.cwd(), "posts");
+
+export async function getPostData(slug: string) {
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  const mdxSource = fs.readFileSync(fullPath, "utf8");
+
+  const { code, frontmatter } = await bundleMDX({
+    source: mdxSource,
+    mdxOptions(options) {
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm];
+      options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypePrism];
+
+      return options;
+    },
+  });
+
+  return {
+    slug,
+    frontmatter,
+    code,
+  };
+}
+```
+
+With MDX, we can take advantage of all sorts of awesome plugins. MDX uses rehype and remark under the hood, and we can extend the functionality of our MDX with any rehype and/or remark plugins too.
+
+Here I'm using `remarkGfm` to provide [GitHub Flavored Markdown](https://github.github.com/gfm/), and `rehype-prism-plus` to give syntax highlighting for code blocks. You'll need to import a prism theme in `/pages/_app.tsx` or add your own custom tokens to global styles. I went with the latter option and you can [take a look at how I did that here](https://github.com/jpreagan/jpreagan.com/blob/main/styles/globals.css).
+
+If you end up going that route too, make sure you add them as dependencies:
+
+```bash
+yarn add remark-gfm rehype-prism-plus
+```
+
+### 🔌 Put everything together
+
+Now let's go back to our page routes and update them making use of the helper functions we just wrote.
+
+```tsx
+// ./pages/blog/index.tsx
+import React from "react";
+import Link from "next/link";
+import { GetStaticProps } from "next";
+import Date from "../../components/date";
+import { getBlogPostData } from "../../lib/posts";
+
+type PostData = {
+  title: string;
+  date: string;
+  description: string;
+  slug: string;
+};
+
+type Props = {
+  allPostsData: PostData[];
+};
+
+export default function BlogPage({ allPostsData }: Props) {
+  return (
+    <>
+      <header>
+        <h1>Blog</h1>
+      </header>
+      <section>
+        {allPostsData.map(({ title, slug, date }: PostData) => {
+          return (
+            <Link key={slug} href={`/blog/${slug}`} itemProp="url">
+              <a>
+                <article itemScope itemType="http://schema.org/Article">
+                  <header>
+                    <h2 itemProp="headline">{title}</h2>
+                    <p>
+                      <Date dateString={date} />
+                    </p>
+                  </header>
+                </article>
+              </a>
+            </Link>
+          );
+        })}
+      </section>
+    </>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const allPostsData = await getBlogPostData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+};
+```
+
+I found it necessary to add a Date component so that I could make a nicely formatted date string from the frontmatter. Do a `yarn add date-fns` and add the following component:
+
+```tsx
+import React from "react";
+import { parseISO, format } from "date-fns";
+
+type Props = {
+  dateString: string;
+};
+
+export default function Date({ dateString }: Props) {
+  const date = parseISO(dateString);
+  return <time dateTime={dateString}>{format(date, "LLLL d, yyyy")}</time>;
+}
+```
+
+Now let's finish up the individual blog posts rendered via dynamic routes:
+
+```tsx
+// ./pages/blog/[slug].tsx
+import React, { useMemo } from "react";
+import { getMDXComponent } from "mdx-bundler/client";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { getAllPostSlugs, getPostData } from "../../lib/posts";
+import Date from "../../components/date";
+
+type Frontmatter = {
+  title: string;
+  date: string;
+  description: string;
+};
+
+type Props = {
+  code: string;
+  frontmatter: Frontmatter;
+};
+
+export default function BlogPost({ code, frontmatter }: Props) {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+
+  return (
+    <article itemScope itemType="http://schema.org/Article">
+      <header>
+        <h1 itemProp="headline">{frontmatter.title}</h1>
+        <p>
+          <Date dateString={frontmatter.date} />
+        </p>
+      </header>
+      <section
+        itemProp="articleBody"
+        className="prose mx-auto my-4 md:prose-lg lg:prose-xl"
+      >
+        <Component />
+      </section>
+    </article>
+  );
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await getAllPostSlugs();
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postData = await getPostData(params?.slug as string);
+  return {
+    props: {
+      ...postData,
+    },
+  };
+};
+```
+
+Note that I'm using the `useMemo` hook here so that the componenent is not recreated on every render. It is better to memoize the component to avoid that expensive calculation each time.
+
+Also, note I've made use of some styling here; just a minimal example of how you can use Tailwind CSS and the official [Tailwind Typography plugin](https://tailwindcss.com/docs/typography-plugin). It's really fantastic for this sort of use case. If you're curious more about the styling have a look at the [GitHub repo](https://github.com/jpreagan/jpreagan.com).
+
+## 👀 What else is good?
+
+So that is pretty much the basic setup so far. We got a blog running using static site generation, dynamic routes, and MDX pulled from the local filesystem. We also added a couple of plugins. We can now pull in custom components where we wish too.
+
+What else can we do?
+
+Check this out: we can replace any markdown construct with our own custom code. Here is a simple example:
+
+```tsx
+// ./pages/blog/[slug].tsx
+
+const CustomHeading = (props) => <h2 style={{ color: "tomato" }} {...props} />;
+
+const components = {
+  h2: CustomHeading,
+};
+
+export default function BlogPost({ code, frontmatter }: Props) {
+  const Component = useMemo(() => getMDXComponent(code), [code]);
+
+  return <Component components={components} />;
+}
+```
+
+Now all of our `h2` headings will be `tomato` colored. Best CSS color ever. Perhaps not terribly useful, but you see how we can modify our markdown to do anything we want.
+
+Something cooler and more useful, for example, would be making a custom code blocks component. Ever seen those code blocks that have copy button or other bells and whistles on them? I think that is pretty neat, and Anna Rossetti has written an [article about just that with Gatsby](https://annarossetti.com/articles/custom-code-blocks/).
+
+You might also want to embed images in your MDX. Proprietary solutions like Cloudinary are great services, but can get a bit pricey too. Something you might want to look at is image bundling with [remark-mdx-images](https://github.com/remcohaszing/remark-mdx-images), which you can [use with mdx-bundler](https://github.com/kentcdodds/mdx-bundler#image-bundling).
+
+Feel free to study or reuse the [code in the repo](https://github.com/jpreagan/jpreagan.com) for your own blog or projects. Don't forget though to remove any of my personal data, and you're good to go! If you have any questions or comments, feel free to reach out to me on [Twitter](https://twitter.com/jpreagan_).
