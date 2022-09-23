@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import { GetStaticProps } from "next";
 import Layout from "../../components/layout";
 import Posts from "../../components/posts";
 import { getBlogPostData } from "../../lib/posts";
@@ -34,11 +35,11 @@ export default function BlogPage({ allPostsData }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = await getBlogPostData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+};
