@@ -8,6 +8,15 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ],
   "rules": {
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/anchor-is-valid": "off"
