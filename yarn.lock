@@ -275,11 +275,6 @@
     lodash.merge "^4.6.2"
     postcss-selector-parser "6.0.10"
 
-"@theme-toggles/react@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@theme-toggles/react/-/react-4.1.0.tgz#8b20055749f93bee3d6e4b6bbfaa2d5573caa18a"
-  integrity sha512-h3SuJMsej8DfelHt5fjNIlaMfJOK52Vku4pPDVoHaTwjAcoTr4fn8hzeur2oiqWBYFYfKugvv1RdQaBFXaiPKg==
-
 "@types/acorn@^4.0.0":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@types/acorn/-/acorn-4.0.6.tgz#d61ca5480300ac41a7d973dd5b84d0a591154a22"

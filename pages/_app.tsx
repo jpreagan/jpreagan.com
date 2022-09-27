@@ -7,8 +7,8 @@ import "@fontsource/ibm-plex-sans/700.css";
 import "@fontsource/ibm-plex-sans/400-italic.css";
 import "@fontsource/ibm-plex-sans/700-italic.css";
 import "@fontsource/ibm-plex-mono/400.css";
-import "@theme-toggles/react/css/Expand.css";
 import "../styles/globals.css";
+import "../styles/expand.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {

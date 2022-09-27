@@ -19,7 +19,6 @@
     "@fontsource/ibm-plex-sans": "^4.5.12",
     "@fontsource/inter": "^4.5.12",
     "@formspree/react": "^2.4.0",
-    "@theme-toggles/react": "^4.1.0",
     "date-fns": "^2.29.3",
     "esbuild": "^0.15.8",
     "graphql": "^16.6.0",
