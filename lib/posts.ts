@@ -5,6 +5,8 @@ import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import type { Frontmatter } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -44,6 +46,10 @@ export async function getAllPostSlugs() {
   });
 }
 
+const remarkPlugins = [remarkGfm];
+
+const rehypePlugins = [rehypeSlug, rehypeAutolinkHeadings, rehypePrism];
+
 export async function getPostData(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   const mdxSource = fs.readFileSync(fullPath, "utf8");
@@ -51,8 +57,14 @@ export async function getPostData(slug: string) {
   const { code, frontmatter } = await bundleMDX({
     source: mdxSource,
     mdxOptions(options) {
-      options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm];
-      options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypePrism];
+      options.remarkPlugins = [
+        ...(options.remarkPlugins ?? []),
+        ...remarkPlugins,
+      ];
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        ...rehypePlugins,
+      ];
 
       return options;
     },
