@@ -33,25 +33,41 @@ export default function Aloha() {
           💕 Lover of 80&apos;s music and 🍜 udon noodles!
         </p>
         <div className="my-8 flex">
-          <Link href={social?.twitter} rel="noreferrer" target="_blank">
-            <a className="hover:text-[#1DA1F2]">
-              <Twitter size={40} title="Twitter" />
-            </a>
+          <Link
+            href={social?.twitter}
+            rel="noreferrer"
+            target="_blank"
+            className="hover:text-[#1DA1F2]"
+          >
+            {" "}
+            <Twitter size={40} title="Twitter" />
           </Link>
-          <Link href={social?.linkedin} rel="noreferrer" target="_blank">
-            <a className="hover:text-[#0077B5]">
-              <LinkedIn size={40} title="LinkedIn" />
-            </a>
+          <Link
+            href={social?.linkedin}
+            rel="noreferrer"
+            target="_blank"
+            className="hover:text-[#0077B5]"
+          >
+            {" "}
+            <LinkedIn size={40} title="LinkedIn" />
           </Link>
-          <Link href={social?.github} rel="noreferrer" target="_blank">
-            <a className="hover:text-[#040404] dark:hover:text-gray-100">
-              <GitHub size={40} title="GitHub" />
-            </a>
+          <Link
+            href={social?.github}
+            rel="noreferrer"
+            target="_blank"
+            className="hover:text-[#040404] dark:hover:text-gray-100"
+          >
+            {" "}
+            <GitHub size={40} title="GitHub" />
           </Link>
-          <Link href={social?.youtube} rel="noreferrer" target="_blank">
-            <a className="hover:text-[#FF0000]">
-              <YouTube size={40} title="YouTube" />
-            </a>
+          <Link
+            href={social?.youtube}
+            rel="noreferrer"
+            target="_blank"
+            className="hover:text-[#FF0000]"
+          >
+            {" "}
+            <YouTube size={40} title="YouTube" />
           </Link>
         </div>
       </div>
