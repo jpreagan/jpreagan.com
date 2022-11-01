@@ -30,8 +30,6 @@ export default function AboutPage({ tracks }: Props) {
         </h1>
       </header>
 
-      <p>Something</p>
-
       <section className="prose mx-auto mb-16 max-w-5xl px-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:mb-32 lg:prose-xl">
         <p>I&apos;m a software engineer living in Hawaii.</p>
         <p>
