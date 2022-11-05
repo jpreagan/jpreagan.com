@@ -38,8 +38,8 @@ export default function AboutPage({ tracks }: Props) {
         </p>
         <p>
           My current interests are in TypeScript, software testing, serverless
-          technology, and learning new languages. I&apos;m enjoy both front end
-          and back end development.
+          technology, and learning new languages. I enjoy both front end and
+          back end development.
         </p>
         <p>
           I regularly document my journey on my <Link href="/blog">blog</Link>{" "}
