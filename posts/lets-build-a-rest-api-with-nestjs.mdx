@@ -1,0 +1,867 @@
+﻿---
+title: "Let's build a REST API with NestJS"
+date: "2022-11-11"
+description: "In this post, I'll cover getting started with NestJS, designing a schema, setting up a developer environment, data validation, and basic CRUD operations"
+---
+
+## What is NestJS?
+
+In this post, let's talk about building a REST API with NestJS.
+
+[NestJS](https://nestjs.com/) is a progressive Node.js framework for building server-side applications in JavaScript with built-in support for TypeScript as well.
+
+NestJS uses [Express](https://expressjs.com/) under the hood or can be configured to use other frameworks like [Fastify](https://www.fastify.io/). It's one level of abstraction higher than these frameworks, but you still have direct access to their APIs, so you can add any third party modules that would normally work with them.
+
+So what is the value proposition for you using NestJS? I just mentioned it was built on Express, which is built on top of Node.js. So what benefit do you get from using NestJS that you don't already get with Express?
+
+Well, first of all, you get structure and a reasonable set of opinions.
+
+Express is intentionally unopinionated, and while some teams like this aspect, others would do better and work more efficiently with a bit more added structure. It can add more consistency across projects.
+
+And this is a good thing because it'll save you a lot of time and solve problems that already have solutions. NestJS has modularity, scalability and testability in mind while remaining loosely coupled. You'll notice that it's apparently inspired by Angular, for example, we have modules, services and controllers (controllers being components in the Angular world).
+
+And NestJS also comes with a [command line interface](https://docs.nestjs.com/cli/overview) to scaffold a new project and add to our existing project keeping things nice and tidy while saving us from writing otherwise repetitive code.
+
+There is excellent [documentation](https://docs.nestjs.com/) for NestJS. Getting started, you'll likely be able to learn everything you need to know from the documentation and the source code, thanks to TypeScript, and I recommend you start there.
+
+Having said that, it can often be useful or interesting to watch something come together just to see how all the parts fit. I know I appreciate that and maybe you do too.
+
+And with that in mind, let's walk through a real example of building a REST API with NestJS. We'll start with something simple and add more complexity over time.
+
+## What are we building?
+
+I've made a public API that serves quotes and aphorisms of famous and noteworthy people from all periods of time about topics like love, life, wisdom and success.
+
+You can get a random quote now with a curl request to [the API](https://api.quotd.io/):
+
+```bash
+curl https://api.quotd.io/quotes/random
+```
+
+```json
+{
+  "id": 169,
+  "text": "There is only one kind of love, but there are a thousand imitations.",
+  "author": { "id": 110, "name": "François de La Rochefoucauld" },
+  "category": { "id": 1, "name": "Love" }
+}
+```
+
+And as you see here, we get returned a quote that has a text and an id, as well as an author with a name and id, and a category also with a name and id.
+
+It's a labor of love for me. I really enjoy and I'm inspired by literature and famous speeches from great women and men who come before me. So I'm reaching for something passionate in this project.
+
+I'll keep adding quotes and over time it might end up being a pretty decent resource. In any event, I'm having a lot of fun making it.
+
+Presently, this service is built with NestJS, [Prisma](https://www.prisma.io/), MySQL with [PlanetScale](https://planetscale.com/), and deployed as a Dockerized container to Google Cloud Platform.
+
+In this post, we'll get acquainted with NestJS, design a schema, get our database up and running, define our API endpoints to establish CRUD operations, and cover data validation.
+
+In upcoming posts, I'll cover authentication, deployment, testing and other topics as I make progress.
+
+## Getting started
+
+I mentioned the command line interface already and we’ll need to install that. As per the documentation, let's do a `npm install -g @nestjs/cli` to install the package as a global dependency.
+
+We're going to start a new project with `nest new`:
+
+```
+nest new quotd-api
+```
+
+Choose a package manager and let's step into the project directory and check out the structure. In particular, let's turn our attention to the `src` directory which has already been populated with a number of files.
+
+```
+src/
+├── app.controller.spec.ts
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+└── main.ts
+```
+
+The entry file for the application is `main.ts`.
+
+```ts
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+It includes an async function to bootstrap the application. Inside that function, we make use of the core function `NestFactory` to create a Nest application instance. We get returned an application object and all we have to do from here is start up an HTTP listener and await inbound request on the port of our choosing.
+
+So far this looks pretty similar to a typical Node.js application you might be used to. We'll be making additions to this file over time, but these particular lines will remain pretty much in the same way you see them now.
+
+NestJS is intended to be organized into modules, each with its own directory, and `app.modules.ts` is the root module for the application. So, let's take a peek there.
+
+```ts
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+
+@Module({
+  imports: [],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+Looks like we have a typical class AppModule, but with a [TypeScript decorator](https://www.typescriptlang.org/docs/handbook/decorators.html) `@Module()` preceding it. Class decorators are applied to the constructor of a class and can be used to observe, modify, or replace a class definition.
+
+Decorators can also be used on methods, properties, and even parameters. Decorators are used extensively in a NestJS application. Shortly we'll import into AppModule our various modules as we create them.
+
+For now though, let's talk about controllers and providers. Let's now visit the AppController:
+
+```ts
+import { Controller, Get } from "@nestjs/common";
+import { AppService } from "./app.service";
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+```
+
+Looks like a class with a `@Controller()` decorator and a constructor with the AppService passed in as an argument. [Controllers](https://docs.nestjs.com/controllers) are responsible for handling incoming requests and returning responses to the client.
+
+In this case, we only have one endpoint defined. We have a `@Get()` decorator that corresponds to the GET HTTP request method. Normally, we'd have multiple endpoints defined here, most likely corresponding to various CRUD operations.
+
+Finally, let's check out AppService where our business logic lives.
+
+```ts
+import { Injectable } from "@nestjs/common";
+
+@Injectable()
+export class AppService {
+  getHello(): string {
+    return "Hello World!";
+  }
+}
+```
+
+And we'll see that particular `getHello` function returns a string which says, "Hello World!" Pretty simple.
+
+The only thing to note here is another decorator. The `@Injectable()` decorator attaches metadata which declares AppService as a class that can be managed by the Nest [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) (IOC) container.
+
+You can start the server with a `npm run start`, and if you do a `curl http://localhost:3000`, you will get back a hello world. You can stop the server and going forward use `npm run start:dev` to watch for file changes in development.
+
+## Designing the schema
+
+So next up, let's talk about the schema.
+
+I want to start simple with this project. And if I'm serving quotes, at a minimum, I'll have a table for quotes which at least has a text (or a content field) and an id.
+
+Every quote has a single author, but an author can have many quotes. I just described a one-to-many relationship, and our schema needs to reflect this.
+
+Likewise, each quote has a category (at this stage in the process we’ll stick to a single category per quote), and that would also be a one-to-many relationship because a quote has one category, but a given category may have many quotes.
+
+Later, if we decide to allow multiple categories per quote, then this would be a many-to-many relationship and our schema will need to be updated. Let's stick with one for now.
+
+Besides that, we want to put unique constraints on the text of a quote because we don't want duplicate quotes in our database. And we definitely don't want duplicates of the same author, nor duplicates of categories. So these will need unique constraints.
+
+Now, granted, two authors can share the same name. For example, there is [Samuel Butler](<https://en.wikipedia.org/wiki/Samuel_Butler_(poet)>), the 17th-century poet, and also [Samuel Butler](<https://en.wikipedia.org/wiki/Samuel_Butler_(novelist)>) the 19th-century novelist. So we'll have to cross that bridge when we get to it.
+
+In time, I have in mind to add a citation source and other metadata related to the author specifically from [Wikidata](https://www.wikidata.org/wiki/Wikidata:Data_access) as well. So this schema will grow, but let's start with this for now just to get up and running.
+
+With this schema design in mind, let's park our database considerations for a minute and set up our API endpoints.
+
+## Add modules and prepare API endpoints
+
+Just like we saw with our AppModule, we'll need a module, controller, and provider for each of our resources (quotes, authors and categories) with CRUD capabilities for each one.
+
+That is to say, we'll need to be able to create, read, update and delete according to an endpoint and corresponding HTTP request method like GET, POST, PATCH and DELETE.
+
+So to do that, let's start with quotes. We're going to do a `nest g resources quotes`. Choose REST API for transport layer, and yes to generate CRUD entry points. Now the CLI just saved us the hassle of writing all this out manually.
+
+```
+src/quotes
+├── dto/
+│   ├── create-quote.dto.ts
+│   └── update-quote.dto.ts
+├── entities/
+│   └── quote.entity.ts
+├── quotes.controller.spec.ts
+├── quotes.controller.ts
+├── quotes.module.ts
+├── quotes.service.spec.ts
+└── quotes.service.ts
+```
+
+And you’ll also notice it automatically imports the new module in AppModule. Let's go ahead and generate resources for our remaining modules as well, authors and categories:
+
+```bash
+nest g resource authors
+nest g resource categories
+```
+
+If you take a look inside the QuotesController and we'll see we have a POST method for quotes(`create`), a GET method for getting all quotes (`findAll`), and a GET, PATCH, and DELETE method for a quote by id (`findOne`, `update`, and `remove`).
+
+Let's further examine `findOne` in QuotesController:
+
+```ts
+@Get(':id')
+findOne(@Param('id') id: string) {
+  return this.quotesService.findOne(+id);
+}
+```
+
+The `@Param()` decorator from `@nestjs/common` allows us to accept any request parameters and use them within our method. In this case, for example, we are receiving a string, `id`, and using type coercion work with it as a number.
+
+Whereas `@Param()` gives us access to the request parameters, the `@Body()` decorator gives us the request body as is the case with `create`:
+
+```ts
+@Post()
+create(@Body() createQuoteDto: CreateQuoteDto) {
+  return this.quotesService.create(createQuoteDto);
+}
+```
+
+But here we're receiving a data transfer object (DTO), which is an object that defines how the data will be sent over the network. This could actually be a TypeScript interface, but the maintainers of NestJS [advise you instead use a class]() since they are part of the ES6 syntax and therefore will be preserved in the transpiled JavaScript code.
+
+If it were an interface, they'd be removed during transpilation and it would not be available during runtime since remember our application is written in TypeScript but it runs in JavaScript.
+
+Let's open up the CreateQuoteDto and lay out how this object should look.
+
+```ts
+export class CreateQuoteDto {
+  readonly text: string;
+}
+```
+
+If you recall from our schema discussion, a quote has a text, we'll call that `text` and it'll be a string. It's also good practice to make that readonly to maintain immutability.
+
+And speaking of best practice, let's also set up data validation now too. You should always validate the correctness of any data sent to an application, and we'll be doing that here.
+
+The most convenient approach to achieve that is to use the Nest `ValidationPipe`, which requires the `class-validator` and `class-transformer` package.
+
+```bash
+npm i --save class-validator class-transformer
+```
+
+Now open `main.ts` and bind `ValidationPipe` at the application level with `useGlobalPipes`.
+
+```ts
+app.useGlobalPipes(new ValidationPipe());
+```
+
+We’ll pass in an instantiation of `ValidationPipe` imported from `@nestjs/common`, and now our entire application can use validation.
+
+So we return to our DTO and import `@IsString()` from `class-validator`. We’ll apply that decorator to `text` to ensure the correct data type is sent from the client. An empty string won't do either so let's also add the `@IsNotEmpty()` decorator as well.
+
+```ts
+import { IsString, IsNotEmpty } from "class-validator";
+
+export class CreateQuoteDto {
+  @IsString()
+  @IsNotEmpty()
+  readonly text: string;
+}
+```
+
+Now if we send a non-string value for text, we'll get an error code with a message stating, "text must be a string."
+
+```bash
+curl -X 'POST' \
+  'http://localhost:3000/quotes' \
+  -H "Content-Type: application/json" \
+  -d '{"text": 42}'
+```
+
+```
+{"statusCode":400,"message":["text must be a string"],"error":"Bad Request"}
+```
+
+That's a good start, but let's bump it up a notch now and for security reasons, protect our application from being sent potentially malicious data.
+
+Back in `main.ts`, we can set a number of options for `ValidationPipe` by passing it an object and we'll set `whitelist` to true. Now any properties sent by the client not defined in our DTO are filtered out.
+
+Let's go a step further and toggle another property to not just filter out extraneous data, but to refuse the request if there is any data other than what is defined in our DTO. We do that with `forbidNonWhitelisted`.
+
+```ts
+app.useGlobalPipes(
+  new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+  })
+);
+```
+
+With that now set, we get a bad request if we try to sneak in a mystery property.
+
+One last thing with validation. Right now, the object being sent in is in the exact shape of what we want defined in our DTO, but it's not an actual instance of that DTO. To be more confident with our data types, we'll add one more property in our global `ValidationPipe`, set `transform` to be true. Now our DTO will be an actual instance of CreateQuoteDTO.
+
+In the end, it should look like this:
+
+```ts
+app.useGlobalPipes(
+  new ValidationPipe({
+    whitelist: true,
+    transform: true,
+    forbidNonWhitelisted: true,
+  })
+);
+```
+
+To match the schema we designed, let's head over to CreateAuthorDTO and update it in a similar fashion to that which we did in CreateQuoteDTO:
+
+```ts
+import { IsString, IsNotEmpty } from "class-validator";
+
+export class CreateAuthorDto {
+  @IsString()
+  @IsNotEmpty()
+  readonly name: string;
+}
+```
+
+And CreateCategoryDTO will pretty much be the same thing:
+
+```ts
+import { IsString, IsNotEmpty } from "class-validator";
+
+export class CreateCategoryDto {
+  @IsString()
+  @IsNotEmpty()
+  readonly name: string;
+}
+```
+
+Now we can finish up CreateQuoteDTO. We'll need to import CreateAuthorDTO and CreateCategoryDTO, and we'll also need `@ValidateNested()` from `class-validator` and `@Type()` from `class-transformer` so we can incorporate both author and category in a POST request to quotes.
+
+```ts
+import { IsString, IsNotEmpty, ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
+import { CreateAuthorDto } from "../../authors/dto/create-author.dto";
+import { CreateCategoryDto } from "../../categories/dto/create-category.dto";
+
+export class CreateQuoteDto {
+  @IsString()
+  @IsNotEmpty()
+  readonly text: string;
+
+  @ValidateNested()
+  @IsNotEmpty()
+  @Type(() => CreateAuthorDto)
+  readonly author: CreateAuthorDto;
+
+  @ValidateNested()
+  @IsNotEmpty()
+  @Type(() => CreateCategoryDto)
+  readonly category: CreateCategoryDto;
+}
+```
+
+We can now send a POST request to our `/quotes` endpoint with a text, author, and category:
+
+```bash
+curl -X 'POST' \
+  'http://localhost:3000/quotes' \
+  -H "Content-Type: application/json" \
+  -d '{"text": "The rain in Spain stays mainly in the plain.",  "author": { "name": "Audrey Hepburn" }, "category": { "name": "Wisdom" }}'
+```
+
+The data is validated when sent by the client with the correct data types, but nothing is accomplished because we haven't any business logic or even set up a database yet. So let's work on that next.
+
+## Set up MySQL with Docker Compose
+
+Containerizing our applications makes them portable, easier to maintain, and modular while adding almost no overhead cost. In a later post, we’ll optimize our project for production with a multi-stage Docker build standardizing our Node.js environment.
+
+For the time being though, let's use Docker Compose to set up a MySQL database for use in development only. In production, we'll use PlanetScale, which is a MySQL-compatible serverless database platform. With that we'll get horizontal sharding, unlimited connections, and zero-downtime schema migrations using branching.
+
+Before going forward, make sure you have [Docker installed on your local machine](https://docs.docker.com/get-docker/). And create a new file in the project root, `docker-compose.yml`:
+
+```yaml
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: quotd
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+```
+
+All we need is a pretty simple setup here. We'll use the official MySQL Docker image (here we're using version 8), map port 3306 on our local machine to 3306 of our container, and set some environmental variables we'll need.
+
+To spin up a new container, use `docker compose up`. Additionally, you can use the `--detach` or `-d` flag to run the container in the background. And if you need to see the logs after detaching use `docker compose logs --follow db`. See a list of containers with `docker ps`. There are other useful commands: `stop`, `start`, `down`, `rm`, and more. See `docker --help` and `docker compose --help` for more information.
+
+We'll use a couple of those commands in our `package.json` though to make things more convenient. In development, we often want to start or restart with a fresh database and that's easier to do if we make some npm scripts.
+
+Let's make three new scripts:
+
+1. `db:rm`, stops and removes the database container while also removing any volumes
+
+2. `db:up`, spins up a new database container in detached mode
+
+3. `db:restart`, reuses these two scripts setting us up with a fresh, clean slate when necessary
+
+For a restart, we’ll also need a package `npm-run-all`, which has the `run-s` alias. It will run two task sequentially.
+
+```bash
+npm install npm-run-all --save-dev
+```
+
+In our `package.json`:
+
+```json
+{
+  "scripts": {
+    "db:rm": "docker compose rm db --force --stop --volumes",
+    "db:up": "docker compose up db --detach",
+    "db:restart": "run-s db:rm db:up"
+  }
+}
+```
+
+Use these scripts from the command line with `npm run db:rm`, `npm run db:up`, and `npm run db:restart`. Now if we run `npm run db:up`, we can actually get into a MySQL shell with `docker compose exec db mysql -u mysql -p` with the password also being "mysql" (defined in our Compose file).
+
+That's pretty cool. And from here we could just start creating tables according to the schema we already discussed. But we'll be using an Object Relational Mapper (ORM) to do this instead.
+
+To my knowledge, the best ORMs you might consider if you're working on a Node.js project using TypeScript would be [TypeORM](https://typeorm.io/), [sequelize-typescript](https://www.npmjs.com/package/sequelize-typescript), and [Prisma](https://www.prisma.io/). All are good options, but the one I'm enjoying most lately is Prisma.
+
+So to get started with that, first add Prisma as a dev dependency.
+
+```bash
+npm install prisma --save-dev
+```
+
+Now follow that up with a `npx prisma init --datasource-provider mysql`, and that just gave us a Prisma schema file. But we'll also need to add a couple more lines to emulate referential integrity in the Prisma Client.
+
+Referential integrity is currently a preview feature in Prisma, and we need to enable that because PlanetScale does not support foreign key constraints. It is actually Vitess, the underlying technology that powers PlanetScale, which requires this workaround.
+
+```
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+```
+
+Next, let's add our intended schema to the Prisma schema file.
+
+```
+model Author {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  quotes Quote[]
+  @@map("authors")
+}
+
+model Quote {
+  id         Int      @id @default(autoincrement())
+  text       String   @unique @db.VarChar(512)
+  author     Author   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  @@index([authorId, categoryId])
+  @@map("quotes")
+}
+
+model Category {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  quotes Quote[]
+  @@map("categories")
+}
+```
+
+A couple of things to note here. We had to make the text field in the quote model larger, increasing the size to 512 characters to accommodate the occasionally lengthier quotes.
+
+Also, because there are no foreign key constraints with PlanetScale, it is wise to add indexes manually as we've done here. We only need one composite index on quote with `authorId` and `categoryId`. That is an easy performance optimization, which could also potentially save you a lot of money in terms of rows read.
+
+One last thing before we push. Let's update the credentials in the `.env` to match those in our Compose file:
+
+```
+DATABASE_URL='mysql://mysql:mysql@localhost:3306/quotd'
+```
+
+So with the schema implemented, we can now do a `npx prisma db push` and our database is now in sync with the Prisma schema and we generated the Prisma Client. We now need to add a Prisma module and service so we can import Prisma into our various modules.
+
+Let's create those now with a `nest g module prisma` and `nest g service prisma`.
+
+Before we configure them though, I should advise you that although Prisma has an internal way to handle environmental variables such as our connection string to the database, I’ve found the NestJS way of handling configuration to be more reliable depending on how your cloud setup handles secrets. And we'll need to set additional environmental variables in the near future too so you might as well go ahead and set that up now.
+
+Let's add `@nestjs/config` as a dependency and update AppModule by importing ConfigModule and invoking `forRoot`:
+
+```ts
+import { ConfigModule } from '@nestjs/config';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    /* ... */
+  ],
+})
+```
+
+PrismaService should look like this:
+
+```ts
+import { Injectable, OnModuleInit, INestApplication } from "@nestjs/common";
+import { PrismaClient } from "@prisma/client";
+
+@Injectable()
+export class PrismaService extends PrismaClient implements OnModuleInit {
+  constructor() {
+    super({
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
+    });
+  }
+  async onModuleInit() {
+    await this.$connect();
+  }
+
+  async enableShutdownHooks(app: INestApplication) {
+    this.$on("beforeExit", async () => {
+      await app.close();
+    });
+  }
+}
+```
+
+And PrismaModule should look like this:
+
+```ts
+import { Module } from "@nestjs/common";
+import { PrismaService } from "./prisma.service";
+
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService],
+})
+export class PrismaModule {}
+```
+
+Finally, import the Prisma module into each of our modules, quotes, authors and categories.
+
+```ts
+import { PrismaModule } from '../prisma/prisma.module';
+
+@Module({
+  imports: [PrismaModule],
+})
+```
+
+## Implement the CRUD operations
+
+Now with our modules laid out, data validation covered, and our database and ORM up and running, we can implement the CRUD operations. Nest has already set us up for success with that and we can jump into our services where the business logic happens.
+
+Let's start with quotes first and open up our QuotesService importing PrismaService and passing it into the constructor as private and readonly.
+
+```ts
+import { PrismaService } from "../prisma/prisma.service";
+
+@Injectable()
+export class QuotesService {
+  constructor(private readonly prisma: PrismaService) {}
+  /* ... */
+}
+```
+
+For the `create` function, which is our POST method we’ll destructure `text`, `author`, and `category`. For author and category since they both have the same property name, we’ll rename them to `author` and `category` respectively, so we can distinguish between the two in our next use of them.
+
+Prisma has a `create` method and we'll use that here and send an object with a `data` property and an object value of our `text` and use the Prisma `connectOrCreate` where `name` is `author` and `create` is also `author` and the same for category.
+
+```ts
+create(createQuoteDto: CreateQuoteDto) {
+  const {
+    text,
+    author: { name: author },
+    category: { name: category },
+  } = createQuoteDto;
+  return this.prisma.quote.create({
+    data: {
+      text,
+      author: {
+        connectOrCreate: {
+          where: { name: author },
+          create: { name: author },
+        },
+      },
+      category: {
+        connectOrCreate: {
+          where: { name: category },
+          create: { name: category },
+        },
+      },
+    },
+  });
+}
+```
+
+We could have used `create`, but since we purposely have unique constraints on author and category that would fail on the second POST for an already existing author or category. `connectOrCreate` is best for our use case. Pretty handy.
+
+Next, let's work on the `findAll` function which corresponds to a GET request to the `/quotes` endpoint without any parameters. This will return a list of all quotes. To do that, we'll use Prisma’s `findMany`.
+
+If we do this without any arguments, when we test it out, it'll send us something like this:
+
+```ts
+[
+  {
+    id: 1,
+    text: "The rain in Spain stays mainly in the plain.",
+    authorId: 1,
+    categoryId: 1,
+  },
+];
+```
+
+This isn't what we want though, because it's giving us our quote, that's good, but only the foreign key ids for author and category. We don't want or need the foreign keys, but we do want the author name and category.
+
+We need to choose either `include` or `select` from the Prisma API. I tend to think `select` is best here because we can leave out those foreign keys and include the id along with the name inside the object for author and category respectively.
+
+Let's update `findAll`:
+
+```ts
+findAll() {
+  return this.prisma.quote.findMany({
+    select: {
+      id: true,
+      text: true,
+      author: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      category: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+}
+```
+
+And now we get the desired output:
+
+```json
+[
+  {
+    "id": 1,
+    "text": "The rain in Spain stays mainly in the plain.",
+    "author": { "id": 1, "name": "Audrey Hepburn" },
+    "category": { "id": 1, "name": "Wisdom" }
+  }
+]
+```
+
+Okay, cool. Let's move on to the `findOne` function and we'll be using Prisma’s `findUnique` method.
+
+The function `findOne` will return a quote for a given id. If we, for example, do a `curl http://localhost:3000/quotes/1`, the API will return a quote with an id of `1`.
+
+We'll use `id` in our parameters and pass that in to `findUnique` using the `where` filter:
+
+```ts
+findOne(id: number) {
+  return this.prisma.quote.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      text: true,
+      author: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+      category: {
+        select: {
+          id: true,
+          name: true,
+        },
+      },
+    },
+  });
+}
+```
+
+Now we desire the shape of return data to be exactly like a single object from `findAll`. But that is already pretty verbose and I really don't want to repeat it twice.
+
+Let's keep it DRY and make use of the [Prisma validator](https://www.prisma.io/docs/concepts/components/prisma-client/advanced-type-safety/prisma-validator). This gives us a type-safe return object and allows for code reuse too.
+
+We'll need to import `@prisma/client`, and then let's call this `quoteWithAuthorAndCategory`. Now we move our code into one location by sending it as an argument to the Prisma validator.
+
+```ts
+import { Prisma } from "@prisma/client";
+
+const quoteWithAuthorAndCategory = Prisma.validator<Prisma.QuoteSelect>()({
+  id: true,
+  text: true,
+  author: {
+    select: {
+      id: true,
+      name: true,
+    },
+  },
+  category: {
+    select: {
+      id: true,
+      name: true,
+    },
+  },
+});
+```
+
+Finally, we can reuse it in our presently two locations, `findAll` and `findOne`:
+
+```ts
+findAll() {
+  return this.prisma.quote.findMany({
+    select: quoteWithAuthorAndCategory,
+  });
+}
+
+findOne(id: number) {
+  return this.prisma.quote.findUnique({
+    where: { id },
+    select: quoteWithAuthorAndCategory,
+  });
+}
+```
+
+This seems a bit tidier to me. And just think if we needed to use it a third time, each time we're just needlessly adding more lines of code and opening ourselves up to easily preventable bugs.
+
+Finally, we have two more methods to handle: `update` and `remove`.
+
+The `update` function is going to look mighty similar to the `create` function, but we're going to use the UpdateQuoteDTO, which we haven't discussed up until now, but it uses a partial type from `@nestjs/mapped-types`. Partial types allow us to reuse the CreateQuoteDTO, but allow for partial types.
+
+```ts
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateQuoteDto } from "./create-quote.dto";
+
+export class UpdateQuoteDto extends PartialType(CreateQuoteDto) {}
+```
+
+A DTO for `create` and a DTO for `update` will typically be the same differing only in the fact that an `update` request will likely only require partial data, i.e., the data that will actually be updated. Because of this fact, partial types are often the answer for this type of situation.
+
+So we'll use the UpdateQuoteDTO here and once again, this is going to seem familiar, just like we experienced with the `findAll` and `findOne`, it looks like we're reusing much of the same code again in `update` as we did in `create`.
+
+```ts
+update(id: number, updateQuoteDto: UpdateQuoteDto) {
+  const {
+    text,
+    author: { name: author },
+    category: { name: category },
+  } = updateQuoteDto;
+  return this.prisma.quote.update({
+    where: { id },
+    data: {
+      text,
+      author: {
+        connectOrCreate: {
+          where: { name: author },
+          create: { name: author },
+        },
+      },
+      category: {
+        connectOrCreate: {
+          where: { name: category },
+          create: { name: category },
+        },
+      },
+    },
+  });
+}
+```
+
+So, let's use the Prisma validator again! `createQuoteWithAuthorAndCategory` takes three arguments: `text`, `author` and `category` and uses the same code we already made.
+
+```ts
+const createQuoteWithAuthorAndCategory = (
+  text: string,
+  author: string,
+  category: string
+) => {
+  return Prisma.validator<Prisma.QuoteCreateInput>()({
+    text,
+    author: {
+      connectOrCreate: {
+        where: { name: author },
+        create: { name: author },
+      },
+    },
+    category: {
+      connectOrCreate: {
+        where: { name: category },
+        create: { name: category },
+      },
+    },
+  });
+};
+```
+
+First, we'll update our `create` to use the validator:
+
+```ts
+create(createQuoteDto: CreateQuoteDto) {
+  const {
+    text,
+    author: { name: author },
+    category: { name: category },
+  } = createQuoteDto;
+  return this.prisma.quote.create({
+    data: createQuoteWithAuthorAndCategory(text, author, category),
+  });
+}
+```
+
+And next, let's use it again in the `update` function.
+
+```ts
+update(id: number, updateQuoteDto: UpdateQuoteDto) {
+  const {
+    text,
+    author: { name: author },
+    category: { name: category },
+  } = updateQuoteDto;
+  return this.prisma.quote.update({
+    where: { id },
+    data: createQuoteWithAuthorAndCategory(text, author, category),
+  });
+}
+```
+
+Lastly, `remove` is pretty simple. We'll use `delete` from the Prisma API sending it `id` from the request parameters and again using the `where` filter.
+
+```ts
+remove(id: number) {
+  return this.prisma.quote.delete({
+    where: { id },
+  });
+}
+```
+
+Next, we will need to do the exact same thing we did in quotes, updating all the logic to enable CRUD operations, we'll need to do the same thing with authors and categories.
+
+Because it's quite the same strategy, I'll leave that up to you and invite you refer to the [source repository](https://github.com/jpreagan/quotd/tree/initial-setup) for this project.
+
+We still have a lot to do to make this a quality product. In upcoming posts, I'll cover authentication, documentation testing, and deployment among other topics.
+
+I can't wait to share with you the next step in this process. I'm enjoying this project and I appreciate you taking the time to read. Feel free to reach out to me on [Twitter](https://twitter.com/jpreagan_) should you have any questions or concerns.
