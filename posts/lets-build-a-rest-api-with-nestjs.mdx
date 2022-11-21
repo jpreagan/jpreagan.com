@@ -373,7 +373,7 @@ curl -X 'POST' \
 
 The data is validated when sent by the client with the correct data types, but nothing is accomplished because we haven't any business logic or even set up a database yet. So let's work on that next.
 
-## Set up MySQL with Docker Compose
+## Set up a MySQL database with Docker Compose
 
 Containerizing our applications makes them portable, easier to maintain, and modular while adding almost no overhead cost. In a later post, we’ll optimize our project for production with a multi-stage Docker build standardizing our Node.js environment.
 
@@ -430,6 +430,8 @@ In our `package.json`:
 Use these scripts from the command line with `npm run db:rm`, `npm run db:up`, and `npm run db:restart`. Now if we run `npm run db:up`, we can actually get into a MySQL shell with `docker compose exec db mysql -u mysql -p` with the password also being "mysql" (defined in our Compose file).
 
 That's pretty cool. And from here we could just start creating tables according to the schema we already discussed. But we'll be using an Object Relational Mapper (ORM) to do this instead.
+
+## Adding Prisma to the project
 
 To my knowledge, the best ORMs you might consider if you're working on a Node.js project using TypeScript would be [TypeORM](https://typeorm.io/), [sequelize-typescript](https://www.npmjs.com/package/sequelize-typescript), and [Prisma](https://www.prisma.io/). All are good options, but the one I'm enjoying most lately is Prisma.
 
