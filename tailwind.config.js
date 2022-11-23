@@ -13,12 +13,15 @@ module.exports = {
       display: ["Inter", ...defaultTheme.fontFamily.sans],
       body: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
     },
-    letterSpacing: {
-      tight: "-0.015em",
-    },
     extend: {
       fontFamily: {
         mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],
+      },
+      letterSpacing: {
+        tight: "-0.015em",
+      },
+      lineHeight: {
+        tighter: "1.1111111",
       },
       screens: {
         tablet: "520px",

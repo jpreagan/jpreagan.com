@@ -27,7 +27,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
           <div className="bg-gradient-to-r from-purple-800 via-pink-600 to-orange-400 py-16 px-4 sm:rounded-md md:px-8 md:py-24 lg:py-32 lg:px-16">
             <h1
               itemProp="headline"
-              className="mb-4 text-2xl font-bold text-white sm:text-3xl md:text-5xl lg:text-6xl"
+              className="mb-4 text-2xl font-bold leading-tight text-white sm:text-3xl sm:leading-tight md:text-5xl md:leading-tight lg:text-6xl lg:leading-tighter"
             >
               {frontmatter.title}
             </h1>
