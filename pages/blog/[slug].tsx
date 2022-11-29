@@ -31,7 +31,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
             >
               {frontmatter.title}
             </h1>
-            <p className="text-gray-200">
+            <p className="text-gray-200 md:text-lg lg:text-xl">
               <Date dateString={frontmatter.date} />
             </p>
           </div>
