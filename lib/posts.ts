@@ -4,9 +4,11 @@ import path from "path";
 import matter from "gray-matter";
 import { bundleMDX } from "mdx-bundler";
 import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode, {
+  type Options as CodeHighlightOptions,
+} from "rehype-pretty-code";
 import type { PluggableList } from "unified";
 import type { Frontmatter } from "./types";
 
@@ -49,10 +51,27 @@ export async function getAllPostSlugs() {
 
 const remarkPlugins: PluggableList = [remarkGfm];
 
+const codeHighlightOptions: Partial<CodeHighlightOptions> = {
+  theme: JSON.parse(
+    fs.readFileSync("./lib/themes/tokyo-night-color-theme.json", "utf-8")
+  ),
+  onVisitLine(node) {
+    if (node.children.length === 0) {
+      node.children = [{ type: "text", value: " " }];
+    }
+  },
+  onVisitHighlightedLine(node) {
+    node.properties.className.push("highlighted");
+  },
+  onVisitHighlightedWord(node) {
+    node.properties.className = ["word"];
+  },
+};
+
 const rehypePlugins: PluggableList = [
   rehypeSlug,
   rehypeAutolinkHeadings,
-  rehypePrism,
+  [rehypePrettyCode, codeHighlightOptions],
 ];
 
 export async function getPostData(slug: string) {
