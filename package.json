@@ -39,7 +39,8 @@
     "rehype-prism-plus": "^1.5.0",
     "rehype-slug": "^5.0.1",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.31.1"
+    "sharp": "^0.31.1",
+    "unified": "^10.1.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.0.0",

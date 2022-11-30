@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import type { PluggableList } from "unified";
 import type { Frontmatter } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -46,9 +47,13 @@ export async function getAllPostSlugs() {
   });
 }
 
-const remarkPlugins = [remarkGfm];
+const remarkPlugins: PluggableList = [remarkGfm];
 
-const rehypePlugins = [rehypeSlug, rehypeAutolinkHeadings, rehypePrism];
+const rehypePlugins: PluggableList = [
+  rehypeSlug,
+  rehypeAutolinkHeadings,
+  rehypePrism,
+];
 
 export async function getPostData(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
