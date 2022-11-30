@@ -23,7 +23,7 @@ export default function Project({
         <p>
           <span
             style={{ backgroundColor: primaryLanguage?.color }}
-            className="color"
+            className="primary-language-color"
           />{" "}
           <span itemProp="programmingLanguage">{primaryLanguage?.name}</span>
           {stargazerCount > 0 && (
