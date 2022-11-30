@@ -40,7 +40,7 @@ export default function IndexPage({ allPostsData }: Props) {
         <p className="my-8 md:text-lg lg:text-xl">
           ✨ See{" "}
           <Link
-            className="dark:text-sky:300 text-sky-600 underline"
+            className="text-sky-600 underline dark:text-sky-300"
             href="/blog"
           >
             all posts
