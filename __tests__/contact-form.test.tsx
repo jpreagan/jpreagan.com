@@ -10,18 +10,22 @@ jest.mock("@formspree/react", () => {
   };
 });
 
-test("renders an input of type text", () => {
-  render(<ContactForm />);
-  const nameInput = screen.getByLabelText(/name/i);
-  expect(nameInput).toHaveAttribute("type", "text");
-});
-test("renders an input of type email", () => {
-  render(<ContactForm />);
-  const emailInput = screen.getByLabelText(/email/i);
-  expect(emailInput).toHaveAttribute("type", "email");
-});
-test("renders a textarea for the message", () => {
-  render(<ContactForm />);
-  const messageTextarea = screen.getByLabelText(/message/i);
-  expect(messageTextarea).toBeInstanceOf(HTMLTextAreaElement);
+describe("Contact-form component", () => {
+  test("renders an input of type text", () => {
+    render(<ContactForm />);
+    const nameInput = screen.getByLabelText(/name/i);
+    expect(nameInput).toHaveAttribute("type", "text");
+  });
+
+  test("renders an input of type email", () => {
+    render(<ContactForm />);
+    const emailInput = screen.getByLabelText(/email/i);
+    expect(emailInput).toHaveAttribute("type", "email");
+  });
+
+  test("renders a textarea for the message", () => {
+    render(<ContactForm />);
+    const messageTextarea = screen.getByLabelText(/message/i);
+    expect(messageTextarea).toBeInstanceOf(HTMLTextAreaElement);
+  });
 });
