@@ -9,7 +9,7 @@ type Props = {
 
 export default function Posts({ allPostsData }: Props) {
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2" role="grid">
       {allPostsData.map(({ title, slug, date }: PostData, index: number) => {
         const even = "bg-gradient-to-r from-purple-800 to-pink-600";
         const odd = "bg-gradient-to-r from-pink-600 to-orange-400";
