@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Date from "../components/date";
+import Date from "../../components/date";
 
 describe("Date component", () => {
   test("renders the date in the correct format", () => {

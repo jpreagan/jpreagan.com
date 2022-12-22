@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ContactForm from "../components/contact-form";
+import ContactForm from "../../components/contact-form";
 
 jest.mock("@formspree/react", () => {
   const originalModule = jest.requireActual("@formspree/react");
