@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ThemeProvider } from "next-themes";
 import ThemeToggle from "../../components/theme-toggle";

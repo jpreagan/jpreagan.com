@@ -1,7 +1,5 @@
 import { useForm, ValidationError } from "@formspree/react";
 
-import React from "react";
-
 export default function ContactForm() {
   const [state, handleSubmit] = useForm("mdojozdp");
 

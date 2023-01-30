@@ -1,4 +1,3 @@
-import React from "react";
 import { parseISO, format } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 

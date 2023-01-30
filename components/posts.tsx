@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import Date from "./date";
 import { PostData } from "../lib/types";

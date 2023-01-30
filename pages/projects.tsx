@@ -1,4 +1,3 @@
-import React from "react";
 import Head from "next/head";
 import { GraphQLClient, gql } from "graphql-request";
 import Layout from "../components/layout";
