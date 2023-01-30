@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 /// <reference types="spotify-api" />
 import React from "react";
 import Head from "next/head";
