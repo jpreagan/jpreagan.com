@@ -16,7 +16,7 @@ export default function BlogPage({ allPostsData }: Props) {
         <title>Blog</title>
         <meta
           name="description"
-          content="My personal website built with Next.js"
+          content="Learn about web development with my latest blog posts."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

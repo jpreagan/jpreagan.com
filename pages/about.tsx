@@ -17,7 +17,7 @@ export default function AboutPage({ tracks }: Props) {
         <title>About</title>
         <meta
           name="description"
-          content="My personal website built with Next.js"
+          content="Learn more about me, I'm a Hawaii-based software engineer with a passion for web performance and accessibility."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

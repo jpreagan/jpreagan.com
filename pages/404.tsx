@@ -9,7 +9,7 @@ export default function NotFoundPage() {
         <title>404: Not Found</title>
         <meta
           name="description"
-          content="My personal website built with Next.js"
+          content="Oops! The page you're looking for can't be found."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

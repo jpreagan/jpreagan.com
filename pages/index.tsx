@@ -18,7 +18,7 @@ export default function IndexPage({ allPostsData }: Props) {
         <title>Aloha</title>
         <meta
           name="description"
-          content="My personal website built with Next.js"
+          content="I'm a software engineer living in Hawaii. Lover of 80's music and udon noodles!"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

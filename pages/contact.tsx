@@ -9,7 +9,7 @@ export default function ContactPage() {
         <title>Contact</title>
         <meta
           name="description"
-          content="My personal website built with Next.js"
+          content="How can I help you? Get in touch with me."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
