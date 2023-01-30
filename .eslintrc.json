@@ -1,14 +1,9 @@
 {
-  "extends": [
-    "airbnb",
-    "airbnb-typescript",
-    "plugin:@next/next/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
+  "root": true,
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["testing-library"],
   "overrides": [
+    // Only uses Testing Library lint rules in test files
     {
       "files": [
         "**/__tests__/**/*.[jt]s?(x)",
@@ -16,9 +11,5 @@
       ],
       "extends": ["plugin:testing-library/react"]
     }
-  ],
-  "rules": {
-    "react/jsx-props-no-spreading": "off",
-    "jsx-a11y/anchor-is-valid": "off"
-  }
+  ]
 }
