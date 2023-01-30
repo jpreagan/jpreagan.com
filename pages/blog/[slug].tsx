@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import * as React from "react";
 import Head from "next/head";
 import { getMDXComponent } from "mdx-bundler/client";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export default function BlogPost({ code, frontmatter }: Props) {
-  const Component = useMemo(() => getMDXComponent(code), [code]);
+  const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
     <Layout>
