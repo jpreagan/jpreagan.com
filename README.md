@@ -165,13 +165,13 @@ My first blog post.
 
 To deploy the application to Vercel, you have two options:
 
-1. Vercel CLI
+### 1. Vercel CLI
 
 - Install the [Vercel CLI](https://vercel.com/docs/cli) and run `vercel` to deploy.
 - Vercel will detect that you are using Next.js and will enable the correct settings for your deployment.
 - Your application is deployed! (e.g. [nextjs.vercel.app](https://nextjs.vercel.app/))
 
-2. Vercel for Git
+### 2. Vercel for Git
 
 - Push your code to your git repository (GitHub, GitLab, BitBucket).
 - [Import your Next.js project](https://vercel.com/new) into Vercel.
