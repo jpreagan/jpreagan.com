@@ -14,7 +14,7 @@ export default function Project({
     >
       <article>
         <h2 className="text-2xl font-bold">
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             {name}
           </span>
         </h2>
