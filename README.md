@@ -10,7 +10,9 @@ I built [jpreagan.com](https://jpreagan.com/) to showcase my personal brand and 
 - **Unit Testing**: [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/)
 - **Deployment**: [Vercel](https://vercel.com)
 
-The project is written in TypeScript. Linting is done using ESLint and the code is formatted with prettier.
+The project is written in TypeScript. Linting is done using [ESLint](https://eslint.org/) and the code is formatted with [prettier](https://prettier.io/).
+
+### Getting started
 
 You can clone the repository and install depedencies with:
 
@@ -115,13 +117,13 @@ My first blog post.
 You can also include React components in the same subdirectory by creating `.tsx` files, which will be bundled at build time and made available for use in your blog post. For example, create a new component in `/posts/my-first-post/demo.tsx`:
 
 ```typescript
-import * as React from 'react'
+import * as React from "react";
 
 function Demo() {
-  return <div>Neat demo!</div>
+  return <div>Neat demo!</div>;
 }
 
-export default Demo
+export default Demo;
 ```
 
 Finally, you can include the component in your blog post by adding the following code in the `index.mdx` file:
@@ -141,3 +143,20 @@ import Demo from './demo'
 
 My first blog post.
 ```
+
+## 🚀 Deploy
+
+To deploy the application to Vercel, you have two options:
+
+1. Vercel CLI
+
+- Install the [Vercel CLI](https://vercel.com/docs/cli) and run `vercel` to deploy.
+- Vercel will detect that you are using Next.js and will enable the correct settings for your deployment.
+- Your application is deployed! (e.g. [nextjs.vercel.app](https://nextjs.vercel.app/))
+
+2. Vercel for Git
+
+- Push your code to your git repository (GitHub, GitLab, BitBucket).
+- [Import your Next.js project](https://vercel.com/new) into Vercel.
+- Vercel will detect that you are using Next.js and will enable the correct settings for your deployment.
+- Your application is deployed! (e.g. [nextjs.vercel.app](https://nextjs.vercel.app/))
