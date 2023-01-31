@@ -23,7 +23,6 @@ export default function Aloha() {
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             James Reagan
           </span>
-          .
         </h2>
         <p className="my-4 md:text-lg lg:text-xl">
           💻 I&apos;m a software engineer 🌴 living in Hawaii.
