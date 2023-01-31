@@ -51,11 +51,11 @@ cp .env.example .env.local
 
 In `.env.local`, you'll need to set `GITHUB_TOKEN`. Create a GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
-At a minimum, you'll need to the following scopes: `public_repo, read:user`.
+At a minimum, you'll need the following scopes: `public_repo` and `read:user`.
 
 ### 🎵 Spotify
 
-For the Spotify data, you'll need a free [Spotify](https://www.spotify.com/us/signup) account.
+For the Spotify data, you'll need to [signup for a free Spotify](https://www.spotify.com/us/signup) account.
 
 You'll also need to set the following environment variables in `.env.local`:
 
@@ -73,7 +73,7 @@ To run the application in development:
 pnpm dev
 ```
 
-You can also run a build with `pnpm build` before starting the server with `pnpm start`
+You can also run a build with `pnpm build` and start the server with `pnpm start`
 
 Run unit tests with:
 
@@ -81,18 +81,33 @@ Run unit tests with:
 pnpm test
 ```
 
-Here are some other commands:
+Format the code:
 
 ```bash
-# format the code
 pnpm format
-# run unit tests
+```
+
+Run the unit tests with:
+
+```bash
 pnpm test
-# check for typscript errors
-pnpm typecheck
-# check for eslint errors
+```
+
+Check for linting errors:
+
+```bash
 pnpm lint
-# run test, typecheck, and lint in paralell
+```
+
+Check for typescript errors:
+
+```bash
+pnpm typecheck
+```
+
+Run `test`, `lint`, and `typecheck` in parallel:
+
+```bash
 pnpm validate
 ```
 
@@ -100,7 +115,9 @@ pnpm validate
 
 To create a blog post, you need to create a subdirectory under the `./posts` directory, with the name of the subdirectory corresponding to the URL of the blog post.
 
-For instance, `/posts/my-first-post` will result in the URL `https://example.com/blog/my-first-post`. Within the subdirectory, you must create an `index.mdx` file which serves as the main content for the blog post. For example, `/posts/my-first-post/index.mdx`. Here is a suggested template for writing a new blog post in this project:
+For instance, `/posts/my-first-post` will result in the URL [https://example.com/blog/my-first-post](https://example.com/blog/my-first-post). Within the subdirectory, you must create an `index.mdx` file which serves as the main content for the blog post. For example, `/posts/my-first-post/index.mdx`.
+
+Here is a suggested template for writing a new blog post in this project:
 
 ```
 ---
