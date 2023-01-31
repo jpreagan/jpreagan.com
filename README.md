@@ -115,7 +115,7 @@ pnpm validate
 
 To create a blog post, you need to create a subdirectory under the `./posts` directory, with the name of the subdirectory corresponding to the URL of the blog post.
 
-For instance, `/posts/my-first-post` will result in the URL [https://example.com/blog/my-first-post](https://example.com/blog/my-first-post). Within the subdirectory, you must create an `index.mdx` file which serves as the main content for the blog post. For example, `/posts/my-first-post/index.mdx`.
+For instance, `/posts/my-first-post` will result in the URL [example.com/blog/my-first-post](https://example.com/blog/my-first-post). Within the subdirectory, you must create an `index.mdx` file which serves as the main content for the blog post. For example, `/posts/my-first-post/index.mdx`.
 
 Here is a suggested template for writing a new blog post in this project:
 
@@ -177,3 +177,12 @@ To deploy the application to Vercel, you have two options:
 - [Import your Next.js project](https://vercel.com/new) into Vercel.
 - Vercel will detect that you are using Next.js and will enable the correct settings for your deployment.
 - Your application is deployed! (e.g. [nextjs.vercel.app](https://nextjs.vercel.app/))
+
+To ensure your application works as expected in production, you'll need to set the following environment variables:
+
+- `GITHUB_TOKEN`
+- `SPOTIFY_CLIENT_ID`
+- `SPOTIFY_CLIENT_SECRET`
+- `SPOTIFY_CLIENT_SECRET`
+
+Find out more on how to set environment variables on Vercel from [this guide](https://vercel.com/docs/concepts/projects/environment-variables).
