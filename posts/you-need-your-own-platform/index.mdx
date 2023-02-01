@@ -1,21 +1,114 @@
 ---
-title: "You need your own platform"
+title: "Building Your Own Platform: The Importance of Having a Personal Website"
 date: "2023-01-30"
 description: "Discover the benefits of building a personal website and blogging as a software engineer."
 ---
 
-I built my personal website to showcase my personal brand and share my experiences, projects, and thoughts through a custom blog platform. I use it as a training ground for me to learn new technology. The process of building and rebuilding it from scratch has been an amazing journey filled with new discoveries and growth.
+## Why did I build this site?
 
-Blogging regularly on my site has been instrumental in getting noticed by potential employers and landing my current job. It allows me to demonstrate my skills and passion for the field.
+I built this website to showcase my personal brand and share my experiences, projects, and thoughts through a custom blog platform. The process of building and rebuilding it from scratch has been an amazing journey filled with new discoveries and growth.
 
-It became a topic of discussion during job interviews, and I've had the valuable opportunity to explain my thought process in building the site.
+With your own platform:
 
-I learned from [Jessica Deen](https://twitter.com/jldeen)'s talk to us at [Vets Who Code](https://vetswhocode.io/) that the key to demonstrating your skills is identifying in-demand technical skills and applying them through practice and real-world projects, like building a personal website.
+- You have full control over the design and presentation, which becomes a personalized representation of your brand
+- The process of building your platform provides an opportunity to expand your technical abilities and knowledge
+- As a developer, you have the flexibility to shape it to meet your evolving needs with customizable functionality
+- Writing regularly will enhance your writing skills and support your professional development
 
-This strategy has proven successful for Jessica. I applied her lesson and it worked for me too. And there's no reason it can't work for you too. Nothing is stopping you.
+## The journey so far
 
-Also realize that writing is a crucial skill in software engineering, and writing well can greatly advance your career. That's why I encourage everyone to start a blog and document their journey. And the best way to improve your writing is to write more, so why not start today?
+1. Initially, I started with a simple static HTML and CSS website and hosted it on GitHub Pages. This allowed me to get a basic understanding of the technologies involved in building a website. However, I soon realized that I wanted to expand my skills and try out new technologies.
 
-Having your own platform is crucial in today's digital world. It not only helps you build your personal brand but also opens doors to new opportunities.
+2. So, I rebuilt my website with [Eleventy](https://www.11ty.dev/), discovering the benefits of static site generators. The experience improved my JavaScript skills and introduced me to a new workflow, including setting up a custom build system and utilizing [Netlify](https://www.netlify.com/) as a Content Delivery Network (CDN).
 
-So, why not start your own blog today and see where it takes you? Check out my [updated project on GitHub](https://github.com/jpreagan/jpreagan.com) and feel free to use it as a starting point for your own.
+3. Next, I rebuilt my website with [Gatsby](https://www.gatsbyjs.com/) and got exposure to GraphQL. This was a game-changer for me as it opened up a whole new way to handle data and Gatsby allowed me to build even more dynamic and interactive pages with React.
+
+4. After that, I converted my project to TypeScript, which allowed me to write cleaner and more maintainable code. This was a great learning experience as it allowed me to dive deeper into the world of programming languages and how they work.
+
+5. Finally, I rebuilt my website with [Next.js](https://nextjs.org/) and gained experience with server-side rendering. This gave me a deeper understanding of how websites are built and delivered to users, and how server-side rendering can expand the capabilities and enhance the user experience of a website.
+
+## The power of blogging
+
+Blogging regularly on my continually evolving site has been a factor in getting noticed by potential employers and landing my first full-time role as a developer. It has provided a platform to demonstrate my skills and passion for the field. The blog became a topic during job interviews, and I've had the valuable opportunity to explain my thought process in building the site and my experience with different technologies.
+
+I believe that building your own platform is a powerful way to showcase your skills and advance your career in software engineering. By identifying in-demand technical skills and applying them through real-world projects, you can demonstrate your expertise and make a strong impression on potential employers.
+
+Additionally, writing is an essential skill in software engineering, and writing regularly can improve your writing skills and help you grow professionally.
+
+But what will you write about? There is no limit to what you can write, but a great starting point is to document the journey of building your website. This can include your experiences, thoughts, and challenges, and it can also allow you to articulate your understanding of the technologies involved.
+
+Furthermore, having a documented record of your journey can serve as your own personal reference, providing valuable insights and recall of the steps you took in the future.
+
+## A Checklist of Requirements
+
+In building your personal website, here is a checklist of what I consider mandantory requirements:
+
+- A visually appealing design that aligns with your personal style
+- Responsive and works on a variety of screen sizes
+- High performance with perfect or near perfect Lighthouse scores
+- Built with accessibility in mind ensuring everyone can access and use the site
+
+With that established going forward, you can decide on functionality. The functionality of your website depends on your current needs and priorities. If you're looking where to start, I suggest you consider incorporating the following features:
+
+- Focus on using in-demand technology
+- A blog to share your experiences and thoughts
+- A page to display personal projects
+- A contact form for potential employers to reach out
+- Integration with at least two external APIs
+
+Let's take a closer look at these.
+
+### Focus on in-demand technology
+
+To keep your skills up to date and in demand, it's important to choose a stack that is optimized for your employability.
+
+One way to identify in-demand skills is to look at current job postings and the technologies they require. Keep in mind that the technology industry is constantly evolving, so it's important to stay informed and continue to learn new skills as they emerge. For frontend roles, for instance, you might also look at a resource like the [Frontend Developer Roadmap](https://roadmap.sh/frontend).
+
+I highly recommend speaking to individuals in senior positions at the companies you hope to work for. They will provide valuable insights into the technologies they use and the skills they look for in candidates. Aim to have at least several conversations with different people to get a better understanding of the industry.
+
+After consulting with my mentor, I decided to focus on TypeScript, React, Next.js, and GraphQL for frontend development, as this stack offers comprehensive full-stack capabilities. You can easily achieve anything described in this guide with this stack, and these choices are in high demand within the industry.
+
+### Build a blog system
+
+I've discussed above the significance of having a blog on your personal website. While a content management system (CMS) like WordPress is a popular choice for non-technical clients, I suggest you consider alternative options as a technical user.
+
+You could use markdown to author your content, which can be checked into your version control system (e.g. git repository). This approach reduces overhead and resource requirements compared to a CMS and allows you to keep track of changes to your content.
+
+An even better option, in my opinion, is MDX, which I've [written about elsewhere](/blog/give-your-blog-superpowers-with-mdx-in-a-next-js-project). MDX combines the simplicity of markdown with the ability to include React components. This offers more flexibility and interactivity compared to traditional markdown, while still maintaining its ease of use.
+
+### Display your project work
+
+I recommended you prioritize a few high-quality projects over many mediocre ones, including your personal website. Ensure that all projects meet the [previously mentioned checklist](#a-checklist-of-requirements), and go the extra mile by including:
+
+- Documentation
+- Unit testing
+- End-to-end testing
+- Continuous integration
+
+Also, make sure the project is deployed and accessible to the public.
+
+By showcasing your projects through pinned repositories on GitHub and integrating with APIs to display them on your website, you can make your portfolio stand out. Consider taking inspiration from portfolios such as [Brittany Chiang](https://brittanychiang.com/#projects)'s for a more visually impressive presentation.
+
+### Build a contact form
+
+Having a clear and accessible contact form is an essential part of your personal website. The contact form allows potential employers or other interested parties to reach out to you directly and easily. Here are a few things to keep in mind when setting up your contact form:
+
+- Make it easy to find: Place the form in a prominent location on your website, put it on the front page and on a "Contact" page
+- Keep it simple: Only ask for the information that is necessary, such as name, email, and message.
+- Validate inputs: Use form validation to ensure the information submitted is complete and in the correct format.
+- Provide feedback: Let the user know that their submission was successful or if there was an error.
+- Follow up: Respond to submissions in a timely manner and continue the conversation as needed.
+
+By following these guidelines, you can create an effective and user-friendly contact form that helps you connect with potential employers and others. There are several options for setting up a contact form, including using a service like [Sendgrid](https://sendgrid.com/), [Mailgun](https://www.mailgun.com/), [Formspree](https://formspree.io/), or [Getform](https://getform.io/).
+
+### Integrate with external APIs
+
+I suggest that you integrate at least two external APIs on your website. This not only shows your proficiency in working with external data sources, but also adds dynamic and interactive elements to your website, making it more engaging. As an example, on my own website, I have [integrated the Spotify API and display my ten most recently played tracks](/blog/starting-a-personal-dashboard-with-the-spotify-api) on the "About" page.
+
+In addition, integrating with external APIs can also showcase your technical skills and knowledge in working with API integrations. It shows that you are capable of bringing data from multiple sources and integrating it seamlessly into your website.
+
+## Conclusion
+
+I hope this guide has provided you with some inspiration and ideas for building your own personal website. I encourage you to take the first step and start building your website today. You can start with a simple static website and add more features as you go. The important thing is to get started and keep building.
+
+You are welcome to take inspiration or use code from my website, but please remove my personal information and content. The source code is available on [GitHub](https://github.com/jpreagan/jpreagan.com) with updated documentation to make it easier for you to start. If you have any questions or feedback, don't hesitate to reach me on [Twitter](https://twitter.com/jpreagan_)."
