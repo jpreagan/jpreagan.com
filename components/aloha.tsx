@@ -6,6 +6,7 @@ import {
   AiFillGithub as GitHub,
   AiFillYoutube as YouTube,
 } from "react-icons/ai";
+import image from "../images/jpreagan.jpg";
 
 const social = {
   twitter: `https://twitter.com/jpreagan_`,
@@ -71,7 +72,7 @@ export default function Aloha() {
       </div>
       <div className="ml-auto">
         <Image
-          src="/profile_pic.jpg"
+          src={image}
           alt="James Reagan"
           width={288}
           height={288}
