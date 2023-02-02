@@ -4,6 +4,7 @@ import Link from "next/link";
 import querystring from "query-string";
 import Layout from "../components/layout";
 import Spotify from "../components/spotify";
+import Photos from "../components/photos";
 import type { Track } from "../lib/types";
 
 type Props = {
@@ -29,29 +30,26 @@ export default function AboutPage({ tracks }: Props) {
       </header>
 
       <section className="prose mx-auto mb-16 max-w-5xl px-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:mb-32 lg:prose-xl">
-        <p>I&apos;m a software engineer living in Hawaii.</p>
         <p>
-          I write full stack web applications with a focus on accessibility and
-          performance.
+          I&apos;m a software engineer in Hawaii, specializing in full-stack web
+          development with a focus on accessibility and performance. My mission
+          is to create technology that not only solves problems but also
+          improves people&apos;s lives, by building accessible and efficient
+          applications with a positive impact on society. I am committed to
+          continuous learning and growth, both personally and professionally,
+          and to fostering a culture of collaboration and inclusivity in the
+          tech community.
         </p>
         <p>
-          My current interests are in TypeScript, software testing, serverless
-          technology, and learning new languages. I enjoy both front end and
-          back end development.
-        </p>
-        <p>
-          I regularly document my journey on my <Link href="/blog">blog</Link>{" "}
-          and{" "}
-          <a href="https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg">
-            YouTube
-          </a>{" "}
-          channel.
-        </p>
-        <p>
-          If I can be of any help, feel free to{" "}
-          <Link href="/contact">reach out</Link>.
+          I share my learning journey on my <Link href="/blog">blog</Link> and{" "}
+          <Link href="">YouTube</Link> channel and am always available to help.
+          If you think I can be of any assistance, don&apos;t hesitate to{" "}
+          <Link href="/contact">reach out</Link>
         </p>
       </section>
+
+      <Photos />
+
       <section className="my-16 mx-auto max-w-5xl px-4 lg:my-32">
         <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100 md:text-3xl lg:text-4xl">
           Recently played

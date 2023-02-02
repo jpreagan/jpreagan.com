@@ -15,6 +15,7 @@ specifiers:
   '@types/react-dom': ^18.0.10
   '@types/spotify-api': ^0.0.20
   autoprefixer: ^10.4.13
+  clsx: ^1.2.1
   date-fns: ^2.29.3
   date-fns-tz: ^2.0.0
   esbuild: ^0.17.5
@@ -52,6 +53,7 @@ dependencies:
   '@fontsource/ibm-plex-sans': 4.5.13
   '@fontsource/inter': 4.5.15
   '@formspree/react': 2.4.1_biqbaboplfbrettd7655fr4n2y
+  clsx: 1.2.1
   date-fns: 2.29.3
   date-fns-tz: 2.0.0_date-fns@2.29.3
   esbuild: 0.17.5
@@ -2054,6 +2056,11 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /co/4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
