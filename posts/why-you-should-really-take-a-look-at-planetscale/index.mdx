@@ -4,38 +4,16 @@ date: "2022-10-30"
 description: "My review and first impressions of the MySQL-compatible serverless platform"
 ---
 
-Your database is the source of truth for your business, and you don't want to take chances when it comes to making decisions there. Although many organizations may change their platform several times over the lifespan of a product, this occurs because the nature of your data or how you use it may naturally evolve over time too.
+Your database is the source of truth for your business, and it is crucial to make informed decisions when it comes to managing your data. Over time, businesses may change their database platform as their data or usage patterns evolve.
 
-I see the advantage of a NOSQL option if your data is unstructured or not yet well-structured, but if you're working with structured data and/or will be doing lots of querying, you want to go with SQL for performance, reliability, and possibly also compliance.
+For structured data, SQL (Structured Query Language) is often the preferred option for its performance, reliability, and compliance. SQL is a domain-specific language used to manage data in a relational database management system (RDBMS) and has been widely used since the 1970s.
 
-SQL is a domain-specific language used to manage data in a relational database management system (RDBMS). It is stable, having been around since the 1970s, and it works. There is a reason why it is ubiquitous still yet today.
+On the other hand, NoSQL databases, such as MongoDB, offer advantages such as horizontal scaling, which is not traditionally available in SQL databases. Horizontal scaling refers to adding more servers to a database, allowing it to handle more traffic and data, whereas vertical scaling refers to increasing the resources of a single server.
 
-One advantage NOSQL databases such as MongoDB, for instance, have traditionally held over SQL options is the ability to horizontally scale. In a serverless world, vertical scaling is easy and pretty much available with any SQL or NOSQL option being in the domain of your cloud provider capability.
+However, what if you need a SQL database for your structured data and want the performance and reliability of horizontal scaling? This is where Vitess comes in, a technology that addresses this shortcoming for MySQL databases. Vitess is used by many high-traffic websites, such as YouTube, Pinterest, and Slack, and provides horizontal sharding, improved query performance, and reduced connection memory overhead for MySQL databases.
 
-Vertical scaling would be things like increasing the memory or CPU of an instance, and you will eventually hit technical hardware limitations here too depending on your cloud provider.
+While Vitess can be difficult to implement in production, PlanetScale is powered by Vitess and offers a beautifully simplified solution. PlanetScale is a MySQL-compatible serverless database platform with horizontal sharding and unlimited connections, offering state-of-the-art performance and scaling.
 
-Horizontal scaling, on the other hand, is not traditionally implemented with SQL. By contrast, MongoDB uses sharding, which gives it the ability to create replica sets and thus horizontal scaling.
+One of the key advantages of PlanetScale is its zero-downtime non-blocking schema migrations. Migrations can often cause downtime and data loss, but PlanetScale solves this problem by using a branching model, similar to the one used in git. The main branch contains the data, and future schema changes are made in a development branch, which is deployed to production only after it is determined that there are no schema conflicts.
 
-But what if we do want a SQL database to manage and access our structured data and still want the superior performance and reliability we signed up for? Are we stuck forever with horizontal sharding FOMO?
-
-There is a particular technology that addresses this shortcoming for MySQL databases. I'm talking about [Vitess](https://vitess.io/), which powers many of the largest and most trafficked sites on the web like YouTube, Pinterest, Slack, and others. Vitess is an early Go project that implements and manages horizontal sharding, improves query performance, and eliminates connection memory overheads for MySQL databases.
-
-Sounds great, right? Sign me up! There is just one catch: Vitess can be complicated to implement in production. You'll likely need a team of engineers with a background in that to pull it off in production successfully.
-
-[PlanetScale](https://planetscale.com/) is powered by Vitess under the hood. That is half of what makes it so amazing, in my opinion, I believe they have simplified this otherwise complex process for you.
-
-PlanetScale is a MySQL-compatible serverless database platform with horizontal sharding and unlimited connections. Vertical and horizontal scaling is no longer an issue, and this will set you up for the future without any downside as far as that is concerned.
-
-But there is an even better advantage to PlanetScale, and I consider it an innovation that addresses another shortcoming of SQL databases: zero-downtime non-blocking schema migrations.
-
-Migrations can be frustrating for developers and when things don't go as you expect them, and these times will happen, in the worst cases, it could lead to downtime and data loss.
-
-It happens.
-
-But how is this zero-downtime non-blocking schema migration made possible? With branching. Yes, branching, it probably will remind you as it did me quite a lot of that same concept as in with git branches.
-
-You have a branch, let's call it main, you add data, and promote that branch to production. The schema is now locked in, and future changes to the schema will require you to make a development branch of main. When it is determined there are no schema conflicts in your development branch, you can create a deploy request to bring it into production without any disruption to your service.
-
-My impression of PlanetScale thus far is that it is a high-quality product that can get you started on the right foot with considerable ease. You're getting state-of-the-art performance and scaling. I'm also pleased that it works so well with Prisma accepting only a few changes to my normal workflow.
-
-This is my honest review and first impressions of PlanetScale. The branching and zero-downtime non-blocking schema migration is a game-changer, and I look forward to all that is to come.
+In conclusion, PlanetScale is a high-quality product that offers ease of use, performance, and scaling, with the added benefit of zero-downtime non-blocking schema migrations. The branching model is a game-changer, and I look forward to seeing what else PlanetScale has to offer in the future.
