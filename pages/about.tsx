@@ -42,9 +42,12 @@ export default function AboutPage({ tracks }: Props) {
         </p>
         <p>
           I share my learning journey on my <Link href="/blog">blog</Link> and{" "}
-          <Link href="">YouTube</Link> channel and am always available to help.
-          If you think I can be of any assistance, don&apos;t hesitate to{" "}
-          <Link href="/contact">reach out</Link>
+          <a href="https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg">
+            YouTube
+          </a>{" "}
+          channel and am always available to help. If you think I can be of any
+          assistance, don&apos;t hesitate to{" "}
+          <Link href="/contact">reach out</Link>.
         </p>
       </section>
 
