@@ -9,6 +9,7 @@ I built [jpreagan.com](https://jpreagan.com/) to showcase my personal brand and 
 - **MDX**: [mdx-bundler](https://github.com/kentcdodds/mdx-bundler)
 - **Unit Testing**: [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/)
 - **Deployment**: [Vercel](https://vercel.com)
+- **CI/CD**: [GitHub Actions](https://github.com/features/actions)
 
 The project is written in TypeScript. Linting is done using [ESLint](https://eslint.org/) and the code is formatted with [prettier](https://prettier.io/).
 
