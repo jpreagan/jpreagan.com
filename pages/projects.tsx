@@ -42,7 +42,7 @@ export async function getStaticProps() {
 
   const client = new GraphQLClient(endpoint, {
     headers: {
-      authorization: `Bearer ${process.env.PROJECTS_TOKEN}`,
+      authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
   });
 
