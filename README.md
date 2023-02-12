@@ -53,7 +53,7 @@ In `.env.local`, you'll need to set `GITHUB_TOKEN`. Create a GitHub [personal ac
 
 At a minimum, you'll need the following scopes: `public_repo` and `read:user`.
 
-### 🎵 Spotify
+### 📻 Spotify
 
 For the Spotify data, you'll need to [signup for a free Spotify](https://www.spotify.com/us/signup) account.
 
@@ -67,15 +67,31 @@ I wrote a [blog post](https://jpreagan.com/blog/starting-a-personal-dashboard-wi
 
 ## 🏄 Running Locally
 
-To run the application in development:
+Build the application:
+
+```bash
+pnpm build
+```
+
+Start the server:
+
+```bash
+pnpm start
+```
+
+Run the application in development:
 
 ```bash
 pnpm dev
 ```
 
-You can also run a build with `pnpm build` and start the server with `pnpm start`
+Check for linting errors:
 
-Run unit tests with:
+```bash
+pnpm lint
+```
+
+Run unit tests:
 
 ```bash
 pnpm test
@@ -93,19 +109,7 @@ Run the unit tests with:
 pnpm test
 ```
 
-Check for linting errors:
-
-```bash
-pnpm lint
-```
-
-Check for typescript errors:
-
-```bash
-pnpm typecheck
-```
-
-Run `test`, `lint`, and `typecheck` in parallel:
+Check if the project is ready for the CI:
 
 ```bash
 pnpm validate
@@ -163,20 +167,13 @@ My first blog post.
 
 ## 🚀 Deploy
 
-To deploy the application to Vercel, you have two options:
+### Configuring GitHub Actions for Vercel
 
-### 1. Vercel CLI
-
-- Install the [Vercel CLI](https://vercel.com/docs/cli) and run `vercel` to deploy.
-- Vercel will detect that you are using Next.js and will enable the correct settings for your deployment.
-- Your application is deployed! (e.g. [nextjs.vercel.app](https://nextjs.vercel.app/))
-
-### 2. Vercel for Git
-
-- Push your code to your git repository (GitHub, GitLab, BitBucket).
-- [Import your Next.js project](https://vercel.com/new) into Vercel.
-- Vercel will detect that you are using Next.js and will enable the correct settings for your deployment.
-- Your application is deployed! (e.g. [nextjs.vercel.app](https://nextjs.vercel.app/))
+1. Retrieve your [Vercel Access Token](https://vercel.com/support/articles/how-do-i-use-a-vercel-api-access-token)
+2. Install the [Vercel CLI](https://vercel.com/cli) and run `vercel login`
+3. Inside your folder, run `vercel link` to create a new Vercel project
+4. Inside the generated `.vercel` folder, save the `projectId` and `orgId` from the `project.json`
+5. Inside GitHub, add `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 To ensure your application works as expected in production, you'll need to set the following environment variables:
 
@@ -186,3 +183,14 @@ To ensure your application works as expected in production, you'll need to set t
 - `SPOTIFY_CLIENT_SECRET`
 
 Find out more on how to set environment variables on Vercel from [this guide](https://vercel.com/docs/concepts/projects/environment-variables).
+
+### Deploying Your Vercel Application with GitHub Actions
+
+Now that your Vercel application is configured with GitHub Actions, you can try out the workflow:
+
+- Create a new pull request to your GitHub repository
+- GitHub Actions will recognize the change and use the Vercel CLI to build your application
+- The Action uploads the build output to Vercel and creates a Preview Deployment
+- When the pull request is merged, a Production build is created and deployed
+
+Every pull request will now automatically have a Preview Deployment attached. If the pull request needs to be rolled back, you can revert and merge the PR and Vercel will start a new Production build back to the old git state.
