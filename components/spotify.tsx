@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Track } from "../lib/types";
+import { Track } from "~/types";
 
 type Props = {
   tracks: Track[];

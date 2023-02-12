@@ -9,7 +9,7 @@ import rehypePrettyCode, {
   type Options as CodeHighlightOptions,
 } from "rehype-pretty-code";
 import type { PluggableList } from "unified";
-import type { Frontmatter } from "./types";
+import type { Frontmatter } from "~/types";
 
 // Define the path for the "/posts" directory
 const postsPath = path.join(process.cwd(), "posts");

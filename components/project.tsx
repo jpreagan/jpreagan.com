@@ -1,4 +1,4 @@
-import type { Repository } from "../lib/types";
+import type { Repository } from "~/types";
 
 type Props = {
   project: Repository;

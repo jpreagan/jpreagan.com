@@ -2,10 +2,10 @@ import * as React from "react";
 import Head from "next/head";
 import { getMDXComponent } from "mdx-bundler/client";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { getAllPostSlugs, getPostData } from "../../lib/posts";
-import Layout from "../../components/layout";
-import Date from "../../components/date";
-import type { Frontmatter } from "../../lib/types";
+import { getAllPostSlugs, getPostData } from "~/lib/posts";
+import Layout from "~/components/layout";
+import Date from "~/components/date";
+import type { Frontmatter } from "~/types";
 
 type Props = {
   code: string;

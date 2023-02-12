@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { GraphQLClient, gql } from "graphql-request";
-import Layout from "../components/layout";
-import Project from "../components/project";
-import type { Repository } from "../lib/types";
+import Layout from "~/components/layout";
+import Project from "~/components/project";
+import type { Repository } from "~/types";
 
 type Props = {
   projects: Repository[];

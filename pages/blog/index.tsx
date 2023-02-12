@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import Layout from "../../components/layout";
-import Posts from "../../components/posts";
-import { getBlogPostData } from "../../lib/posts";
-import type { PostData } from "../../lib/types";
+import Layout from "~/components/layout";
+import Posts from "~/components/posts";
+import { getBlogPostData } from "~/lib/posts";
+import type { PostData } from "~/types";
 
 type Props = {
   allPostsData: PostData[];

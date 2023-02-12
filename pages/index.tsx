@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "../components/layout";
-import Aloha from "../components/aloha";
-import Posts from "../components/posts";
-import ContactForm from "../components/contact-form";
-import { getBlogPostData } from "../lib/posts";
-import type { PostData } from "../lib/types";
+import Layout from "~/components/layout";
+import Aloha from "~/components/aloha";
+import Posts from "~/components/posts";
+import ContactForm from "~/components/contact-form";
+import { getBlogPostData } from "~/lib/posts";
+import type { PostData } from "~/types";
 
 type Props = {
   allPostsData: PostData[];

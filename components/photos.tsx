@@ -1,9 +1,9 @@
 import Image from "next/image";
 import clsx from "clsx";
 
-import image1 from "../images/photos/laptop.jpg";
-import image2 from "../images/photos/jpreagan.jpg";
-import image3 from "../images/photos/keyboard.jpg";
+import image1 from "~/images/photos/laptop.jpg";
+import image2 from "~/images/photos/jpreagan.jpg";
+import image3 from "~/images/photos/keyboard.jpg";
 
 export default function Photos() {
   const rotations = ["rotate-2", "-rotate-2", "rotate-2"];

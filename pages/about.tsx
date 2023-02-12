@@ -2,10 +2,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import querystring from "query-string";
-import Layout from "../components/layout";
-import Spotify from "../components/spotify";
-import Photos from "../components/photos";
-import type { Track } from "../lib/types";
+import Layout from "~/components/layout";
+import Spotify from "~/components/spotify";
+import Photos from "~/components/photos";
+import type { Track } from "~/types";
 
 type Props = {
   tracks: Track[];

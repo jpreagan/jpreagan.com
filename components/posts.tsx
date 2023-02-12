@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Date from "./date";
-import { PostData } from "../lib/types";
+import { PostData } from "~/types";
 
 type Props = {
   allPostsData: PostData[];
