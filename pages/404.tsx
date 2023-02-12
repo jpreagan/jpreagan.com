@@ -17,7 +17,7 @@ export default function NotFoundPage() {
         <h1>404: Page not found.</h1>
       </header>
 
-      <section className="prose mx-auto mb-16 max-w-5xl px-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:mb-32 lg:prose-xl">
+      <section className="prose mx-auto mb-16 max-w-5xl px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-600 dark:prose-a:text-sky-300 lg:mb-32">
         <p>
           Return <Link href="/">home</Link>.
         </p>

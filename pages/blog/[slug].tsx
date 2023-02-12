@@ -38,7 +38,7 @@ export default function BlogPost({ code, frontmatter }: Props) {
         </header>
         <section
           itemProp="articleBody"
-          className="prose mx-auto my-4 px-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:my-16 lg:prose-xl"
+          className="prose mx-auto my-4 px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-600 dark:prose-a:text-sky-300 lg:my-16"
         >
           <Component />
         </section>

@@ -29,7 +29,7 @@ export default function AboutPage({ tracks }: Props) {
         </h1>
       </header>
 
-      <section className="prose mx-auto mb-16 max-w-5xl px-4 prose-a:text-sky-600 dark:prose-invert dark:prose-a:text-sky-300 md:prose-lg lg:mb-32 lg:prose-xl">
+      <section className="prose mx-auto mb-16 max-w-5xl px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-600 dark:prose-a:text-sky-300 lg:mb-32">
         <p>
           I&apos;m a software engineer in Hawaii, specializing in full-stack web
           development with a focus on accessibility and performance. My mission
