@@ -103,12 +103,6 @@ Format the code:
 pnpm format
 ```
 
-Run the unit tests with:
-
-```bash
-pnpm test
-```
-
 Check if the project is ready for the CI:
 
 ```bash
