@@ -180,7 +180,7 @@ To deploy the application to Vercel, you have two options:
 
 To ensure your application works as expected in production, you'll need to set the following environment variables:
 
-- `GITHUB_TOKEN`
+- `PROJECTS_TOKEN`
 - `SPOTIFY_CLIENT_ID`
 - `SPOTIFY_CLIENT_SECRET`
 - `SPOTIFY_CLIENT_SECRET`
