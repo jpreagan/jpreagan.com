@@ -4,21 +4,20 @@ const colors = require("tailwindcss/colors");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
   theme: {
     fontFamily: {
-      display: ["Inter", ...defaultTheme.fontFamily.sans],
-      body: ["IBM Plex Sans", ...defaultTheme.fontFamily.sans],
+      display: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      body: ["var(--font-ibm-plex-sans)", ...defaultTheme.fontFamily.sans],
+      mono: ["var(--font-ibm-plex-mono)", ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
         gray: colors.zinc,
-      },
-      fontFamily: {
-        mono: ["IBM Plex Mono", ...defaultTheme.fontFamily.mono],
       },
       letterSpacing: {
         tight: "-0.015em",
