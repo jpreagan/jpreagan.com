@@ -6,7 +6,7 @@ import {
   AiFillGithub as GitHub,
   AiFillYoutube as YouTube,
 } from "react-icons/ai";
-import image from "~/images/jpreagan.jpg";
+import image from "~/public/images/jpreagan.jpg";
 
 const social = {
   twitter: `https://twitter.com/jpreagan_`,
