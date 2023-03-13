@@ -33,10 +33,34 @@ jobs:
       - name: 💅 Prettier
         run: pnpm check-format
 
+  typecheck:
+    name: ʦ TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 📥 Download deps
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: true
+
+      - name: 🔎 Type check
+        run: pnpm typecheck
+
   preview:
     name: 🔭 Preview
     runs-on: ubuntu-latest
-    needs: [prettier]
+    needs: [prettier, typecheck]
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
