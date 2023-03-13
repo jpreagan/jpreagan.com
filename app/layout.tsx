@@ -52,8 +52,11 @@ export default function RootLayout({
           <a href="#main" className="sr-only focus:not-sr-only">
             Skip to content
           </a>
+
           <Header />
-          {children}
+
+          <main id="main">{children}</main>
+
           <Footer />
         </Providers>
       </body>
