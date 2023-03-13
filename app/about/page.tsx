@@ -27,6 +27,7 @@ export default async function AboutPage() {
         Authorization: `Basic ${basic}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
+      cache: "no-store",
       body: querystring.stringify({
         grant_type: "refresh_token",
         refresh_token,
