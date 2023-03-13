@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "format": "prettier --write --ignore-unknown .",
-    "check-format": "prettier --check --ignore-unknown ."
+    "check-format": "prettier --check --ignore-unknown .",
+    "validate": "npm-run-all --parallel lint typecheck check-format build"
   },
   "dependencies": {
     "@formspree/react": "^2.4.1",
