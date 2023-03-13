@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 import Date from "~/components/date";
@@ -7,6 +8,36 @@ export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata | undefined> {
+  const post = allPosts.find((post) => post.slug === params.slug);
+  if (!post) {
+    return;
+  }
+
+  const { title, date: publishedTime, description, slug } = post;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `https://jpreagan.com/blog/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }
 
 export default async function BlogPost({
