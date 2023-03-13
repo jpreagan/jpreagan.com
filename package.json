@@ -1,6 +1,5 @@
 {
   "name": "jpreagan.com",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,6 +9,10 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write --ignore-unknown .",
     "check-format": "prettier --check --ignore-unknown .",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "start-server-and-test dev http://localhost:3000 cypress:open",
+    "test:e2e:ci": "start-server-and-test dev http://localhost:3000 cypress:run",
     "validate": "npm-run-all --parallel lint typecheck check-format build"
   },
   "dependencies": {
@@ -18,8 +21,6 @@
     "contentlayer": "^0.3.0",
     "date-fns": "^2.29.3",
     "date-fns-tz": "^2.0.0",
-    "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4",
     "graphql": "^16.6.0",
     "graphql-request": "^5.2.0",
     "next": "13.2.4",
@@ -29,20 +30,26 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
-    "sharp": "^0.31.3",
-    "typescript": "4.9.5"
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
+    "@testing-library/cypress": "^9.0.0",
     "@types/node": "18.15.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "@types/spotify-api": "^0.0.20",
     "autoprefixer": "^10.4.14",
+    "cypress": "^12.7.0",
+    "eslint": "8.36.0",
+    "eslint-config-next": "13.2.4",
+    "eslint-plugin-cypress": "^2.12.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "prettier-plugin-tailwindcss": "^0.2.4",
-    "tailwindcss": "^3.2.7"
+    "start-server-and-test": "^2.0.0",
+    "tailwindcss": "^3.2.7",
+    "typescript": "4.9.5"
   }
 }
