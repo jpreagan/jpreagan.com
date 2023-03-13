@@ -1,5 +1,5 @@
 describe("Smoke test", () => {
-  it("should visit the index page and particular blog post", () => {
+  it("should visit the index page and the blog page", () => {
     cy.visit("/")
       .get("main")
       .should("exist")
