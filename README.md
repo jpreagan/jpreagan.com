@@ -6,8 +6,8 @@ I built [jpreagan.com](https://jpreagan.com/) to showcase my personal brand and 
 
 - **Framework**: [Next.js](https://nextjs.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **MDX**: [mdx-bundler](https://github.com/kentcdodds/mdx-bundler)
-- **Unit Testing**: [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/)
+- **MDX**: [Contentlayer](https://www.contentlayer.dev/)
+- **Testing**: [Cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/)
 - **Deployment**: [Vercel](https://vercel.com)
 - **CI/CD**: [GitHub Actions](https://github.com/features/actions)
 
@@ -95,7 +95,7 @@ pnpm lint
 Run unit tests:
 
 ```bash
-pnpm test
+pnpm test:e2e
 ```
 
 Format the code:
@@ -112,11 +112,9 @@ pnpm validate
 
 ## ✍️ Writing blog posts
 
-To create a blog post, you need to create a subdirectory under the `./posts` directory, with the name of the subdirectory corresponding to the URL of the blog post.
+Creating a blog post is easy with this project. Simply create a new file in the `/posts` directory and give it a `.mdx` extension. For example, if you name your file `my-first-post.mdx`, the resulting URL will be [example.com/blog/my-first-post](https://example.com/blog/my-first-post).
 
-For instance, `/posts/my-first-post` will result in the URL [example.com/blog/my-first-post](https://example.com/blog/my-first-post). Within the subdirectory, you must create an `index.mdx` file which serves as the main content for the blog post. For example, `/posts/my-first-post/index.mdx`.
-
-Here is a suggested template for writing a new blog post in this project:
+To get started with writing a post, I suggest using the following template:
 
 ```
 ---
@@ -130,7 +128,7 @@ description: "Hello, world!"
 My first blog post.
 ```
 
-You can also include React components in the same subdirectory by creating `.tsx` files, which will be bundled at build time and made available for use in your blog post. For example, create a new component in `/posts/my-first-post/demo.tsx`:
+Feel free to customize the metadata as needed. The content of your blog post can be written using markdown syntax. However, because this project supports MDX, you can also include React components in your post! For example, let's say you have a component named `demo.tsx` located in the components directory:
 
 ```typescript
 import * as React from "react";
@@ -142,7 +140,7 @@ function Demo() {
 export default Demo;
 ```
 
-Finally, you can include the component in your blog post by adding the following code in the `index.mdx` file:
+You can include this component in your blog post using the following code:
 
 ```
 ---
