@@ -12,3 +12,7 @@ th {
   @apply font-display;
   @apply tracking-tight;
 }
+
+pre > code {
+  display: grid;
+}

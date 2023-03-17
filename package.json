@@ -30,7 +30,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
-    "sharp": "^0.31.3"
+    "rehype-pretty-code": "^0.9.4",
+    "sharp": "^0.31.3",
+    "shiki": "^0.14.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
