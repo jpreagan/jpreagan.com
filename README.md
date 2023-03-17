@@ -7,11 +7,11 @@ I built [jpreagan.com](https://jpreagan.com/) to showcase my personal brand and 
 - **Framework**: [Next.js](https://nextjs.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **MDX**: [Contentlayer](https://www.contentlayer.dev/)
-- **Testing**: [Cypress](https://www.cypress.io/) and [Cypress Testing Library](https://testing-library.com/docs/cypress-testing-library/intro/)
+- **Testing**: [Cypress](https://www.cypress.io/)
 - **Deployment**: [Vercel](https://vercel.com)
 - **CI/CD**: [GitHub Actions](https://github.com/features/actions)
 
-The project is written in TypeScript. Linting is done using [ESLint](https://eslint.org/) and the code is formatted with [prettier](https://prettier.io/).
+This project is written in TypeScript. Linting is done using [ESLint](https://eslint.org/) and the code is formatted with [prettier](https://prettier.io/).
 
 ### Getting started
 
@@ -92,7 +92,7 @@ Check for linting errors:
 pnpm lint
 ```
 
-Run unit tests:
+Run end-to-end tests:
 
 ```bash
 pnpm test:e2e
@@ -102,12 +102,6 @@ Format the code:
 
 ```bash
 pnpm format
-```
-
-Check if the project is ready for the CI:
-
-```bash
-pnpm validate
 ```
 
 ## ✍️ Writing blog posts
