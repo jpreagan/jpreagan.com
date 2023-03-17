@@ -2,6 +2,13 @@ import Link from "next/link";
 import ThemeToggle from "~/components/theme-toggle";
 
 export default function Header() {
+  const links = [
+    { href: "/about", label: "About" },
+    { href: "/blog", label: "Blog" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <header className="mx-auto my-8 flex max-w-5xl flex-wrap px-4 tracking-tight">
       <Link
@@ -13,26 +20,13 @@ export default function Header() {
       <ThemeToggle />
       <nav className="text-lg tablet:ml-auto tablet:text-xl">
         <ul className="my-4 flex gap-2 tablet:m-0">
-          <li>
-            <Link href="/about" className="hover:underline">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/blog" className="hover:underline">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link href="/projects" className="hover:underline">
-              Projects
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:underline">
-              Contact
-            </Link>
-          </li>
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="hover:underline">
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
