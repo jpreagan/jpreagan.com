@@ -7,7 +7,7 @@ specifiers:
   '@types/node': 18.15.3
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  '@types/spotify-api': ^0.0.20
+  '@types/spotify-api': ^0.0.21
   autoprefixer: ^10.4.14
   clsx: ^1.2.1
   contentlayer: ^0.3.0
@@ -62,7 +62,7 @@ devDependencies:
   '@types/node': 18.15.3
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  '@types/spotify-api': 0.0.20
+  '@types/spotify-api': 0.0.21
   autoprefixer: 10.4.14_postcss@8.4.21
   cypress: 12.7.0
   eslint: 8.36.0
@@ -1235,8 +1235,8 @@ packages:
     resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
     dev: true
 
-  /@types/spotify-api/0.0.20:
-    resolution: {integrity: sha512-HRBwiOthYAT0r/vUQlGlNTdXMnPg/CS3MzTuQKDy2PtalUDXhj0Ep9YZ4tXmL68K0j7FMcLFcYTzy7k7nVu5mg==}
+  /@types/spotify-api/0.0.21:
+    resolution: {integrity: sha512-26dd63oO7sxKt48dnivb8c1hvHEtNmGWi/vesAFm55Z1NiI09ytYUyKPVY8tBMn1nNbglfGA3cGxXhlOYN6SAw==}
     dev: true
 
   /@types/unist/2.0.6:
