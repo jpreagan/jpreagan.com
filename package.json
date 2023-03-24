@@ -31,7 +31,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "rehype-pretty-code": "^0.9.4",
-    "sharp": "^0.31.3",
+    "sharp": "^0.32.0",
     "shiki": "^0.14.1"
   },
   "devDependencies": {
