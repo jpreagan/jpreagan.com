@@ -88,8 +88,8 @@ export default async function AboutPage() {
         <p>
           I&apos;m a software engineer in Hawaii, specializing in full-stack web
           development with a focus on accessibility and performance. My mission
-          is to create technology that not only solves problems but also
-          improves people&apos;s lives, by building accessible and efficient
+          is to create technology that not only solves problems, but also
+          improves people&apos;s lives by building accessible and efficient
           applications with a positive impact on society. I am committed to
           continuous learning and growth, both personally and professionally,
           and to fostering a culture of collaboration and inclusivity in the
@@ -108,7 +108,7 @@ export default async function AboutPage() {
 
       <Photos />
 
-      <section className="my-16 mx-auto max-w-5xl px-4 lg:my-32">
+      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
         <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100 md:text-3xl lg:text-4xl">
           Recently played
         </h2>

@@ -20,10 +20,10 @@ export default function Home() {
 
   return (
     <>
-      <section className="my-16 mx-auto max-w-5xl px-4 lg:my-32">
+      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
         <Aloha />
       </section>
-      <section className="my-16 mx-auto max-w-5xl px-4 lg:my-32">
+      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
         <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100  md:text-3xl lg:text-4xl">
           Recent posts
         </h2>
@@ -39,7 +39,7 @@ export default function Home() {
           .
         </p>
       </section>
-      <section className="my-16 mx-auto max-w-5xl px-4 lg:my-32">
+      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
         <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100 md:text-3xl lg:text-4xl">
           Get in touch
         </h2>
