@@ -13,9 +13,6 @@ dependencies:
   date-fns:
     specifier: ^2.29.3
     version: 2.29.3
-  date-fns-tz:
-    specifier: ^2.0.0
-    version: 2.0.0(date-fns@2.29.3)
   graphql:
     specifier: ^16.6.0
     version: 16.6.0
@@ -2025,14 +2022,6 @@ packages:
   /data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
-    dev: false
-
-  /date-fns-tz@2.0.0(date-fns@2.29.3):
-    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
-    peerDependencies:
-      date-fns: '>=2.0.0'
-    dependencies:
-      date-fns: 2.29.3
     dev: false
 
   /date-fns@2.29.3:
