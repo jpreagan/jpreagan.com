@@ -27,7 +27,7 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
           run_install: true
 
       - name: 💅 Prettier
@@ -51,7 +51,7 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
           run_install: true
 
       - name: 🌳 Cypress run
@@ -76,7 +76,7 @@ jobs:
       - name: 📥 Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
           run_install: false
 
       - name: △ Install Vercel CLI
