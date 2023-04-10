@@ -28,7 +28,8 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: true
+          run_install:
+            - args: [--frozen-lockfile]
 
       - name: 💅 Prettier
         run: pnpm check-format
@@ -52,7 +53,8 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: true
+          run_install:
+            - args: [--frozen-lockfile]
 
       - name: 🌳 Cypress run
         run: pnpm test:e2e:ci
