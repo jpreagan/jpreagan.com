@@ -27,8 +27,9 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2
         with:
-          version: 7
-          run_install: true
+          version: 8
+          run_install: |
+            args: [--frozen-lockfile]
 
       - name: 💅 Prettier
         run: pnpm check-format
@@ -51,8 +52,9 @@ jobs:
       - name: 📥 Download deps
         uses: pnpm/action-setup@v2
         with:
-          version: 7
-          run_install: true
+          version: 8
+          run_install: |
+            args: [--frozen-lockfile]
 
       - name: 🌳 Cypress run
         run: pnpm test:e2e:ci
