@@ -21,7 +21,7 @@ export default function Aloha() {
       <div>
         <h2 className="my-8 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl md:text-[text-4rem] lg:text-[5.5rem] lg:leading-none">
           Aloha, I&apos;m <br />{" "}
-          <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-400 bg-clip-text text-transparent">
             James Reagan
           </span>
         </h2>
