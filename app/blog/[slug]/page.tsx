@@ -55,7 +55,7 @@ export default async function BlogPost({
     <>
       <article itemScope itemType="http://schema.org/Article">
         <header className="mx-auto mb-8 max-w-5xl sm:px-4">
-          <div className="bg-gradient-to-r from-purple-800 via-pink-600 to-orange-400 px-4 py-16 sm:rounded-md md:px-8 md:py-24 lg:px-16 lg:py-32">
+          <div className="bg-gradient-to-r from-purple-900 via-pink-700 to-orange-500 px-4 py-16 sm:rounded-md md:px-8 md:py-24 lg:px-16 lg:py-32">
             <h1
               itemProp="headline"
               className="mb-4 text-2xl font-bold leading-tight text-white sm:text-3xl sm:leading-tight md:text-5xl md:leading-tight lg:text-6xl lg:leading-tighter"
