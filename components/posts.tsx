@@ -26,11 +26,11 @@ export default function Posts({ posts }: { posts: Post[] }) {
               <header>
                 <h2
                   itemProp="headline"
-                  className="mb-4 text-xl font-bold tracking-tight text-white md:text-2xl"
+                  className="mb-4 text-xl font-bold tracking-tight text-gray-200 md:text-2xl"
                 >
                   {post.title}
                 </h2>
-                <p className="text-gray-200">
+                <p className="text-gray-300">
                   <Date dateString={post.date} />
                 </p>
               </header>
