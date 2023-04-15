@@ -35,7 +35,7 @@ export default function RootLayout({
       style={{ colorScheme: "dark" }}
     >
       <head />
-      <body className="bg-gray-900 font-body text-gray-400">
+      <body className="font-body bg-gray-900 text-gray-400">
         <a href="#main" className="sr-only focus:not-sr-only">
           Skip to content
         </a>

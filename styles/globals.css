@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-th {
-  @apply font-display;
-  @apply tracking-tight;
-}
-
 pre > code {
   display: grid;
 }

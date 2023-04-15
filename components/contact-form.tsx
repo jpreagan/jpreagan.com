@@ -51,7 +51,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={state.submitting}
-        className="shadown-sm hover:to-pink:500 rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-4 py-4 font-display font-bold text-white hover:bg-pink-500 hover:from-purple-700"
+        className="shadown-sm hover:to-pink:500 rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-4 py-4 font-bold text-white hover:bg-pink-500 hover:from-purple-700"
       >
         Submit
       </button>
