@@ -11,9 +11,8 @@ module.exports = {
   darkMode: "class",
   theme: {
     fontFamily: {
-      display: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
-      body: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
-      mono: ["var(--font-ibm-plex-mono)", ...defaultTheme.fontFamily.mono],
+      sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      mono: ["var(--font-jetbrains-mono)", ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
