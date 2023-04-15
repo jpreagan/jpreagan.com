@@ -1,0 +1,33 @@
+.wave {
+  animation-name: wave-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(12deg);
+  }
+  20% {
+    transform: rotate(-6deg);
+  }
+  30% {
+    transform: rotate(12deg);
+  }
+  40% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

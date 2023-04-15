@@ -69,7 +69,7 @@ export default async function BlogPost({
         </header>
         <section
           itemProp="articleBody"
-          className="prose mx-auto my-4 px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-600 dark:prose-a:text-sky-300 lg:my-16"
+          className="prose mx-auto my-4 px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-300 lg:my-16"
         >
           <Mdx code={post.body.code} />
         </section>

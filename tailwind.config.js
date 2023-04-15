@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     fontFamily: {
       display: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
-      body: ["var(--font-ibm-plex-sans)", ...defaultTheme.fontFamily.sans],
+      body: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
       mono: ["var(--font-ibm-plex-mono)", ...defaultTheme.fontFamily.mono],
     },
     extend: {

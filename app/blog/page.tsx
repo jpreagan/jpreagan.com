@@ -15,7 +15,7 @@ export default function BlogPage() {
   return (
     <>
       <header>
-        <h1 className="mx-auto mb-8 max-w-5xl px-4 text-4xl font-bold text-gray-900 dark:text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+        <h1 className="mx-auto mb-8 max-w-5xl px-4 text-4xl font-bold text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
           Blog
         </h1>
       </header>

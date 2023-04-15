@@ -75,7 +75,7 @@ export default async function ProjectsPage() {
   return (
     <>
       <header>
-        <h1 className="mx-auto mb-8 max-w-5xl px-4 text-4xl font-bold text-gray-900 dark:text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+        <h1 className="mx-auto mb-8 max-w-5xl px-4 text-4xl font-bold text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
           Projects
         </h1>
       </header>
@@ -86,7 +86,7 @@ export default async function ProjectsPage() {
             <a
               key={project.id}
               href={project.url}
-              className="block cursor-pointer rounded-md border border-gray-300 p-4 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5 dark:border-gray-700"
+              className="block cursor-pointer rounded-md border border-gray-700 p-4 shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-1.5"
             >
               <article>
                 <h2 className="text-2xl font-bold">

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ThemeToggle from "~/components/theme-toggle";
 
 export default function Header() {
   const links = [
@@ -13,11 +12,10 @@ export default function Header() {
     <header className="mx-auto my-8 flex max-w-5xl flex-wrap px-4 tracking-tight">
       <Link
         href="/"
-        className="font-display text-xl font-bold text-gray-900 hover:underline dark:text-gray-100 tablet:text-2xl"
+        className="font-display text-xl font-bold text-gray-100 hover:underline tablet:text-2xl"
       >
         James Reagan
       </Link>
-      <ThemeToggle />
       <nav className="text-lg tablet:ml-auto tablet:text-xl">
         <ul className="my-4 flex gap-2 tablet:m-0">
           {links.map((link) => (

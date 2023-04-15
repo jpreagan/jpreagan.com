@@ -21,7 +21,7 @@ export default function Posts({ posts }: { posts: Post[] }) {
               <header>
                 <h2
                   itemProp="headline"
-                  className="mb-4 text-2xl font-bold tracking-tight text-white"
+                  className="mb-4 text-xl font-bold tracking-tight text-white md:text-2xl"
                 >
                   {post.title}
                 </h2>

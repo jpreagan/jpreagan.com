@@ -24,23 +24,20 @@ export default function Home() {
         <Aloha />
       </section>
       <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
-        <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100  md:text-3xl lg:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold text-gray-100  md:text-3xl lg:text-4xl">
           Recent posts
         </h2>
         <Posts posts={posts} />
         <p className="my-8 md:text-lg lg:text-xl">
           ✨ See{" "}
-          <Link
-            className="text-sky-600 underline dark:text-sky-300"
-            href="/blog"
-          >
+          <Link className="text-sky-300 underline" href="/blog">
             all posts
           </Link>
           .
         </p>
       </section>
       <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
-        <h2 className="mb-8 text-2xl font-bold text-gray-900 dark:text-gray-100 md:text-3xl lg:text-4xl">
+        <h2 className="mb-8 text-2xl font-bold text-gray-100 md:text-3xl lg:text-4xl">
           Get in touch
         </h2>
         <ContactForm />

@@ -1,4 +1,3 @@
-import { Providers } from "./providers";
 import { Inter, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import Header from "~/components/header";
 import Footer from "~/components/footer";
@@ -42,23 +41,18 @@ export default function RootLayout({
 }) {
   return (
     <html
-      suppressHydrationWarning
       lang="en"
-      className={`${inter.variable} ${ibm_plex_sans.variable} ${ibm_plex_mono.variable}`}
+      className={`dark ${inter.variable} ${ibm_plex_sans.variable} ${ibm_plex_mono.variable}`}
+      style={{ colorScheme: "dark" }}
     >
       <head />
-      <body className="bg-white font-body text-gray-700 dark:bg-gray-900 dark:text-gray-400">
-        <Providers>
-          <a href="#main" className="sr-only focus:not-sr-only">
-            Skip to content
-          </a>
-
-          <Header />
-
-          <main id="main">{children}</main>
-
-          <Footer />
-        </Providers>
+      <body className="bg-gray-900 font-body text-gray-400">
+        <a href="#main" className="sr-only focus:not-sr-only">
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

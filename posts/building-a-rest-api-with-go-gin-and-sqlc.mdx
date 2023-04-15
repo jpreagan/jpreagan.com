@@ -1,0 +1,673 @@
+---
+title: "Building a REST API with Go and Gin"
+date: "2023-04-10"
+description: "Learn to build a robust and efficient RESTful API using Go and Gin, featuring improved readability, custom error handling, and best practices."
+---
+
+## Introduction
+
+Hello everyone! I recently transitioned to my first full-time role as a software engineer a couple of months ago. During the job search process leading up to that, I focused on personal projects, which helped grow my skillset and provided valuable talking points during interviews. One worthwhile project I pursued involved building a REST API using NestJS, which allowed me to explore and learn several new concepts.
+
+In my new role, I'm happy to be working with Go! After gaining experience with it on the job, I recreated this REST API project using Go in my spare time to enhance my familiarity with the language further. This series of blog posts will serve as a guide for anyone looking to learn Go and build web applications with it.
+
+In this series, we'll build a REST API using Go, Gin, Docker, and sqlc. The API will serve quotes with an author and categories. In this first installment, we'll begin by setting up our development environment and focus on creating the authors endpoint. This approach allows us to introduce new concepts in a simpler context before expanding to other portions of the API.
+
+1. [Go](https://go.dev/), also known as Golang, is a statically typed, compiled programming language designed at Google by Robert Griesemer, Rob Pike, and Ken Thompson. It is known for its simplicity, strong support for concurrent programming, and excellent performance. Go's standard library provides most of the necessary tools to build web applications, but we will be using some external packages to make the development process even smoother.
+
+2. [Gin](https://gin-gonic.com/) is a popular web framework for Go designed to be fast and easy to use. It offers a wide range of built-in features, such as routing, request parsing, and response rendering, which allows us to write web applications with minimal boilerplate code. Gin is known for its high performance, and its API is similar to other popular web frameworks, making it an excellent choice for our project.
+
+3. [Docker](https://www.docker.com/) is a platform that allows developers to create, deploy, and run applications in containers. Containers package up an application with everything it needs to run, including libraries, system tools, and code, making ensuring consistency across different development environments easy. In this tutorial, we will use Docker to manage a MySQL database, simplifying the process of setting up and managing our development environment.
+
+4. [sqlc](https://sqlc.dev/) is a command-line tool that generates type-safe, idiomatic Go code based on SQL schema and query files. It allows us to write SQL queries directly in our code and automatically generates the necessary Go functions to interact with the database. Using sqlc helps us avoid common mistakes when writing SQL and ensures that our code is easy to read and maintain.
+
+Throughout this series, I will explain every step and concept in detail, so you can easily follow along and understand the reasoning behind each decision. The aim is to help you build a solid foundation in designing REST APIs in Go.
+
+With the introduction out of the way, let's dive into setting up our development environment and start building the API!
+
+## Environment setup
+
+In this section, we will set up our development environment, install the necessary tools, and create the project directory structure.
+
+### Installing Go and setting up the environment
+
+Before we may begin, we need to install Go on our machine. You can download the latest version of Go from the [official website](https://go.dev/dl/).
+
+Follow the installation instructions for your operating system, and set up the necessary environment variables. If you need help, check out the official documentation on [installing Go](https://go.dev/doc/install).
+
+Once you have Go installed, open a terminal and run the following command to verify everything is set up correctly:
+
+```sh
+go version
+```
+
+You should see the version number of your Go installation, which confirms that Go is installed and configured correctly! 🥳
+
+### Initializing the Go module
+
+Now that Go is installed on the system, let's create a new directory for our project and navigate to it in your terminal:
+
+```sh
+mkdir quotd-api
+cd quotd-api
+```
+
+Next, run the following command to initialize the Go module:
+
+```sh
+go mod init github.com/jpreagan/quotd-api
+```
+
+This command will create a `go.mod` file in your project directory to keep track of your project's dependencies. If you're familiar with JavaScript development, the `go.mod` file is similar to a `package.json` file, as both files manage package dependencies and their versions.
+
+## Database design and schema creation
+
+In this section, we'll design the database schema for our the API and set up a local MySQL database using Docker Compose. This will help us quickly get a development database up and running without the need to install and configure MySQL directly on your computer.
+
+### Creating the schema
+
+Before setting up the local MySQL database using Docker Compose, let's define the `authors` table for our database. Save the SQL schema to a file named `schema.sql` in the project directory. The schema should look like this:
+
+```sql
+CREATE DATABASE IF NOT EXISTS quotd;
+
+USE quotd;
+
+CREATE TABLE authors (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+```
+
+This file creates a `quotd` database if it doesn't exist, sets it as the active database, and defines an `authors` table with an `id` and a `name` column.
+
+### Setting up Docker Compose for MySQL
+
+To set up a local MySQL database using Docker Compose, ensure you have Docker and Docker Compose installed on your computer. You can grab them from the [official Docker website](https://www.docker.com/products/docker-desktop/) if you need to install them.
+
+First, create a new file named `.env` in your project directory and add the following content:
+
+```
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=quotd
+MYSQL_USER=mysql
+MYSQL_PASSWORD=mysql
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+
+DSN=${MYSQL_USER}:${MYSQL_PASSWORD}@tcp(${MYSQL_HOST}:${MYSQL_PORT})/${MYSQL_DATABASE}
+```
+
+This `.env` file stores the necessary environment variables for your MySQL container. Adding the `.env` file to your `.gitignore` is a good idea to prevent accidentally committing sensitive information to your version control system. To do this, run the following command:
+
+```sh
+touch .gitignore && echo .env >> .gitignore
+```
+
+This command appends `.env` to your `.gitignore`, ensuring that the file isn't tracked by Git.
+
+Next, create a new file named `docker-compose.yml` in your project directory with the following content:
+
+```yaml
+services:
+  db:
+    image: mysql:8
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./mysql-data:/var/lib/mysql
+```
+
+This configuration file sets up a MySQL 8 container with the required environment variables for the root password, database name, and user credentials. It also maps the container's port 3306 to the host machine's port 3306, mounts the `schema.sql` file to be executed on container startup, and binds the host directory `./mysql-data` to the container's `/var/lib/mysql` directory for data persistence.
+
+To start the MySQL container, run the following command in your terminal from the project directory:
+
+```sh
+docker-compose up -d
+```
+
+This command downloads the MySQL image (if you don't have it already), creates the container, and starts it in the background. The mounted `schema.sql` file will be executed when the MySQL container starts, creating the `authors` table in the `quotd` database.
+
+By binding the host directory `./mysql-data` to the container's `/var/lib/mysql` directory, your data will persist even when you bring the Docker service down and up again. The `schema.sql` script will still run on container startup, but since the data directory is no longer empty, the MySQL container will skip executing it, thus preserving your existing data.
+
+You can now connect to your MySQL database using the provided credentials at `localhost:3306`. Should you need to interact directly with the database, use the following command:
+
+```sh
+docker-compose exec db mysql -u mysql -p
+```
+
+When prompted, enter the password specified in the `.env` file.
+
+## SQL queries and sqlc
+
+In this section, we'll write SQL queries for working with authors and use sqlc to generate Go code for interacting with our MySQL database. sqlc is a powerful tool that takes SQL queries as input and generates type-safe Go code, reducing the risk of errors and making it easier to work with databases in Go.
+
+### Writing SQL queries
+
+First, let's write the SQL queries for our authors table. We'll need queries to:
+
+- Get an author by ID
+- List all authors
+- Create an author
+- Delete an author
+
+Save these queries in a file named `query.sql` in the project directory:
+
+```sql
+-- name: GetAuthor :one
+SELECT \* FROM authors
+WHERE id = ? LIMIT 1;
+
+-- name: ListAuthors :many
+SELECT \* FROM authors
+ORDER BY name;
+
+-- name: CreateAuthor :execresult
+INSERT INTO authors (name)
+VALUES (?);
+
+-- name: DeleteAuthor :exec
+DELETE FROM authors
+WHERE id = ?;
+```
+
+These queries use sqlc's special comment syntax to specify each query's name, type, and behavior.
+
+### Installing sqlc
+
+To install sqlc globally, run the following command in your terminal:
+
+```sh
+go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
+```
+
+This command will download the latest version of sqlc and install it in your `$GOPATH/bin` directory. Ensure this directory is included in your `PATH` so you can run the `sqlc` command from anywhere.
+
+### Configuring sqlc
+
+To configure sqlc, create a file named `sqlc.yaml` in the project directory with the following content:
+
+```yaml
+version: 1
+packages:
+  - path: "repository"
+    name: "repository"
+    engine: "mysql"
+    schema: "schema.sql"
+    queries: "query.sql"
+    emit_json_tags: true
+```
+
+This configuration tells sqlc to generate a package named `repository` in the `./repository` directory, using MySQL as the engine, and using the `schema.sql` and `query.sql` files for schema and queries. Setting `emit_json_tags` to `true` will automatically generate JSON struct tags for the model fields, resulting in the generally more desirable lowercase field names in the JSON output.
+
+### Generating Go code with sqlc
+
+Now that sqlc is installed and configured, we can generate Go code from our SQL queries. Run the following command in your project directory:
+
+```sh
+sqlc generate
+```
+
+This command will create a new `./repository` directory in your project root and generate a `repository.go` file containing Go code for interacting with the `authors` table. The generated code is type-safe and provides a simple API for executing the SQL queries we defined earlier.
+
+Your project directory should now look like this:
+
+```
+.
+├── docker-compose.yml
+├── go.mod
+├── handlers
+├── mysql-data
+│ └── ...
+├── query.sql
+├── repository
+│ └── repository.go
+├── schema.sql
+└── sqlc.yaml
+```
+
+With the SQL queries written and the Go code generated using sqlc, we're ready to move on to the next section, where we'll implement the API endpoints and handlers.
+
+## Implementing API endpoints and handlers
+
+In this section, we'll implement the API endpoints and handlers for working with authors using the Gin web framework and the generated repository code from the previous section. We'll create handlers for getting an author by ID, listing all authors, creating an author, and deleting an author.
+
+### Setting up the Gin web framework
+
+Gin is a lightweight web framework for Go that makes it easy to build HTTP services with minimal boilerplate. It provides a flexible routing system, middleware support, and convenient methods for handling JSON and other types of requests and responses.
+
+We'll need to install Gin, and a couple of other packages with `go get`:
+
+```sh
+go get github.com/gin-gonic/gin
+go get github.com/go-sql-driver/mysql
+go get github.com/joho/godotenv
+```
+
+The MySQL driver is needed for database access, and the `godotenv` package will be used to load environment variables from the `.env` file.
+
+### Creating the application entry point
+
+First, let's write the `main.go` file, which will serve as the entry point for our application. In the root directory of your project, create a `main.go` file with the following content:
+
+```go
+package main
+
+import (
+	"database/sql"
+	"log"
+	"os"
+
+	"github.com/gin-gonic/gin"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
+	"github.com/jpreagan/quotd-api/handlers"
+	"github.com/jpreagan/quotd-api/repository"
+)
+
+var db *sql.DB
+
+func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("failed to load env", err)
+	}
+
+	db, err = sql.Open("mysql", os.Getenv("DSN"))
+	if err != nil {
+		log.Fatal("failed to connect to database", err)
+	}
+
+	router := gin.Default()
+	queries := repository.New(db)
+	handlers.SetupRoutes(router, queries)
+	router.Run()
+}
+```
+
+This code sets up a new Gin router, connects to the MySQL database using the `DSN` environment variable, and initializes the generated repository with the database connection. It then calls the `handlers.SetupRoutes` function to set up the API routes and start the HTTP server.
+
+### Creating handlers
+
+Next, let's create the handlers for our API endpoints. Handlers in Gin are functions that process incoming HTTP requests and generate appropriate responses. To make it easier for those new to Gin, we will briefly overview how handler functions work in this framework.
+
+In the handlers directory, create a new file named handlers.go with the following content:
+
+```go
+package handlers
+
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/jpreagan/quotd-api/repository"
+)
+
+func SetupRoutes(router *gin.Engine, queries *repository.Queries) {
+	router.GET("/authors", getAuthorsHandler(queries))
+	router.GET("/authors/:authorId", getAuthorHandler(queries))
+	router.POST("/authors", createAuthorHandler(queries))
+	router.DELETE("/authors/:authorId", deleteAuthorHandler(queries))
+}
+```
+
+This file defines a `SetupRoutes` function that sets up the API routes for getting an author by ID, listing all authors, creating an author, and deleting an author. Each route is associated with a corresponding handler function, which we'll implement next.
+
+In the `/handlers` directory, create a new file named `authors.go` with the following content:
+
+```go
+package handlers
+
+import (
+	"context"
+	"net/http"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
+	"github.com/jpreagan/quotd-api/repository"
+)
+
+func getAuthorsHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authors, err := queries.ListAuthors(ctx)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusOK, authors)
+	}
+}
+
+func getAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authorId, err := strconv.Atoi(c.Param("authorId"))
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid author ID"})
+			return
+		}
+		author, err := queries.GetAuthor(ctx, int32(authorId))
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusOK, author)
+	}
+}
+
+func createAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		var newAuthor repository.Author
+		if err := c.BindJSON(&newAuthor); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
+			return
+		}
+		result, err := queries.CreateAuthor(ctx, newAuthor.Name)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		id, err := result.LastInsertId()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve last insert ID"})
+			return
+		}
+		newAuthor.ID = int32(id)
+		c.JSON(http.StatusCreated, newAuthor)
+	}
+}
+
+func updateAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authorID, err := strconv.Atoi(c.Param("authorId"))
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid author ID"})
+			return
+		}
+
+		var updatedAuthor repository.Author
+		if err := c.BindJSON(&updatedAuthor); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
+			return
+		}
+
+		updatedAuthor.ID = int32(authorID)
+		err = queries.UpdateAuthor(ctx, repository.UpdateAuthorParams{
+			Name: updatedAuthor.Name,
+			ID:   int32(authorID),
+		})
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		author, err := queries.GetAuthor(ctx, int32(authorID))
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, author)
+	}
+}
+
+func deleteAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authorId, err := strconv.Atoi(c.Param("authorId"))
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid author ID"})
+			return
+		}
+		err = queries.DeleteAuthor(ctx, int32(authorId))
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"message": "Author deleted successfully"})
+	}
+}
+```
+
+The above code defines handler functions for each of the API endpoints associated with authors. Each handler function takes a `*repository.Queries` argument, which allows it to interact with the database, and returns a `gin.HandlerFunc`. The `gin.HandlerFunc` is responsible for processing the request, such as validating input, fetching data, or rendering a response.
+
+Remember that each handler function is associated with a specific route. So, when a request comes in, Gin will match the request's URL and HTTP method to a route and invoke its associated handler function. This modular approach to handling requests makes it easy to add, modify, or remove functionality as needed.
+
+## Improving Error Handling with Custom Types
+
+In this section, we'll improve error handling in our handlers by defining custom error types. This will help us provide more meaningful error messages and make it easier to maintain our code as it grows.
+
+### Why better error handling is necessary
+
+When building APIs, providing meaningful and consistent error messages is essential to help clients understand and handle errors correctly. By default, Gin returns generic error messages that might not be informative enough for API clients. Creating custom error types allows us to return more specific error messages and status codes, making it easier for clients to understand the cause of the error and take appropriate action.
+
+### Defining custom error types
+
+Let's now define custom error types for better error handling and provide our client with more informative error messages. To do this, we will create a new package called `errors`. This separation will help keep our code modular and maintainable.
+
+First, create a new directory called `/errors` in your application's root directory. This is where we will store our custom error types.
+
+Next, create a new file inside the `/errors` directory called `errors.go`. In this file, we will define our custom error types. Add the following code to `errors.go`:
+
+```go
+package errors
+
+import "net/http"
+
+type APIError struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
+func NewAPIError(code int, message string) *APIError {
+	return &APIError{Code: code, Message: message}
+}
+
+// Common errors
+var (
+	ErrInvalidID          = NewAPIError(http.StatusBadRequest, "Invalid ID")
+	ErrInvalidRequestBody = NewAPIError(http.StatusBadRequest, "Invalid request body")
+)
+
+// Author errors
+var (
+	ErrAuthorNotFound = NewAPIError(http.StatusNotFound, "Author not found")
+)
+
+// Quote errors
+var (
+	ErrQuoteNotFound = NewAPIError(http.StatusNotFound, "Quote not found")
+)
+
+// Category errors
+var (
+	ErrCategoryNotFound = NewAPIError(http.StatusNotFound, "Category not found")
+)
+```
+
+In this code snippet, we define a new struct called `APIError` that will hold our custom error information. We also create a helper function `NewAPIError` to create instances of `APIError` easily. We then define several common, author, quote, and category errors as package-level variables that can be used throughout our application.
+
+Using custom error types, we standardize the structure of our error responses, making it easier for clients to understand and handle them. It also helps keep our code more organized and maintainable, as we can quickly identify and handle specific error cases.
+
+### Updating the handlers to use custom error types
+
+Next, we'll update the handlers in the `handlers/authors.go` file to use the custom error types we just defined. Make sure to import the errors package at the beginning of the file:
+
+```go
+import (
+	// ...
+	"github.com/jpreagan/quotd-api/errors"
+)
+```
+
+Let's update each handler function to use the custom error types.
+
+```go
+// ...
+func getAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authorId, err := strconv.Atoi(c.Param("authorId"))
+		if err != nil {
+			c.JSON(errors.ErrInvalidID.Code, errors.ErrInvalidID)
+			return
+		}
+		author, err := queries.GetAuthor(ctx, int32(authorId))
+		if err != nil {
+			if err == sql.ErrNoRows {
+				c.JSON(errors.ErrAuthorNotFound.Code, errors.ErrAuthorNotFound)
+			} else {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			}
+			return
+		}
+		c.JSON(http.StatusOK, author)
+	}
+}
+
+func createAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		var newAuthor repository.Author
+		if err := c.BindJSON(&newAuthor); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
+			return
+		}
+		result, err := queries.CreateAuthor(ctx, newAuthor.Name)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		id, err := result.LastInsertId()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve last insert ID"})
+			return
+		}
+		newAuthor.ID = int32(id)
+		c.JSON(http.StatusCreated, newAuthor)
+	}
+}
+
+func updateAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authorID, err := strconv.Atoi(c.Param("authorId"))
+		if err != nil {
+			c.JSON(errors.ErrInvalidID.Code, errors.ErrInvalidID)
+			return
+		}
+
+		var updatedAuthor repository.Author
+		if err := c.BindJSON(&updatedAuthor); err != nil {
+			c.JSON(errors.ErrInvalidRequestBody.Code, errors.ErrInvalidRequestBody)
+			return
+		}
+
+		updatedAuthor.ID = int32(authorID)
+		err = queries.UpdateAuthor(ctx, repository.UpdateAuthorParams{
+			Name: updatedAuthor.Name,
+			ID:   int32(authorID),
+		})
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		author, err := queries.GetAuthor(ctx, int32(authorID))
+		if err != nil {
+			if err == sql.ErrNoRows {
+				c.JSON(errors.ErrAuthorNotFound.Code, errors.ErrAuthorNotFound)
+			} else {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			}
+			return
+		}
+
+		c.JSON(http.StatusOK, author)
+	}
+}
+
+func deleteAuthorHandler(queries *repository.Queries) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ctx := context.Background()
+		authorId, err := strconv.Atoi(c.Param("authorId"))
+		if err != nil {
+			c.JSON(errors.ErrInvalidID.Code, errors.ErrInvalidID)
+			return
+		}
+
+		// Check if author exists before deleting
+		_, err = queries.GetAuthor(ctx, int32(authorId))
+		if err != nil {
+			if err == sql.ErrNoRows {
+				c.JSON(errors.ErrAuthorNotFound.Code, errors.ErrAuthorNotFound)
+				return
+			} else {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+		}
+
+		err = queries.DeleteAuthor(ctx, int32(authorId))
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"message": "Author deleted successfully"})
+	}
+}
+```
+
+Now, all of the handlers in `handlers/authors.go` have been updated to use the custom error types from the errors package. As you add new handlers or extend existing ones, use these custom error types to provide consistent and meaningful error messages.
+
+## Exploring the API endpoints
+
+Now that we've implemented our API endpoints and handlers, it's time to explore the application. In this section, we'll run the application locally and use a tool like Postman or `curl` to send HTTP requests to the API.
+
+### Running the application
+
+To run the application, open a terminal window, navigate to your project directory, and run the following command:
+
+```sh
+go run main.go
+```
+
+This command will start the HTTP server on port 8080 (the default port for Gin). If you want to change the port, you can modify the `router.Run()` line in `main.go` to `router.Run(":your_port")`.
+
+### Trying out the API endpoints
+
+To try out the API endpoints, you can use a tool like [Postman](https://www.postman.com/) or `curl` to send HTTP requests to the server. Here are some examples of how to use `curl` to test each of the endpoints:
+
+1. Create an author: Let's create a new author, `Audrey Hepburn`.
+
+```sh
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Audrey Hepburn"}' http://localhost:8080/authors
+```
+
+2. List all authors:
+
+```sh
+curl http://localhost:8080/authors
+```
+
+3. Get an author by ID: Replace `1` with the ID of an existing author.
+
+```sh
+curl http://localhost:8080/authors/1
+```
+
+4. Update an author: Replace `1` with the ID of the author you want to update, and change the name value in the JSON data.
+
+```sh
+curl -X PUT -H "Content-Type: application/json" -d '{"name":"George Bernard Shaw"}' http://localhost:8080/authors/1
+```
+
+5. Delete an author: Replace `1` with the ID of the author you want to delete.
+
+```sh
+curl -X DELETE http://localhost:8080/authors/1
+```
