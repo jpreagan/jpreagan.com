@@ -86,7 +86,7 @@ export default async function AboutPage() {
 
       <section className="prose mx-auto mb-16 max-w-5xl px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-300 lg:mb-32">
         <p>
-          I&apos;m a software engineer in Hawaii focused on full-stack web
+          I&apos;m a software engineer in Hawai&#699;i focused on full-stack web
           development. My mission is to create technology that solves problems
           and improves people&apos;s lives by building accessible and efficient
           applications with a positive impact on society. Moreover, I am
