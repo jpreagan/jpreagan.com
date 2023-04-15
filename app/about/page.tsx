@@ -86,23 +86,29 @@ export default async function AboutPage() {
 
       <section className="prose mx-auto mb-16 max-w-5xl px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-600 dark:prose-a:text-sky-300 lg:mb-32">
         <p>
-          I&apos;m a software engineer in Hawaii, specializing in full-stack web
-          development with a focus on accessibility and performance. My mission
-          is to create technology that not only solves problems, but also
-          improves people&apos;s lives by building accessible and efficient
-          applications with a positive impact on society. I am committed to
-          continuous learning and growth, both personally and professionally,
-          and to fostering a culture of collaboration and inclusivity in the
-          tech community.
+          I&apos;m a software engineer in Hawaii focused on full-stack web
+          development. My mission is to create technology that solves problems
+          and improves people&apos;s lives by building accessible and efficient
+          applications with a positive impact on society. Moreover, I am
+          dedicated to fostering a culture of collaboration and inclusivity in
+          the tech community and always strive for personal and professional
+          growth.
         </p>
         <p>
-          I share my learning journey on my <Link href="/blog">blog</Link> and{" "}
+          As a passionate advocate for open-source software, I actively
+          contribute to various projects and believe in the power of
+          collaboration to drive innovation. I also enjoy sharing my learning
+          journey on my <Link href="/blog">blog</Link> and{" "}
           <a href="https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg">
             YouTube
           </a>{" "}
-          channel and am always available to help. If you think I can be of any
-          assistance, don&apos;t hesitate to{" "}
-          <Link href="/contact">reach out</Link>.
+          channel, where I offer insights, tutorials, and experiences that can
+          help others in their journey.
+        </p>
+        <p>
+          Please feel free to reach out if I can assist you or if you&apos;d
+          like to collaborate on a project. I&apos;m always eager to connect
+          with like-minded individuals and explore new opportunities.
         </p>
       </section>
 
