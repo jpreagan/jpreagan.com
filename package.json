@@ -2,7 +2,7 @@
   "name": "jpreagan.com",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"contentlayer dev\" \"next dev\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
