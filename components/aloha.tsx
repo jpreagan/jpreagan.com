@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EnvelopeIcon, MicrophoneIcon } from "@heroicons/react/24/outline";
-import styles from "./aloha.module.css";
+import styles from "~/styles/aloha.module.css";
 import image from "~/public/images/jpreagan.jpg";
 
 export default function Aloha() {
