@@ -1,5 +1,4 @@
 import { GraphQLClient, gql } from "graphql-request";
-import "~/styles/projects.css";
 
 export const metadata = {
   title: "Projects",
@@ -98,7 +97,7 @@ export default async function ProjectsPage() {
                 <p>
                   <span
                     style={{ backgroundColor: project.primaryLanguage.color }}
-                    className="primary-language-color"
+                    className="relative top-px inline-block w-3 h-3 rounded-full"
                   />{" "}
                   <span itemProp="programmingLanguage">
                     {project.primaryLanguage.name}
