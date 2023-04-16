@@ -2,7 +2,6 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import Header from "~/components/header";
 import Footer from "~/components/footer";
 import "~/styles/globals.css";
-import "~/styles/expand.css";
 
 export const metadata = {
   icons: {
