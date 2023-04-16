@@ -1,4 +1,4 @@
-.spotify {
+.container {
   display: grid;
   grid-template-columns: 2rem auto;
   align-items: center;
@@ -9,16 +9,11 @@
   padding: 0.5rem 0;
 }
 
-.spotify:hover {
-  background-color: #e0f2fe;
-}
-
-html.dark .spotify:hover {
+.container:hover {
   background-color: #1f2937;
 }
 
-.track-title,
-.artist {
+.track-title {
   display: -webkit-box;
   white-space: unset;
   word-break: break-all;
@@ -29,7 +24,7 @@ html.dark .spotify:hover {
 }
 
 @media screen and (min-width: 640px) {
-  .spotify {
+  .container {
     grid-template-columns: 2rem 6fr 4fr 1fr;
   }
 }

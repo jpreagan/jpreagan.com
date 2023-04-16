@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Photos from "~/components/photos";
 import querystring from "query-string";
-import "~/styles/spotify.css";
+import styles from "~/styles/about.module.css";
 
 export const metadata = {
   title: "About me",
@@ -136,7 +136,7 @@ export default async function AboutPage() {
             },
             trackNumber
           ) => (
-            <article key={id} className="spotify">
+            <article key={id} className={styles.container}>
               <p className="text-right">{trackNumber + 1}</p>
               <div className="flex items-center gap-4">
                 <a href={albumUrl}>
@@ -145,7 +145,7 @@ export default async function AboutPage() {
                   </div>
                 </a>
                 <div>
-                  <p className="track-title">
+                  <p className={styles.trackTitle}>
                     <a
                       href={trackUrl}
                       className="text-gray-100 hover:underline"
