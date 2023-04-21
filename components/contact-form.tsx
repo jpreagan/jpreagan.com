@@ -16,37 +16,40 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl">
-      <label htmlFor="name" className="my-4 block">
+      <label htmlFor="name" className="mb-1 block">
         Name
-        <input
-          id="name"
-          type="text"
-          name="name"
-          autoComplete="name"
-          className="mt-2 block w-full rounded-md border-none bg-gray-800 p-2 text-gray-100 shadow-sm"
-        />
       </label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        autoComplete="name"
+        aria-label="Name"
+        className="mb-4 block w-full rounded-md border-none bg-gray-800 p-2 text-gray-100 shadow-sm"
+      />
       <ValidationError prefix="Name" field="name" errors={state.errors} />
-      <label htmlFor="email" className="my-4 block">
+      <label htmlFor="email" className="mb-1 block">
         Email Address
-        <input
-          id="email"
-          type="email"
-          name="email"
-          autoComplete="email"
-          className="mt-2 block w-full rounded-md border-none bg-gray-800 p-2 text-gray-100 shadow-sm"
-        />
       </label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        autoComplete="email"
+        aria-label="Email Address"
+        className="mb-4 block w-full rounded-md border-none bg-gray-800 p-2 text-gray-100 shadow-sm"
+      />
       <ValidationError prefix="Email" field="email" errors={state.errors} />
-      <label htmlFor="message" className="my-4 block">
+      <label htmlFor="message" className="mb-1 block">
         Message
-        <textarea
-          id="message"
-          name="message"
-          rows={10}
-          className="mt-2 block w-full rounded-md border-none border-gray-500 bg-gray-800 p-2 text-gray-100 shadow-sm"
-        />
       </label>
+      <textarea
+        id="message"
+        name="message"
+        rows={10}
+        aria-label="Message"
+        className="mb-4 block w-full rounded-md border-none border-gray-500 bg-gray-800 p-2 text-gray-100 shadow-sm"
+      />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
       <button
         type="submit"
