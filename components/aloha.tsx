@@ -34,7 +34,7 @@ export default function Aloha() {
       <div className="my-8 grid grid-cols-1 gap-2 sm:grid-cols-2">
         <Link
           className="inline-flex items-center justify-center gap-x-2 whitespace-nowrap rounded-md bg-pink-700 bg-gradient-to-r from-purple-800 to-pink-600 p-4 text-center font-bold text-white hover:bg-pink-600 hover:from-purple-700 hover:to-pink-500"
-          href="#"
+          href="#newsletter-signup"
         >
           <EnvelopeIcon className="h-5 w-5" aria-hidden="true" />
           Join newsletter
