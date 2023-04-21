@@ -97,7 +97,7 @@ export default async function ProjectsPage() {
                 <p>
                   <span
                     style={{ backgroundColor: project.primaryLanguage.color }}
-                    className="relative top-px inline-block w-3 h-3 rounded-full"
+                    className="relative top-px inline-block h-3 w-3 rounded-full"
                   />{" "}
                   <span itemProp="programmingLanguage">
                     {project.primaryLanguage.name}
