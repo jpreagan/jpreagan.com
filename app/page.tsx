@@ -40,19 +40,7 @@ export default function Home() {
         className="mx-auto my-16 max-w-5xl px-4 lg:my-32"
         id="newsletter-signup"
       >
-        <div className="grid grid-cols-1 gap-10 rounded-md bg-gray-800 px-4 py-8 md:grid-cols-2 md:p-10">
-          <div>
-            <h2 className="mb-8 text-2xl font-bold text-gray-100 md:text-3xl lg:text-4xl">
-              Join my newsletter 🪄
-            </h2>
-            <p className="my-8">
-              Unlock thought-provoking tech insights, practical tips, and
-              industry updates with my software engineering newsletter! Rest
-              assured, your inbox will remain spam-free.
-            </p>
-          </div>
-          <NewsletterSignup />
-        </div>
+        <NewsletterSignup />
       </section>
     </>
   );
