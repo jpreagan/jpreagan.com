@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { EnvelopeIcon, MicrophoneIcon } from "@heroicons/react/24/outline";
 import styles from "~/styles/aloha.module.css";
 import image from "~/public/images/jpreagan.jpg";
 
@@ -31,20 +30,15 @@ export default function Aloha() {
       <p className="my-2 md:text-lg lg:text-xl">
         💕 Lover of 80&apos;s music and 🍜 udon noodles!
       </p>
-      <div className="my-8 grid grid-cols-1 gap-2 sm:grid-cols-2">
+      <div className="mt-8 flex items-center justify-center gap-x-6 sm:mt-16">
         <Link
-          className="inline-flex items-center justify-center gap-x-2 whitespace-nowrap rounded-md bg-pink-700 bg-gradient-to-r from-purple-800 to-pink-600 p-4 text-center font-bold text-white hover:bg-pink-600 hover:from-purple-700 hover:to-pink-500"
           href="#newsletter-signup"
+          className="rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-5 py-4 font-semibold text-gray-100 shadow-sm hover:bg-pink-500 hover:from-purple-700 hover:to-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"
         >
-          <EnvelopeIcon className="h-5 w-5" aria-hidden="true" />
           Join newsletter
         </Link>
-        <Link
-          className="inline-flex items-center justify-center gap-x-2 rounded-md bg-white/10 p-4 font-bold text-gray-200 shadow-sm hover:bg-white/20"
-          href="/about"
-        >
-          <MicrophoneIcon className="h-5 w-5" aria-hidden="true" />
-          About me
+        <Link href="/about" className="font-semibold leading-6 text-gray-300">
+          About me <span aria-hidden="true">→</span>
         </Link>
       </div>
     </div>
