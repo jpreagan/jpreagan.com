@@ -33,11 +33,14 @@ export default function Aloha() {
       <div className="mt-8 flex items-center justify-center gap-x-6 sm:mt-16">
         <Link
           href="#newsletter-signup"
-          className="rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-5 py-4 font-semibold text-gray-100 shadow-sm hover:bg-pink-500 hover:from-purple-700 hover:to-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"
+          className="rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-pink-500 hover:from-purple-700 hover:to-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-300"
         >
           Join newsletter
         </Link>
-        <Link href="/about" className="font-semibold leading-6 text-gray-300">
+        <Link
+          href="/about"
+          className="rounded-md px-3.5 py-2.5 font-semibold text-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-300"
+        >
           About me <span aria-hidden="true">→</span>
         </Link>
       </div>
