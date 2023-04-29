@@ -24,7 +24,7 @@ export default function Home() {
         <Aloha />
       </section>
       <div className="my-32 sm:my-48 lg:my-64">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4">
           <h2 className="my-8 text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl">
             Recent posts
           </h2>
