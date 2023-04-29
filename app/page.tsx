@@ -29,7 +29,7 @@ export default function Home() {
             Recent posts
           </h2>
           <Posts posts={posts} />
-          <p className="my-8 md:text-lg lg:text-xl">
+          <p className="my-16 md:text-lg lg:text-xl">
             <Link
               className="font-bold text-gray-100 hover:text-white"
               href="/blog"
