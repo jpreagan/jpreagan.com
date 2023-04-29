@@ -25,7 +25,7 @@ export default function Aloha() {
         priority
       />
       <p className="my-2 md:text-lg lg:text-xl">
-        💻 I&apos;m a software engineer 🌴 living in Hawaiʻi.
+        💻 I&apos;m a software engineer 🌴 living in Hawai&#699;i.
       </p>
       <p className="my-2 md:text-lg lg:text-xl">
         💕 Lover of 80&apos;s music and 🍜 udon noodles!
