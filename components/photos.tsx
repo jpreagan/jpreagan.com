@@ -14,7 +14,7 @@ export default function Photos() {
   ];
 
   return (
-    <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
+    <div className="-my-4 flex max-w-5xl justify-center gap-5 overflow-hidden py-4 sm:gap-8">
       {[image1, image2, image3].map((image, imageIndex) => (
         <div
           key={image.src}

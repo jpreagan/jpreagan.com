@@ -54,7 +54,7 @@ export default async function BlogPost({
 
   return (
     <article itemScope itemType="http://schema.org/Article">
-      <header className="mx-auto max-w-5xl sm:px-4">
+      <header className="mx-auto max-w-7xl sm:px-4">
         <div className="bg-gradient-to-r from-purple-900 via-pink-700 to-orange-500 px-4 py-16 sm:rounded-md md:px-8 md:py-24 lg:px-16 lg:py-32">
           <h1
             itemProp="headline"
@@ -74,7 +74,7 @@ export default async function BlogPost({
         {/* className="mx-auto my-16 max-w-5xl px-4 lg:my-32" */}
         <Mdx code={post.body.code} />
       </section>
-      <footer className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
+      <footer className="mx-auto my-16 max-w-7xl sm:my-24 lg:my-32">
         <NewsletterSignup />
       </footer>
     </article>

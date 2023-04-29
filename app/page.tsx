@@ -20,26 +20,27 @@ export default function Home() {
 
   return (
     <>
-      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
+      <section className="my-16 sm:my-24 lg:my-32">
         <Aloha />
       </section>
-      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
-        <h2 className="mb-8 text-2xl font-bold text-gray-100  md:text-3xl lg:text-4xl">
-          Recent posts
-        </h2>
-        <Posts posts={posts} />
-        <p className="my-8 md:text-lg lg:text-xl">
-          ✨ See{" "}
-          <Link className="text-sky-300 underline" href="/blog">
-            all posts
-          </Link>
-          .
-        </p>
-      </section>
-      <section
-        className="mx-auto my-16 max-w-5xl px-4 lg:my-32"
-        id="newsletter-signup"
-      >
+      <div className="my-32 sm:my-48 lg:my-64">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <h2 className="my-8 text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl">
+            Recent posts
+          </h2>
+          <Posts posts={posts} />
+          <p className="my-8 md:text-lg lg:text-xl">
+            <Link
+              className="font-bold text-gray-100 hover:text-white"
+              href="/blog"
+            >
+              See all posts <span aria-hidden="true">→</span>
+            </Link>
+          </p>
+        </div>
+      </div>
+
+      <section className="my-16 sm:my-24 lg:my-32" id="newsletter-signup">
         <NewsletterSignup />
       </section>
     </>

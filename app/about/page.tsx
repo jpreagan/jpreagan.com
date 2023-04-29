@@ -77,14 +77,14 @@ export default async function AboutPage() {
   });
 
   return (
-    <>
+    <div className="mx-auto max-w-7xl">
       <header>
-        <h1 className="mx-auto mb-8 max-w-5xl px-4 text-4xl font-bold text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
+        <h1 className="mb-8 max-w-5xl px-4 text-4xl font-bold text-gray-100 md:mb-10 md:mt-32 md:text-5xl lg:mb-12 lg:text-[3.5rem]">
           About
         </h1>
       </header>
 
-      <section className="prose mx-auto mb-16 max-w-5xl px-4 dark:prose-invert md:prose-lg lg:prose-xl prose-a:text-sky-300 lg:mb-32">
+      <section className="prose mb-16 max-w-5xl px-4 dark:prose-invert lg:prose-lg prose-a:text-sky-300 lg:mb-32">
         <p>
           I&apos;m a software engineer in Hawai&#699;i focused on full-stack web
           development. My mission is to create technology that solves problems
@@ -114,7 +114,7 @@ export default async function AboutPage() {
 
       <Photos />
 
-      <section className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
+      <section className="my-16 px-4 lg:my-32">
         <h2 className="mb-8 text-2xl font-bold text-gray-100 md:text-3xl lg:text-4xl">
           Recently played
         </h2>
@@ -175,6 +175,6 @@ export default async function AboutPage() {
           )
         )}
       </section>
-    </>
+    </div>
   );
 }

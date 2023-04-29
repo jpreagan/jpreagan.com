@@ -9,7 +9,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="mx-auto my-8 flex max-w-5xl flex-wrap px-4 tracking-tight">
+    <header className="mx-auto my-8 flex max-w-7xl flex-wrap px-4 tracking-tight">
       <Link
         href="/"
         className="text-xl font-bold text-gray-100 hover:underline tablet:text-2xl"
