@@ -1,50 +1,40 @@
 export default function NewsletterSignup() {
   return (
-    <div className="grid grid-cols-1 gap-10 rounded-md bg-gray-800 px-4 py-8 md:grid-cols-2 md:p-10">
-      <div>
-        <h2 className="mb-8 text-2xl font-bold text-gray-100 md:text-3xl lg:text-4xl">
-          Join my newsletter 🪄
-        </h2>
-        <p className="my-8">
-          Unlock thought-provoking tech insights, practical tips, and industry
-          updates with my software engineering newsletter! Rest assured, your
-          inbox will remain spam-free.
+    <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+      <div className="max-w-xl text-3xl font-bold tracking-tight text-white sm:text-4xl lg:col-span-7">
+        <h2 className="inline sm:block lg:inline xl:block">
+          Want all the news and updates?
+        </h2>{" "}
+        <p className="inline sm:block lg:inline xl:block">
+          Sign up for my newsletter. ✨
         </p>
       </div>
       <form
         action="https://buttondown.email/api/emails/embed-subscribe/jpreagan"
         method="post"
         target="popupwindow"
-        className="max-w-2xl"
+        className="w-full max-w-md lg:col-span-5 lg:pt-2"
       >
-        <label htmlFor="email" className="mb-1 block">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          aria-label="Email"
-          className="mb-4 block w-full rounded-md border-none bg-gray-700 p-2 text-gray-100 shadow-sm"
-        />
-        <label htmlFor="first-name" className="mb-1 block">
-          First name
-        </label>
-        <input
-          id="first-name"
-          type="text"
-          name="metadata__first-name"
-          required
-          aria-label="First Name"
-          className="mb-4 block w-full rounded-md border-none bg-gray-700 p-2 text-gray-100 shadow-sm"
-        />
-        <input type="hidden" value="1" name="embed" />
-        <button
-          type="submit"
-          className="rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-5 py-4 font-semibold text-gray-100 shadow-sm hover:bg-pink-500 hover:from-purple-700 hover:to-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"
-        >
-          Subscribe
-        </button>
+        <div className="flex gap-x-4">
+          <label htmlFor="email" className="sr-only">
+            Email address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-pink-300 sm:text-sm sm:leading-6"
+            placeholder="Enter your email"
+          />
+          <button
+            type="submit"
+            className="rounded-md bg-pink-600 bg-gradient-to-r from-purple-800 to-pink-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-pink-500 hover:from-purple-700 hover:to-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-300"
+          >
+            Subscribe
+          </button>
+        </div>
       </form>
     </div>
   );
