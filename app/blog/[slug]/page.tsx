@@ -74,7 +74,9 @@ export default async function BlogPost({
         {/* className="mx-auto my-16 max-w-5xl px-4 lg:my-32" */}
         <Mdx code={post.body.code} />
       </section>
-      <NewsletterSignup />
+      <footer className="mx-auto my-16 max-w-5xl px-4 lg:my-32">
+        <NewsletterSignup />
+      </footer>
     </article>
   );
 }
