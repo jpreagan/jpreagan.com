@@ -18,7 +18,7 @@
   "dependencies": {
     "@formspree/react": "^2.4.1",
     "@heroicons/react": "^2.0.17",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "contentlayer": "^0.3.2",
     "date-fns": "^2.29.3",
     "graphql": "^16.6.0",
