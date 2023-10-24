@@ -1,0 +1,51 @@
+{
+  "name": "jpreagan-com",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix build",
+    "deploy": "fly deploy --remote-only",
+    "dev": "remix dev",
+    "start": "remix-serve ./build/index.js",
+    "typecheck": "tsc",
+    "format": "prettier --write .",
+    "generate": "drizzle-kit generate:sqlite --out ./app/drizzle/migrations --breakpoints --schema ./app/drizzle/schema.server.ts",
+    "migrate": "tsx app/drizzle/migrate.server",
+    "db:seed": "tsx app/drizzle/seed.server"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.3.6",
+    "@remix-run/css-bundle": "^2.1.0",
+    "@remix-run/node": "^2.1.0",
+    "@remix-run/react": "^2.1.0",
+    "@remix-run/serve": "^2.1.0",
+    "cloudinary-build-url": "^0.2.4",
+    "drizzle-orm": "^0.28.6",
+    "esbuild": "^0.19.5",
+    "isbot": "^3.6.8",
+    "mdx-bundler": "^9.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.1",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.10",
+    "@remix-run/dev": "^2.1.0",
+    "@remix-run/eslint-config": "^2.1.0",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/spotify-api": "^0.0.24",
+    "@types/uuid": "^9.0.6",
+    "@types/validator": "^13.11.5",
+    "drizzle-kit": "^0.19.13",
+    "eslint": "^8.38.0",
+    "prettier": "^3.0.3",
+    "tsx": "^3.14.0",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
