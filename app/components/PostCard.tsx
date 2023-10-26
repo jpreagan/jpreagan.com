@@ -11,7 +11,7 @@ export default function PostCard({ post }: { post: PostListing }) {
             srcSet={post.srcSet}
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33.33vw, 33.33vw"
             width={1248}
-            height={1307}
+            height={653}
             alt={post.coverImageAlt}
           />
         </figure>

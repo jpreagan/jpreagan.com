@@ -104,7 +104,7 @@ export default function Post() {
             srcSet={srcSet}
             sizes="(max-width: 1248px) 100vw, 1248px"
             width={1248}
-            height={1307}
+            height={653}
             alt={coverImageAlt}
           />
         </figure>
