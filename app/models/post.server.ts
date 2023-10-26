@@ -3,6 +3,7 @@ import { eq, desc } from "drizzle-orm";
 import { db } from "~/db.server";
 import { posts } from "~/drizzle/schema.server";
 import { getImageUrls, compileMdx } from "~/lib/utils.server";
+import type { Post } from "~/lib/types";
 
 export async function getPostListings(limit: number = 10) {
   const postListings = await db
@@ -36,7 +37,13 @@ export async function getPostListings(limit: number = 10) {
 }
 
 export async function getPost(slug: string) {
-  const post = await db.select().from(posts).where(eq(posts.slug, slug)).get();
+  const result: Post[] = await db
+    .select()
+    .from(posts)
+    .where(eq(posts.slug, slug))
+    .limit(1);
+  const post = result[0];
+
   if (!post) {
     throw new Response("Not Found", {
       status: 404,

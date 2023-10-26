@@ -1,16 +1,13 @@
-import { drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/planetscale-serverless";
+import { connect } from "@planetscale/database";
 
-const url = process.env.TURSO_DB_URL;
+const url = process.env.DATABASE_URL;
 if (url === undefined) {
-  throw new Error("TURSO_DB_URL is not defined");
+  throw new Error("DATABASE_URL is not defined");
 }
 
-const authToken = process.env.TURSO_DB_AUTH_TOKEN;
-if (authToken === undefined) {
-  throw new Error("TURSO_DB_AUTH_TOKEN is not defined");
-}
+const connection = connect({
+  url: process.env["DATABASE_URL"],
+});
 
-export const client = createClient({ url, authToken });
-
-export const db = drizzle(client);
+export const db = drizzle(connection);

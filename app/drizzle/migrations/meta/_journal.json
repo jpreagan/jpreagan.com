@@ -1,11 +1,11 @@
 {
   "version": "5",
-  "dialect": "sqlite",
+  "dialect": "mysql",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1698288078018,
+      "when": 1698333409274,
       "tag": "0000_init",
       "breakpoints": true
     }

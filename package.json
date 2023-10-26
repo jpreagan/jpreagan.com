@@ -10,12 +10,12 @@
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
     "format": "prettier --write .",
-    "generate": "drizzle-kit generate:sqlite --out ./app/drizzle/migrations --breakpoints --schema ./app/drizzle/schema.server.ts",
+    "generate": "drizzle-kit generate:mysql --out ./app/drizzle/migrations --breakpoints --schema ./app/drizzle/schema.server.ts",
     "migrate": "tsx app/drizzle/migrate.server",
     "db:seed": "tsx app/drizzle/seed.server"
   },
   "dependencies": {
-    "@libsql/client": "^0.3.6",
+    "@planetscale/database": "^1.11.0",
     "@remix-run/css-bundle": "^2.1.0",
     "@remix-run/node": "^2.1.0",
     "@remix-run/react": "^2.1.0",

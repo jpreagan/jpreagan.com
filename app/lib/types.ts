@@ -20,8 +20,8 @@ export interface Post {
   slug: string;
   title: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   coverImage: string;
   coverImageAlt: string;
   content: string;

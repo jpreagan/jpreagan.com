@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { migrate } from "drizzle-orm/libsql/migrator";
+import { migrate } from "drizzle-orm/planetscale-serverless/migrator";
 
 import { db } from "../db.server";
 

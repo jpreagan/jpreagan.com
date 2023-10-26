@@ -1,7 +1,7 @@
 {
   "version": "5",
-  "dialect": "sqlite",
-  "id": "d93b9f0d-9ecc-485d-bbb6-c8ed2cc6c506",
+  "dialect": "mysql",
+  "id": "0fb8d01d-015e-49e7-8b5d-2f19f6c37f91",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -9,14 +9,14 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
-          "primaryKey": true,
+          "type": "varchar(36)",
+          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
         "slug": {
           "name": "slug",
-          "type": "text",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -37,17 +37,20 @@
         },
         "createdAt": {
           "name": "createdAt",
-          "type": "text",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "default": "(now())"
         },
         "updatedAt": {
           "name": "updatedAt",
-          "type": "text",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
+          "autoincrement": false,
+          "onUpdate": true,
+          "default": "(now())"
         },
         "coverImage": {
           "name": "coverImage",
@@ -71,21 +74,27 @@
           "autoincrement": false
         }
       },
-      "indexes": {
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "posts_id": {
+          "name": "posts_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {
         "posts_slug_unique": {
           "name": "posts_slug_unique",
           "columns": [
             "slug"
-          ],
-          "isUnique": true
+          ]
         }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      }
     }
   },
-  "enums": {},
+  "schemas": {},
   "_meta": {
     "schemas": {},
     "tables": {},

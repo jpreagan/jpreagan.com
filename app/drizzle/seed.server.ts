@@ -1,17 +1,10 @@
 import "dotenv/config";
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
 import { v4 as uuidv4 } from "uuid";
+import { sql } from "drizzle-orm";
 
-import { posts } from "app/drizzle/schema.server";
+import { db } from "~/db.server";
+import { posts } from "~/drizzle/schema.server";
 import type { Post } from "~/lib/types";
-
-const client = createClient({
-  url: process.env.TURSO_DB_URL as string,
-  authToken: process.env.TURSO_DB_AUTH_TOKEN as string,
-});
-
-const db = drizzle(client);
 
 async function seed() {
   const postData: Post[] = [
@@ -20,21 +13,20 @@ async function seed() {
       slug: "hello-world",
       title: "Hello World!",
       description: "This is an awesome first post.",
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       coverImage: "https://source.unsplash.com/random/1248x653",
       coverImageAlt: "A random image from Unsplash",
       content: `## Hello World!`.trim(),
     },
   ];
 
-  const storedPosts: any = await db
+  await db
     .insert(posts)
     .values(postData)
-    .returning()
-    .all();
+    .onDuplicateKeyUpdate({ set: { id: sql`id` } });
 
-  console.log("Inserted ", storedPosts.length, " posts!");
+  console.log("Inserted or updated", postData.length, "posts!");
 
   process.exit(0);
 }
