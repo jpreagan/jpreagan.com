@@ -20,10 +20,11 @@ async function seed() {
       slug: "hello-world",
       title: "Hello World!",
       description: "This is an awesome first post.",
-      pubDate: new Date().toISOString(),
-      coverImage: "https://example.com/image.jpg",
-      coverImageAlt: "Image alt text",
-      content: `# Hello World!`.trim(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      coverImage: "https://source.unsplash.com/random/1248x653",
+      coverImageAlt: "A random image from Unsplash",
+      content: `## Hello World!`.trim(),
     },
   ];
 

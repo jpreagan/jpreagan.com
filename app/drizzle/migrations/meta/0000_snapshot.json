@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "8fbea1d0-9fb8-4e8a-affd-f742187c86fd",
+  "id": "d93b9f0d-9ecc-485d-bbb6-c8ed2cc6c506",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -35,8 +35,15 @@
           "notNull": true,
           "autoincrement": false
         },
-        "pubDate": {
-          "name": "pubDate",
+        "createdAt": {
+          "name": "createdAt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updatedAt": {
+          "name": "updatedAt",
           "type": "text",
           "primaryKey": false,
           "notNull": true,

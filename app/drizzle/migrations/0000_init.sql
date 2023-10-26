@@ -3,7 +3,8 @@ CREATE TABLE `posts` (
 	`slug` text NOT NULL,
 	`title` text NOT NULL,
 	`description` text NOT NULL,
-	`pubDate` text NOT NULL,
+	`createdAt` text NOT NULL,
+	`updatedAt` text NOT NULL,
 	`coverImage` text NOT NULL,
 	`coverImageAlt` text NOT NULL,
 	`content` text NOT NULL

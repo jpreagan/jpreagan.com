@@ -10,6 +10,7 @@ import { getPost } from "~/models/post.server";
 type LoaderData = {
   title: string;
   description: string;
+  timestamp: string;
   pubDate: string;
   coverImage: string;
   coverImageAlt: string;
@@ -40,6 +41,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   const {
     title,
     description,
+    timestamp,
     pubDate,
     coverImage,
     coverImageAlt,
@@ -50,6 +52,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json<LoaderData>({
     title,
     description,
+    timestamp,
     pubDate,
     coverImage,
     coverImageAlt,
@@ -62,6 +65,7 @@ export default function Post() {
   const {
     title,
     description,
+    timestamp,
     pubDate,
     coverImage,
     coverImageAlt,
@@ -93,7 +97,7 @@ export default function Post() {
                 <a href="/about">James Reagan</a>
               </p>
               <p className="publication-date">
-                <FormattedDate date={pubDate} />
+                <FormattedDate timestamp={timestamp} pubDate={pubDate} />
               </p>
             </div>
           </div>

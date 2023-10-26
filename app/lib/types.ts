@@ -20,14 +20,18 @@ export interface Post {
   slug: string;
   title: string;
   description: string;
-  pubDate: string;
+  createdAt: string;
+  updatedAt: string;
   coverImage: string;
   coverImageAlt: string;
   content: string;
 }
 
-export interface PostListing extends Omit<Post, "content" | "id"> {
+export interface PostListing
+  extends Omit<Post, "id" | "createdAt" | "updatedAt" | "content"> {
   srcSet: string;
+  timestamp: string;
+  pubDate: string;
 }
 
 export interface Posts extends Array<PostListing> {}

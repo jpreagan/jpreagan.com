@@ -17,7 +17,7 @@ export default function PostCard({ post }: { post: PostListing }) {
         </figure>
         <h2 className="post-card-title">{post.title}</h2>
         <p className="post-card-publication-date">
-          <FormattedDate date={post.pubDate} />
+          <FormattedDate timestamp={post.timestamp} pubDate={post.pubDate} />
         </p>
         <p className="post-card-description">{post.description}</p>
       </article>

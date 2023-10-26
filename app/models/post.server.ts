@@ -9,18 +9,29 @@ export async function getPostListings(limit: number = 10) {
     .select({
       title: posts.title,
       description: posts.description,
-      pubDate: posts.pubDate,
+      updatedAt: posts.updatedAt,
       slug: posts.slug,
       coverImage: posts.coverImage,
       coverImageAlt: posts.coverImageAlt,
     })
     .from(posts)
-    .orderBy(desc(posts.pubDate))
+    .orderBy(desc(posts.updatedAt))
     .limit(limit);
 
   return postListings.map((post) => {
     const srcSet = getImageUrls(post.coverImage, [300, 600, 900, 1248, 2496]);
-    return { ...post, srcSet };
+
+    return {
+      ...post,
+      srcSet,
+      timestamp: post.updatedAt,
+      pubDate: new Date(post.updatedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "Pacific/Honolulu",
+      }),
+    };
   });
 }
 
@@ -33,7 +44,7 @@ export async function getPost(slug: string) {
     });
   }
 
-  const { title, description, pubDate, coverImage, coverImageAlt, content } =
+  const { title, description, updatedAt, coverImage, coverImageAlt, content } =
     post;
 
   const srcSet = getImageUrls(coverImage, [300, 600, 900, 1248, 2496]);
@@ -50,7 +61,13 @@ export async function getPost(slug: string) {
   return {
     title,
     description,
-    pubDate,
+    timestamp: updatedAt,
+    pubDate: new Date(updatedAt).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "Pacific/Honolulu",
+    }),
     coverImage,
     coverImageAlt,
     srcSet,
