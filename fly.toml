@@ -4,7 +4,7 @@
 #
 
 app = "jpreagan-com"
-primary_region = "lax"
+primary_region = "sea"
 
 [build]
 
