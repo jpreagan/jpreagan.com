@@ -25,7 +25,7 @@ export async function getPostListings(limit: number = 10) {
     return {
       ...post,
       srcSet,
-      timestamp: post.updatedAt,
+      timestamp: post.updatedAt.toISOString(),
       pubDate: new Date(post.updatedAt).toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -68,7 +68,7 @@ export async function getPost(slug: string) {
   return {
     title,
     description,
-    timestamp: updatedAt,
+    timestamp: updatedAt.toISOString(),
     pubDate: new Date(updatedAt).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
