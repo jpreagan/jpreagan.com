@@ -13,18 +13,19 @@ export const loader: LoaderFunction = async ({ request }) => {
   if (!host) {
     throw new Error("Could not determine domain URL.");
   }
-  const protocol = host.includes("localhost") ? "http" : "https";
+  const protocol = host.startsWith("192.168.") ? "http" : "https";
   const domain = `${protocol}://${host}`;
   const blogUrl = `${domain}/blog`;
 
   const rssString = `
+    <?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0">
       <channel>
         <title>James Reagan's Blog</title>
         <link>${blogUrl}</link>
         <description>The James Reagan Blog</description>
         <language>en-us</language>
-        <ttl>10</ttl>
+        <ttl>40</ttl>
         ${posts
           .map((post) =>
             `
