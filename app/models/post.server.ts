@@ -26,7 +26,7 @@ export async function getPostListings(limit: number = 10) {
       ...post,
       srcSet,
       timestamp: post.updatedAt.toISOString(),
-      pubDate: new Date(post.updatedAt).toLocaleDateString("en-US", {
+      pubDate: post.updatedAt.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -69,7 +69,7 @@ export async function getPost(slug: string) {
     title,
     description,
     timestamp: updatedAt.toISOString(),
-    pubDate: new Date(updatedAt).toLocaleDateString("en-US", {
+    pubDate: updatedAt.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -80,4 +80,26 @@ export async function getPost(slug: string) {
     srcSet,
     code,
   };
+}
+
+export async function getRSSFeedData() {
+  const RSSFeedData = await db
+    .select({
+      title: posts.title,
+      description: posts.description,
+      updatedAt: posts.updatedAt,
+      slug: posts.slug,
+    })
+    .from(posts)
+    .orderBy(desc(posts.updatedAt));
+
+  return RSSFeedData.map((post) => {
+    console.log(post.updatedAt instanceof Date);
+    const pubDate = post.updatedAt.toUTCString();
+
+    return {
+      ...post,
+      pubDate,
+    };
+  });
 }
