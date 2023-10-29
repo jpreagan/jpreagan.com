@@ -1,8 +1,4 @@
-const links = [
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+import { pages } from "~/lib/consts";
 
 export default function Header() {
   return (
@@ -12,10 +8,10 @@ export default function Header() {
       </a>
       <nav className="site-navigation">
         <ul>
-          {links.map((link) => (
-            <li key={link.label}>
-              <a href={link.href} className="site-navigation-link">
-                {link.label}
+          {pages.map((pages) => (
+            <li key={pages.label}>
+              <a href={pages.href} className="site-navigation-link">
+                {pages.label}
               </a>
             </li>
           ))}

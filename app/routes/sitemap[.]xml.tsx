@@ -1,16 +1,12 @@
 import type { LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
+
 import { getPostSlugs } from "~/models/post.server";
+import { pages } from "~/lib/consts";
 
 export const loader: LoaderFunction = async ({
   request,
 }: LoaderFunctionArgs) => {
   const posts = await getPostSlugs();
-  const pages = [
-    { url: "/", priority: "0.6" },
-    { url: "/blog", priority: "0.6" },
-    { url: "/about", priority: "0.6" },
-    { url: "/contact", priority: "0.6" },
-  ];
 
   const host =
     request.headers.get("X-Forwarded-Host") ?? request.headers.get("host");
@@ -31,8 +27,8 @@ export const loader: LoaderFunction = async ({
         .map((page) =>
           `
             <url>
-              <loc>${domain}${page.url}</loc>
-              <priority>${page.priority}</priority>
+              <loc>${domain}${page.href}</loc>
+              <priority>0.6</priority>
             </url>
           `.trim()
         )
