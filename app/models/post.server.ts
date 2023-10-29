@@ -94,7 +94,6 @@ export async function getRSSFeedData() {
     .orderBy(desc(posts.updatedAt));
 
   return RSSFeedData.map((post) => {
-    console.log(post.updatedAt instanceof Date);
     const pubDate = post.updatedAt.toUTCString();
 
     return {
@@ -102,4 +101,13 @@ export async function getRSSFeedData() {
       pubDate,
     };
   });
+}
+
+export async function getPostSlugs() {
+  return await db
+    .select({
+      slug: posts.slug,
+    })
+    .from(posts)
+    .orderBy(desc(posts.updatedAt));
 }
