@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({
               <loc>${domain}${page.href}</loc>
               <priority>0.6</priority>
             </url>
-          `.trim()
+          `.trim(),
         )
         .join("")}
       ${posts
@@ -40,7 +40,7 @@ export const loader: LoaderFunction = async ({
               <loc>${domain}/blog/${post.slug}</loc>
               <priority>0.7</priority>
             </url>
-          `.trim()
+          `.trim(),
         )
         .join("")}
     </urlset>

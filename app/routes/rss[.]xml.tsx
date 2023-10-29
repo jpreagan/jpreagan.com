@@ -32,13 +32,13 @@ export const loader: LoaderFunction = async ({ request }) => {
             <item>
               <title><![CDATA[${escapeCdata(post.title)}]]></title>
               <description><![CDATA[${escapeCdata(
-                post.description
+                post.description,
               )}]]></description>
               <pubDate>${post.pubDate}</pubDate>
               <link>${blogUrl}/${post.slug}</link>
               <guid>${blogUrl}/${post.slug}</guid>
             </item>
-          `.trim()
+          `.trim(),
           )
           .join("\n")}
       </channel>
