@@ -1,9 +1,11 @@
+import { Link } from "@remix-run/react";
+
 import FormattedDate from "~/components/FormattedDate";
 import type { PostListing } from "~/lib/types";
 
 export default function PostCard({ post }: { post: PostListing }) {
   return (
-    <a href={`/blog/${post.slug}`} className="post-card-link">
+    <Link to={`/blog/${post.slug}`} className="post-card-link">
       <article>
         <figure className="post-card-image">
           <img
@@ -21,6 +23,6 @@ export default function PostCard({ post }: { post: PostListing }) {
         </p>
         <p className="post-card-description">{post.description}</p>
       </article>
-    </a>
+    </Link>
   );
 }

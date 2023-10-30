@@ -1,6 +1,6 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client/index.js";
 import React from "react";
 import FormattedDate from "~/components/FormattedDate";
@@ -83,7 +83,7 @@ export default function Post() {
           <p className="post-description">{description}</p>
 
           <div className="author-profile">
-            <a href="/about">
+            <Link to="/about">
               <img
                 src="/images/author_image.jpeg"
                 alt="James Reagan"
@@ -91,10 +91,10 @@ export default function Post() {
                 height={50}
                 width={50}
               />
-            </a>
+            </Link>
             <div className="author-info">
               <p className="author-name">
-                <a href="/about">James Reagan</a>
+                <Link to="/about">James Reagan</Link>
               </p>
               <p className="publication-date">
                 <FormattedDate timestamp={timestamp} pubDate={pubDate} />

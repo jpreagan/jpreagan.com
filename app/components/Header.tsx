@@ -1,18 +1,20 @@
+import { Link } from "@remix-run/react";
+
 import { pages } from "~/lib/consts";
 
 export default function Header() {
   return (
     <header className="site-header">
-      <a href="/" className="site-title">
+      <Link to="/" className="site-title">
         James Reagan
-      </a>
+      </Link>
       <nav className="site-navigation">
         <ul>
           {pages.map((pages) => (
             <li key={pages.label}>
-              <a href={pages.href} className="site-navigation-link">
+              <Link to={pages.href} className="site-navigation-link">
                 {pages.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

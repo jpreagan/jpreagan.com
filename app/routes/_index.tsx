@@ -1,6 +1,6 @@
 import type { MetaFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, Link } from "@remix-run/react";
 
 import { getPostListings } from "~/models/post.server";
 import type { Posts } from "~/lib/types";
@@ -53,9 +53,9 @@ export default function Index() {
           <p>💻 I&apos;m a software engineer 🌴 living in Hawai&#699;i.</p>
           <p>💕 Lover of 80&apos;s music and 🍜 udon noodles!</p>
           <p className="about-me">
-            <a href="/about">
+            <Link to="/about">
               💡 Learn more about me <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </p>
         </div>
       </section>
@@ -67,9 +67,9 @@ export default function Index() {
           ))}
         </div>
         <p className="see-all-posts">
-          <a href="/blog">
+          <Link to="/blog">
             📚 See all posts <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </p>
       </section>
       <section className="newsletter-signup">
