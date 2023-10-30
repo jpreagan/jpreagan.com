@@ -145,29 +145,20 @@ export default function AboutPage() {
                 </a>
                 <div>
                   <p className="track-name">
-                    <a
-                      href={track.trackUrl}
-                      className="text-gray-100 hover:underline"
-                    >
-                      {track.trackName}
-                    </a>
+                    <a href={track.trackUrl}>{track.trackName}</a>
                   </p>
                   <p>
                     {track.artists.map((artist, index) => (
                       <span key={artist.id} className="artist-name">
                         {index > 0 && ", "}
-                        <a href={artist.url} className="hover:underline">
-                          {artist.name}
-                        </a>
+                        <a href={artist.url}>{artist.name}</a>
                       </span>
                     ))}
                   </p>
                 </div>
               </div>
               <p className="album">
-                <a href={track.albumUrl} className="hover:underline">
-                  {track.album}
-                </a>
+                <a href={track.albumUrl}>{track.album}</a>
               </p>
               <p className="track-duration">{track.duration}</p>
             </article>
