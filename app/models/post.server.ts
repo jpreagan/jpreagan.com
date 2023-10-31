@@ -1,7 +1,7 @@
 import { eq, desc } from "drizzle-orm";
 
 import { db } from "~/db.server";
-import { posts } from "~/drizzle/schema.server";
+import { posts } from "~/schema.server";
 import { getImageUrls, compileMdx } from "~/lib/utils.server";
 import type { Post } from "~/lib/types";
 

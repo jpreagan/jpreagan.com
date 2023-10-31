@@ -2,7 +2,7 @@ import type { LoaderFunctionArgs } from "@remix-run/node";
 import { sql } from "drizzle-orm";
 
 import { db } from "~/db.server";
-import { posts } from "~/drizzle/schema.server";
+import { posts } from "~/schema.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const host =
