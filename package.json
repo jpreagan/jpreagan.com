@@ -10,9 +10,8 @@
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
     "format": "prettier --write .",
-    "generate": "drizzle-kit generate:mysql --out ./app/drizzle/migrations --breakpoints --schema ./app/drizzle/schema.server.ts",
-    "migrate": "tsx app/drizzle/migrate.server",
-    "db:seed": "tsx app/drizzle/seed.server"
+    "db:push": "drizzle-kit push:mysql --config ./drizzle.config.ts",
+    "db:seed": "tsx drizzle/seed.ts"
   },
   "dependencies": {
     "@planetscale/database": "^1.11.0",
