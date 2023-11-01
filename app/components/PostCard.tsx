@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 
 import FormattedDate from "~/components/FormattedDate";
-import type { PostListing } from "~/lib/types";
+import type { PostListing } from "~/types";
 
 export default function PostCard({ post }: { post: PostListing }) {
   return (

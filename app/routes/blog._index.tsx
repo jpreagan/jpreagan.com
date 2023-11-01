@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import { getPostListings } from "~/models/post.server";
 import PostCard from "~/components/PostCard";
-import type { Posts } from "~/lib/types";
+import type { Posts } from "~/types";
 
 export const meta: MetaFunction = () => {
   return [

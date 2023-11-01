@@ -2,8 +2,8 @@ import { eq, desc } from "drizzle-orm";
 
 import { db } from "~/db.server";
 import { posts } from "~/schema.server";
-import { getImageUrls, compileMdx } from "~/lib/utils.server";
-import type { Post } from "~/lib/types";
+import { getImageUrls, compileMdx } from "~/utils.server";
+import type { Post } from "~/types";
 
 export async function getPostListings(limit: number = 10) {
   const postListings = await db

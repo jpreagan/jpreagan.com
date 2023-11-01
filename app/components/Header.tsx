@@ -1,6 +1,6 @@
 import { Link } from "@remix-run/react";
 
-import { pages } from "~/lib/consts";
+import { pages } from "~/consts";
 
 export default function Header() {
   return (

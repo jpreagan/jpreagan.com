@@ -1,7 +1,7 @@
 import type { LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
 
 import { getPostSlugs } from "~/models/post.server";
-import { pages } from "~/lib/consts";
+import { pages } from "~/consts";
 
 export const loader: LoaderFunction = async ({
   request,

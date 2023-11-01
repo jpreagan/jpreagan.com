@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 
 import { getPostListings } from "~/models/post.server";
-import type { Posts } from "~/lib/types";
+import type { Posts } from "~/types";
 import PostCard from "~/components/PostCard";
 
 export const meta: MetaFunction = () => {
