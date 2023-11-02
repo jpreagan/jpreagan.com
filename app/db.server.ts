@@ -1,13 +1,11 @@
 import { drizzle } from "drizzle-orm/planetscale-serverless";
 import { connect } from "@planetscale/database";
+import invariant from "tiny-invariant";
 
-const url = process.env.DATABASE_URL;
-if (url === undefined) {
-  throw new Error("DATABASE_URL is not defined");
-}
+import * as schema from "~/schema.server";
 
-const connection = connect({
-  url: process.env["DATABASE_URL"],
-});
+invariant(process.env.DATABASE_URL, "DATABASE_URL must be set");
 
-export const db = drizzle(connection);
+const connection = connect({ url: process.env.DATABASE_URL });
+
+export const db = drizzle(connection, { schema });
