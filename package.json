@@ -19,6 +19,7 @@
     "@remix-run/node": "^2.1.0",
     "@remix-run/react": "^2.1.0",
     "@remix-run/serve": "^2.1.0",
+    "bcryptjs": "^2.4.3",
     "cloudinary-build-url": "^0.2.4",
     "drizzle-orm": "^0.28.6",
     "esbuild": "^0.19.5",
@@ -26,6 +27,7 @@
     "mdx-bundler": "^9.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tiny-invariant": "^1.3.1",
     "uuid": "^9.0.1",
     "validator": "^13.11.0"
   },
@@ -33,6 +35,7 @@
     "@flydotio/dockerfile": "^0.4.10",
     "@remix-run/dev": "^2.1.0",
     "@remix-run/eslint-config": "^2.1.0",
+    "@types/bcryptjs": "^2.4.5",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/spotify-api": "^0.0.24",
