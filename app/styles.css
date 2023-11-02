@@ -131,6 +131,10 @@ button:disabled {
   font-weight: 700;
 }
 
+.error {
+  color: var(--color-kohbai);
+}
+
 /* Site header */
 .site-header {
   display: flex;
@@ -724,10 +728,6 @@ button:disabled {
   margin: 0 0 0.25rem;
 }
 
-.contact-form .error {
-  color: var(--color-kohbai);
-}
-
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -978,5 +978,46 @@ button:disabled {
   .content > :is(p, ul, ol) {
     font-size: 1.125rem;
     line-height: 1.7778;
+  }
+}
+
+/* Login page */
+.login-section {
+  width: 100%;
+  max-width: 28rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-section input {
+  width: 100%;
+}
+
+.login-form > * + * {
+  margin-top: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.login-form .error {
+  margin-top: 0.25rem;
+}
+
+@media (width >= 768px) {
+  .login-section {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .login-section {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
   }
 }
