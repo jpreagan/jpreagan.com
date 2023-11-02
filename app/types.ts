@@ -1,3 +1,5 @@
+import type { posts, users, passwords } from "~/schema.server";
+
 export interface Artist {
   url: string;
   id: string;
@@ -15,23 +17,19 @@ export interface Track {
   duration: string;
 }
 
-export interface Post {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-  updatedAt: Date;
-  coverImage: string;
-  coverImageAlt: string;
-  content: string;
-}
+export type Post = typeof posts.$inferSelect;
 
-export interface PostListing
-  extends Omit<Post, "id" | "createdAt" | "updatedAt" | "content"> {
+export type PostListing = Omit<
+  Post,
+  "id" | "createdAt" | "updatedAt" | "content"
+> & {
   srcSet: string;
   timestamp: string;
   pubDate: string;
-}
+};
 
-export interface Posts extends Array<PostListing> {}
+export type PostListings = PostListing[];
+
+export type User = typeof users.$inferSelect;
+
+export type Password = typeof passwords.$inferSelect;

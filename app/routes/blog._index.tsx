@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import { getPostListings } from "~/models/post.server";
 import PostCard from "~/components/PostCard";
-import type { Posts } from "~/types";
+import type { PostListings } from "~/types";
 
 export const meta: MetaFunction = () => {
   return [
@@ -19,11 +19,11 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async () => {
   const posts = await getPostListings();
 
-  return json<Posts>(posts);
+  return json<PostListings>(posts);
 };
 
 export default function BlogPage() {
-  const posts = useLoaderData<Posts>();
+  const posts = useLoaderData<PostListings>();
 
   return (
     <>

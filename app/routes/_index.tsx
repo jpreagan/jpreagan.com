@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 
 import { getPostListings } from "~/models/post.server";
-import type { Posts } from "~/types";
+import type { PostListings } from "~/types";
 import PostCard from "~/components/PostCard";
 
 export const meta: MetaFunction = () => {
@@ -21,11 +21,11 @@ export const loader: LoaderFunction = async () => {
   const limit = 3;
   const recentPosts = await getPostListings(limit);
 
-  return json<Posts>(recentPosts);
+  return json<PostListings>(recentPosts);
 };
 
 export default function Index() {
-  const recentPosts = useLoaderData<Posts>();
+  const recentPosts = useLoaderData<PostListings>();
 
   return (
     <>
