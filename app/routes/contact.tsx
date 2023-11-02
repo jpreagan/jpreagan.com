@@ -1,7 +1,8 @@
 import type { MetaFunction, ActionFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, useActionData, useNavigation } from "@remix-run/react";
-import validator from "validator";
+
+import { validateEmail } from "~/utils.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -30,7 +31,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const errors: Errors = {
     name: name ? null : "Name is required",
     email: email
-      ? validator.isEmail(email)
+      ? validateEmail(email)
         ? null
         : "Invalid email format"
       : "Email is required",
