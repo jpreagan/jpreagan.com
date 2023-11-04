@@ -1,13 +1,12 @@
 :root {
-  --color-gofun: #fffffb;
-  --color-kuwazome: #64363c;
-  --color-kurobeni: #3f2b36;
+  --color-kuro: #080808;
+  --color-haizakurah: #d7c4bb;
+  --color-sakura: #fedfe1;
   --color-sangosyu: #f17c67;
-  --color-namari: #787878;
-  --color-wakatake: #5dac81;
-  --color-tonocha: #4f726c;
-  --color-onandocha: #465d4c;
-  --color-shironezumi: #bdc0ba;
+  --color-umenezumi: #9e7a7a;
+  --color-mizu: #81c7d4;
+  --color-araisyu: #fb966e;
+  --color-shikancha: #b55d4c;
   --color-fujimurasaki: #8a6bbe;
   --color-usu: #b28fce;
   --color-kohbai: #e16b8c;
@@ -15,6 +14,7 @@
     blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, "Noto Sans",
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
+  color-scheme: dark;
 }
 
 @font-face {
@@ -40,8 +40,8 @@
 }
 
 html {
-  background-color: var(--color-gofun);
-  color: var(--color-kuwazome);
+  background-color: var(--color-kuro);
+  color: var(--color-haizakurah);
   font-family: var(--font-sans);
   line-height: 1.5;
 }
@@ -59,8 +59,8 @@ textarea {
   margin: 0;
   appearance: none;
   background-color: var(--color-gofun);
-  box-shadow: inset 0 0 0 1px var(--color-kuwazome);
-  color: var(--color-kuwazome);
+  box-shadow: inset 0 0 0 1px var(--color-haizakurah);
+  color: var(--color-haizakurah);
   font-family: inherit;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -69,7 +69,7 @@ textarea {
 input::placeholder,
 select::placeholder,
 textarea::placeholder {
-  color: var(--color-kuwazome);
+  color: var(--color-haizakurah);
   opacity: 0.8;
 }
 
@@ -78,8 +78,8 @@ button {
   border: none;
   border-radius: 0.25rem;
   appearance: none;
-  background-color: var(--color-wakatake);
-  color: var(--color-gofun);
+  background-color: var(--color-sangosyu);
+  color: var(--color-kuro);
   cursor: pointer;
   font-size: 1rem;
   line-height: 1.5;
@@ -88,21 +88,21 @@ button {
 }
 
 button:hover {
-  background-color: var(--color-tonocha);
+  background-color: var(--color-araisyu);
 }
 
 button:active {
-  background-color: var(--color-onandocha);
+  background-color: var(--color-shikancha);
 }
 
 button:disabled {
-  background-color: var(--color-shironezumi);
+  background-color: #b19693;
   cursor: not-allowed;
 }
 
 .about-section a[href],
 .contact-section a[href] {
-  color: var(--color-fujimurasaki);
+  color: var(--color-mizu);
 }
 
 /* Utilities */
@@ -147,7 +147,7 @@ button:disabled {
 }
 
 .site-title {
-  color: var(--color-kurobeni);
+  color: var(--color-sakura);
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.75rem;
@@ -208,7 +208,7 @@ button:disabled {
   max-width: 80rem;
   padding: 0 1rem;
   margin: 4rem auto 2rem;
-  color: var(--color-namari);
+  color: var(--color-umenezumi);
   font-size: 0.9375rem;
   line-height: 1.25rem;
 }
@@ -274,7 +274,7 @@ button:disabled {
 .site-headline {
   max-width: 35.1875rem;
   margin: 0 auto;
-  color: var(--color-kurobeni);
+  color: var(--color-sakura);
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -376,7 +376,7 @@ button:disabled {
 
 .about-me a,
 .see-all-posts a {
-  color: var(--color-kurobeni);
+  color: var(--color-sakura);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.75rem;
@@ -438,7 +438,7 @@ button:disabled {
 }
 
 .newsletter-text p {
-  color: var(--color-kurobeni);
+  color: var(--color-sakura);
 }
 
 .newsletter-form {
@@ -802,14 +802,14 @@ button:disabled {
 
 .post-card-title {
   margin: 1rem 0;
-  color: var(--color-kurobeni);
+  color: var(--color-sangosyu);
   font-size: 1.875rem;
   font-weight: 700;
   line-height: 2.25rem;
 }
 
 .post-card-publication-date {
-  color: var(--color-namari);
+  color: var(--color-umenezumi);
 }
 
 .post-card-publication-date,
@@ -887,7 +887,7 @@ button:disabled {
 
 .author-name {
   margin: 0;
-  color: var(--color-kurobeni);
+  color: var(--color-sakura);
   font-size: 1rem;
   font-weight: 700;
 }
@@ -899,7 +899,7 @@ button:disabled {
 
 .publication-date {
   margin: 0;
-  color: var(--color-namari);
+  color: var(--color-umenezumi);
   font-size: 0.9375rem;
 }
 
@@ -931,7 +931,7 @@ button:disabled {
 }
 
 .content a[href] {
-  color: var(--color-fujimurasaki);
+  color: var(--color-mizu);
 }
 
 .content > :is(p, ul, ol) {
