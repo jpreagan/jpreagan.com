@@ -69,7 +69,7 @@ textarea {
 input::placeholder,
 select::placeholder,
 textarea::placeholder {
-  color: var(--color-haizakurah);
+  color: var(--color-umenezumi);
   opacity: 0.8;
 }
 
