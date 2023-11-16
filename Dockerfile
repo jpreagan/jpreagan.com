@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1
 
-FROM node:18-bullseye-slim as base
+FROM node:20-bullseye-slim as base
 
 LABEL fly_launch_runtime="Remix"
 
