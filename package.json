@@ -20,7 +20,7 @@
     "@remix-run/serve": "^2.1.0",
     "bcryptjs": "^2.4.3",
     "cloudinary-build-url": "^0.2.4",
-    "drizzle-orm": "^0.28.6",
+    "drizzle-orm": "^0.29.0",
     "esbuild": "^0.19.5",
     "isbot": "^3.6.8",
     "mdx-bundler": "^9.2.1",
@@ -40,7 +40,7 @@
     "@types/spotify-api": "^0.0.25",
     "@types/uuid": "^9.0.6",
     "@types/validator": "^13.11.5",
-    "drizzle-kit": "^0.19.13",
+    "drizzle-kit": "^0.20.2",
     "eslint": "^8.38.0",
     "prettier": "^3.0.3",
     "typescript": "^5.1.6"
