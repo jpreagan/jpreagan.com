@@ -38,7 +38,7 @@
     "@types/bcryptjs": "^2.4.5",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
-    "@types/spotify-api": "^0.0.24",
+    "@types/spotify-api": "^0.0.25",
     "@types/uuid": "^9.0.6",
     "@types/validator": "^13.11.5",
     "drizzle-kit": "^0.19.13",
