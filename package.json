@@ -10,8 +10,7 @@
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
     "format": "prettier --write .",
-    "db:push": "drizzle-kit push:mysql --config ./drizzle.config.ts",
-    "db:seed": "tsx drizzle/seed.ts"
+    "db:push": "drizzle-kit push:mysql --config ./drizzle.config.ts"
   },
   "dependencies": {
     "@planetscale/database": "^1.11.0",
@@ -44,7 +43,6 @@
     "drizzle-kit": "^0.19.13",
     "eslint": "^8.38.0",
     "prettier": "^3.0.3",
-    "tsx": "^3.14.0",
     "typescript": "^5.1.6"
   },
   "engines": {
