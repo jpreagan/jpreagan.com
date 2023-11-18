@@ -66,7 +66,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return json({ success: true, errors });
   }
 
-  return json({ success: false, errors });
+  return null;
 };
 
 export default function ContactPage() {
@@ -77,7 +77,7 @@ export default function ContactPage() {
 
   let state: "idle" | "success" | "error" | "submitting" = "idle";
 
-  if (navigation.state === "submitting" || navigation.state === "loading") {
+  if (navigation.state === "submitting") {
     state = "submitting";
   } else if (actionData?.success) {
     state = "success";
