@@ -90,15 +90,15 @@ export default function ContactPage() {
       <h1 className="page-title">Contact</h1>
       <section className="contact-section">
         {state === "success" ? (
-          <div className="contact-success">
+          <>
             <p>
-              Your message has been sent successfully! Thank you for reaching
+              ✅ Your message has been sent successfully! Thank you for reaching
               out, and I'll get back to you as soon as possible.
             </p>
             <p>
               Return <Link to="/">home</Link>.
             </p>
-          </div>
+          </>
         ) : (
           <>
             <p>Get in touch with me. How may I help you?</p>
