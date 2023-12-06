@@ -1,10 +1,9 @@
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
 import { getPostListings } from "~/models/post.server";
 import PostCard from "~/components/PostCard";
-import type { PostListings } from "~/types";
 
 export const meta: MetaFunction = () => {
   return [
@@ -16,14 +15,14 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const posts = await getPostListings();
 
-  return json<PostListings>(posts);
+  return json({ posts });
 };
 
 export default function BlogPage() {
-  const posts = useLoaderData<PostListings>();
+  const { posts } = useLoaderData<typeof loader>();
 
   return (
     <>

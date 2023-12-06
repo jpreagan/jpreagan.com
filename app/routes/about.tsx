@@ -1,7 +1,6 @@
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import type { Track } from "~/types";
 
 export const meta: MetaFunction = () => {
   return [
@@ -14,7 +13,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   const client_id = process.env.SPOTIFY_CLIENT_ID;
   const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
   const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
@@ -91,10 +90,8 @@ export const loader: LoaderFunction = async () => {
   }
 };
 
-type LoaderData = { tracks: Track[] };
-
 export default function AboutPage() {
-  const { tracks } = useLoaderData<LoaderData>();
+  const { tracks } = useLoaderData<typeof loader>();
 
   return (
     <>

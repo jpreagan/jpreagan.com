@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client/index.js";
@@ -7,71 +7,33 @@ import FormattedDate from "~/components/FormattedDate";
 
 import { getPost } from "~/models/post.server";
 
-type LoaderData = {
-  title: string;
-  description: string;
-  timestamp: string;
-  pubDate: string;
-  coverImage: string;
-  coverImageAlt: string;
-  srcSet: string;
-  code: string;
-};
-
-export const meta: MetaFunction = ({ data }) => {
-  const { title, description, coverImage } = data as LoaderData;
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
-    { title },
-    { name: "description", content: description },
-    { property: "og:title", content: title },
-    { property: "og:description", content: description },
-    { property: "og:image", content: coverImage },
+    { title: data?.post.title },
+    { name: "description", content: data?.post.description },
+    { property: "og:title", content: data?.post.title },
+    { property: "og:description", content: data?.post.description },
+    { property: "og:image", content: data?.post.coverImage },
     { property: "og:type", content: "article" },
     { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: title },
-    { name: "twitter:description", content: description },
-    { name: "twitter:image", content: coverImage },
+    { name: "twitter:title", content: data?.post.title },
+    { name: "twitter:description", content: data?.post.description },
+    { name: "twitter:image", content: data?.post.coverImage },
   ];
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
   if (!slug) throw new Error("Missing slug");
 
-  const {
-    title,
-    description,
-    timestamp,
-    pubDate,
-    coverImage,
-    coverImageAlt,
-    srcSet,
-    code,
-  } = await getPost(slug);
+  const post = await getPost(slug);
+  const { code } = post;
 
-  return json<LoaderData>({
-    title,
-    description,
-    timestamp,
-    pubDate,
-    coverImage,
-    coverImageAlt,
-    srcSet,
-    code,
-  });
+  return json({ post, code });
 };
 
 export default function Post() {
-  const {
-    title,
-    description,
-    timestamp,
-    pubDate,
-    coverImage,
-    coverImageAlt,
-    srcSet,
-    code,
-  } = useLoaderData<LoaderData>();
+  const { post, code } = useLoaderData<typeof loader>();
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
@@ -79,8 +41,8 @@ export default function Post() {
     <article>
       <header className="post-header">
         <div className="post-meta">
-          <h1 className="post-title">{title}</h1>
-          <p className="post-description">{description}</p>
+          <h1 className="post-title">{post.title}</h1>
+          <p className="post-description">{post.description}</p>
 
           <div className="author-profile">
             <Link to="/about">
@@ -97,19 +59,22 @@ export default function Post() {
                 <Link to="/about">James Reagan</Link>
               </p>
               <p className="publication-date">
-                <FormattedDate timestamp={timestamp} pubDate={pubDate} />
+                <FormattedDate
+                  timestamp={post.timestamp}
+                  pubDate={post.pubDate}
+                />
               </p>
             </div>
           </div>
         </div>
         <figure className="cover-image">
           <img
-            src={coverImage}
-            srcSet={srcSet}
+            src={post.coverImage}
+            srcSet={post.srcSet}
             sizes="(max-width: 1248px) 100vw, 1248px"
             width={1248}
             height={653}
-            alt={coverImageAlt}
+            alt={post.coverImageAlt}
           />
         </figure>
       </header>
