@@ -1,6 +1,9 @@
+import validator from "validator";
 import { buildImageUrl } from "cloudinary-build-url";
 import { bundleMDX } from "mdx-bundler";
-import validator from "validator";
+import rehypePrettyCode, {
+  type Options as CodeHighlightOptions,
+} from "rehype-pretty-code";
 
 const DEFAULT_REDIRECT = "/";
 
@@ -42,6 +45,20 @@ export const getImageUrls = (imageUrl: string, widths: number[]): string => {
 };
 
 export async function compileMdx(source: string) {
-  const { code } = await bundleMDX({ source });
+  const codeHighlightOptions: CodeHighlightOptions = {
+    theme: "material-theme-darker",
+  };
+
+  const { code } = await bundleMDX({
+    source,
+    mdxOptions(options) {
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        [rehypePrettyCode, codeHighlightOptions],
+      ];
+
+      return options;
+    },
+  });
   return code;
 }
