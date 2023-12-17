@@ -17,6 +17,11 @@ export const meta: MetaFunction = () => {
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
 
+  const honeypot = formData.get("honeypot") as string;
+  if (honeypot) {
+    // This was probably a bot. Ignore the submission.
+    return null;
+  }
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const subject = formData.get("subject") as string;
@@ -113,6 +118,10 @@ export default function ContactPage() {
                 {errors?.email && (
                   <span className="error">* {errors.email}</span>
                 )}
+              </label>
+              <label className="hidden" htmlFor="honeypot">
+                Don't fill this out if you're human:
+                <input id="honeypot" type="text" name="honeypot" />
               </label>
               <input
                 id="email"
