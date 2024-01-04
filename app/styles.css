@@ -978,11 +978,20 @@ button:disabled {
   padding: 1rem;
   border-radius: 0.375rem;
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.8;
   overflow-x: auto;
 }
+
+/* Fixes iOS font sizing anomaly */
+code {
+    text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
 
 @media (width >= 1024px) {
   .post-header {
