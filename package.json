@@ -1,0 +1,28 @@
+{
+	"name": "jpreagan.com",
+	"private": true,
+	"version": "0.0.1",
+	"description": "My personal website",
+	"author": "James Reagan",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"WordPress",
+		"theme"
+	],
+	"homepage": "https://jpreagan.com",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jpreagan/jpreagan.com.git"
+	},
+	"bugs": {
+		"url": "https://github.com/jpreagan/jpreagan.com/issues"
+	},
+	"devDependencies": {
+		"@wordpress/stylelint-config": "^22.1.0",
+		"stylelint": "^14.10.0"
+	},
+	"scripts": {
+		"lint:css": "stylelint **/*.css -i .gitignore",
+		"lint:css:fix": "stylelint **/*.css -i .gitignore --fix"
+	}
+}

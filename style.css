@@ -1,0 +1,37 @@
+/*
+Theme Name: jpreagan.com
+Theme URI: https://jpreagan.com
+Author: James Reagan
+Author URI: https://jpreagan.com
+Description: Theme for jpreagan.com
+Requires at least: 6.4
+Tested up to: 6.4
+Requires PHP: 7.0
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: jpreagan
+Tags: block-patterns, full-site-editing
+*/
+
+code:not(pre code) {
+	font-size: 15px;
+	background-color: #1d2021;
+	padding: 0.2em 0.4em;
+	border-radius: 6px;
+}
+
+.wp-block-code code {
+	font-size: 15px;
+	padding: 1rem;
+	border-radius: 0.375rem;
+	background-color: #1d2021;
+}
+
+.wp-site-blocks > footer a {
+	text-decoration: none;
+}
+
+.wp-site-blocks > footer a:hover {
+	text-decoration: underline;
+}
