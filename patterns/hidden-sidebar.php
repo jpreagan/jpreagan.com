@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: Sidebar
  * Slug: jpreagan/hidden-sidebar
@@ -24,7 +25,7 @@
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"backgroundColor":"contrast","className":"is-style-wide"} -->
-	<hr class="wp-block-separator has-text-color has-contrast-color has-alpha-channel-opacity has-contrast-background-color has-background is-style-wide"/>
+	<hr class="wp-block-separator has-text-color has-contrast-color has-alpha-channel-opacity has-contrast-background-color has-background is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"style":{"spacing":{"blockGap":"16px"}},"layout":{"type":"constrained"}} -->
@@ -38,7 +39,7 @@
 	<!-- /wp:group -->
 
 	<!-- wp:separator {"backgroundColor":"contrast","className":"is-style-wide"} -->
-	<hr class="wp-block-separator has-text-color has-contrast-color has-alpha-channel-opacity has-contrast-background-color has-background is-style-wide"/>
+	<hr class="wp-block-separator has-text-color has-contrast-color has-alpha-channel-opacity has-contrast-background-color has-background is-style-wide" />
 	<!-- /wp:separator -->
 
 	<!-- wp:group {"style":{"spacing":{"blockGap":"16px"}},"layout":{"type":"constrained"}} -->
@@ -50,7 +51,7 @@
 		<!-- wp:social-links {"iconColor":"contrast","iconColorValue":"#d7c4bb","openInNewTab":true,"showLabels":true,"className":"has-icon-color is-style-logos-only","layout":{"type":"flex","flexWrap":"nowrap","orientation":"vertical"}} -->
 		<ul class="wp-block-social-links has-icon-color is-style-logos-only">
 			<!-- wp:social-link {"url":"https://github.com/jpreagan","service":"github"} /-->
-			<!-- wp:social-link {"url":"https://twitter.com/jpreagan_","service":"twitter"} /-->
+			<!-- wp:social-link {"url":"https://twitter.com/jpreagan_","service":"x"} /-->
 			<!-- wp:social-link {"url":"https://linkedin.com/in/jpreagan","service":"linkedin"} /-->
 			<!-- wp:social-link {"url":"https://www.youtube.com/channel/UCFBAMSjeJOmQ-gLrqczjRbg","service":"youtube"} /-->
 		</ul>
