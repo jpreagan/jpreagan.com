@@ -1,5 +1,5 @@
 /*
-Theme Name: jpreagan.com
+Theme Name: jpreagan
 Theme URI: https://jpreagan.com
 Author: James Reagan
 Author URI: https://jpreagan.com
@@ -14,15 +14,24 @@ Text Domain: jpreagan
 Tags: block-patterns, full-site-editing
 */
 
+.single h2,
+.single h3,
+.single h4,
+.single h5,
+.single h6 {
+	color: var(--wp--preset--color--contrast);
+}
+
 code:not(pre code) {
 	font-size: 15px;
 	background-color: #1d2021;
+	font-family: var(--wp--preset--font-family--monospace);
 	padding: 0.2em 0.4em;
 	border-radius: 6px;
 }
 
 .wp-block-code code {
-	font-size: 15px;
+	font-size: 13.5px;
 	padding: 1rem;
 	border-radius: 0.375rem;
 	background-color: #1d2021;
