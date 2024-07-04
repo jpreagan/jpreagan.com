@@ -1,4 +1,5 @@
 <?php
+
 /**
  * jpreagan functions and definitions
  *
@@ -147,7 +148,7 @@ endif;
 add_action( 'init', 'jpreagan_block_styles' );
 
 function jpreagan_set_syntax_highlighting_style() {
-	return 'gruvbox-dark';
+	return 'tomorrow-night';
 }
 
 add_filter( 'syntax_highlighting_code_block_style', 'jpreagan_set_syntax_highlighting_style' );
