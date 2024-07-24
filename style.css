@@ -8,7 +8,14 @@
 }
 
 .wp-block-post-comments-form textarea {
-	color: var(--wp--preset--color--contrast);
 	background-color: rgb(26, 27, 38);
+	color: rgb(138, 142, 157);
 	border: 0;
+}
+
+code:not(pre code) {
+	background-color: rgb(46, 46, 50);
+	font-family: var(--wp--preset--font-family--monospace);
+	padding: 2.5px 5px;
+	border-radius: 6px;
 }

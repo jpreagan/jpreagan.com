@@ -15,7 +15,7 @@
 					"slug": "base-2"
 				},
 				{
-					"color": "#a9b1d6",
+					"color": "#787c99",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
@@ -23,6 +23,11 @@
 					"color": "#787c99",
 					"name": "Contrast / Two",
 					"slug": "contrast-2"
+				},
+				{
+					"color": "#bbc2e0",
+					"name": "Contrast / Three",
+					"slug": "contrast-3"
 				},
 				{
 					"color": "#f7768e",
@@ -46,7 +51,7 @@
 				"elements": {
 					"link": {
 						"color": {
-							"text": "var(--wp--preset--color--contrast)"
+							"text": "var(--wp--preset--color--contrast-3)"
 						}
 					}
 				},
@@ -70,6 +75,9 @@
 				}
 			},
 			"core/heading": {
+				"color": {
+					"text": "var(--wp--preset--color--contrast-3)"
+				},
 				"typography": {
 					"fontWeight": "700"
 				}
