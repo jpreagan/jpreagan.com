@@ -1,7 +1,18 @@
-/**
- * Theme Name: jpreagan
- * Template:   twentytwentyfour
- */
+/*
+Theme Name: jpreagan
+Theme URI: https://jpreagan.com
+Author: James Reagan
+Author URI: https://jpreagan.com
+Description: A child theme of Twenty Twenty-Four.
+Requires at least: 6.4
+Tested up to: 6.6
+Requires PHP: 7.0
+Version: 1.0.9
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Template: twentytwentyfour
+Text Domain: jpreagan
+*/
 
 :root {
 	color-scheme: dark;
@@ -13,7 +24,8 @@
 	border: 0;
 }
 
-code:not(pre code) {
+code:not(pre code),
+kbd {
 	background-color: rgb(46, 46, 50);
 	font-family: var(--wp--preset--font-family--monospace);
 	padding: 2.5px 5px;
