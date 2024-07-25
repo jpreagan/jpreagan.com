@@ -1,42 +1,42 @@
 {
-	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
-	"version": 3,
+	"$schema": "https://schemas.wp.org/wp/6.5/theme.json",
+	"version": 2,
 	"settings": {
 		"color": {
 			"palette": [
 				{
-					"color": "#16161e",
-					"name": "Base",
+					"color": "#141414",
+					"name": "Kuro",
 					"slug": "base"
 				},
 				{
-					"color": "#ffffff",
-					"name": "Base / Two",
+					"color": "#434343",
+					"name": "Sumi",
 					"slug": "base-2"
 				},
 				{
-					"color": "#787c99",
-					"name": "Contrast",
+					"color": "#d7c4bb",
+					"name": "Haizakurah",
 					"slug": "contrast"
 				},
 				{
-					"color": "#787c99",
-					"name": "Contrast / Two",
+					"color": "#9e7a7a",
+					"name": "Umenezumi",
 					"slug": "contrast-2"
 				},
 				{
-					"color": "#bbc2e0",
-					"name": "Contrast / Three",
+					"color": "#fedfe1",
+					"name": "Sakura",
 					"slug": "contrast-3"
 				},
 				{
-					"color": "#f7768e",
-					"name": "Accent",
+					"color": "#f17c67",
+					"name": "Sangosyu",
 					"slug": "accent"
 				},
 				{
-					"color": "#7aa2f7",
-					"name": "Accent / Two",
+					"color": "#81c7d4",
+					"name": "Mizu",
 					"slug": "accent-2"
 				}
 			]
