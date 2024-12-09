@@ -43,6 +43,124 @@
 		},
 		"layout": {
 			"contentSize": "680px"
+		},
+		"typography": {
+			"fluid": false,
+			"fontFamilies": [
+				{
+					"fontFace": [
+						{
+							"fontFamily": "Portada",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": ["file:./fonts/Portada-Regular.woff2"]
+						},
+						{
+							"fontFamily": "Portada",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": ["file:./fonts/Portada-Bold.woff2"]
+						},
+						{
+							"fontFamily": "Portada",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "100",
+							"src": ["file:./fonts/Portada-Thin.woff2"]
+						}
+					],
+					"fontFamily": "\"Portada\", sans-serif",
+					"name": "Portada",
+					"slug": "body"
+				},
+				{
+					"fontFace": [
+						{
+							"fontFamily": "ProximaVaraRoman",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"src": ["file:./fonts/ProximaVaraRoman.woff2"]
+						}
+					],
+					"fontFamily": "\"ProximaVaraRoman\", sans-serif",
+					"name": "ProximaVaraRoman",
+					"slug": "heading"
+				},
+				{
+					"fontFace": [
+						{
+							"fontFamily": "JetBrainsMono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"src": ["file:./fonts/JetBrainsMono-Regular.woff2"]
+						},
+						{
+							"fontFamily": "JetBrainsMono",
+							"fontStretch": "normal",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"src": ["file:./fonts/JetBrainsMono-Bold.woff2"]
+						}
+					],
+					"fontFamily": "\"JetBrainsMono\", monospace",
+					"name": "JetBrainsMono",
+					"slug": "monospace"
+				}
+			],
+			"fontSizes": [
+				{
+					"fluid": false,
+					"name": "Small",
+					"size": "0.9rem",
+					"slug": "small"
+				},
+				{
+					"fluid": false,
+					"name": "Medium",
+					"size": "1.05rem",
+					"slug": "medium"
+				},
+				{
+					"fluid": {
+						"min": "1.6rem",
+						"max": "2.5rem"
+					},
+					"name": "Large",
+					"size": "2.5rem",
+					"slug": "large"
+				},
+				{
+					"fluid": {
+						"min": "1.6rem",
+						"max": "2.5rem"
+					},
+					"name": "Extra Large",
+					"size": "2.5rem",
+					"slug": "x-large"
+				},
+				{
+					"fluid": {
+						"min": "1.39rem",
+						"max": "1.85rem"
+					},
+					"name": "Heading 2",
+					"size": "1.85rem",
+					"slug": "heading-2"
+				},
+				{
+					"fluid": {
+						"min": "1.2rem",
+						"max": "1.39rem"
+					},
+					"name": "Heading 3",
+					"size": "1.39rem",
+					"slug": "heading-3"
+				}
+			]
 		}
 	},
 	"styles": {
@@ -56,6 +174,8 @@
 					}
 				},
 				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--heading)",
+					"fontSize": "1.6rem",
 					"fontWeight": "700"
 				}
 			},
@@ -102,6 +222,16 @@
 			}
 		},
 		"elements": {
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--heading-2)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--heading-3)"
+				}
+			},
 			"link": {
 				"color": {
 					"text": "var(--wp--preset--color--accent-2)"
