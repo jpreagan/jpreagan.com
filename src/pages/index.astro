@@ -1,0 +1,55 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { AUTHOR_NAME, SITE_DESCRIPTION } from "../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={AUTHOR_NAME} description={SITE_DESCRIPTION} />
+    <style>
+      .post-entry {
+        display: grid;
+        grid-template-columns: 10rem 1fr;
+        align-items: baseline;
+        margin-bottom: 1rem;
+      }
+
+      .post-entry a {
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+
+      @media (max-width: 640px) {
+        .post-entry {
+          display: block;
+          margin-bottom: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        {
+          posts.map((post) => (
+            <div class="post-entry">
+              <FormattedDate date={post.data.pubDate} />
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            </div>
+          ))
+        }
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

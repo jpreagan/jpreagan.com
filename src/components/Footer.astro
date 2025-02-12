@@ -1,0 +1,24 @@
+---
+const today = new Date();
+import { AUTHOR_NAME } from "../consts";
+---
+
+<footer>
+  <p>&copy; {today.getFullYear()} <a href="/">{AUTHOR_NAME}</a></p>
+</footer>
+<style>
+  footer {
+    margin: 0 auto;
+    padding: 2rem 2rem 0;
+    max-width: 46rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>

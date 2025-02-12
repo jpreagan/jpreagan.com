@@ -1,0 +1,50 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { AUTHOR_NAME } from "../consts";
+---
+
+<header>
+  <nav>
+    <h2><a href="/">{AUTHOR_NAME}</a></h2>
+    <div class="internal-links">
+      <HeaderLink href="/">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+  </nav>
+</header>
+<style>
+  header {
+    margin: 0 auto;
+    padding: 2rem 2rem 0;
+    max-width: 46rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-style: normal;
+  }
+
+  h2 a,
+  h2 a.active {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav a {
+    padding: 1rem 0.5rem;
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
+  }
+
+  nav a.active {
+    text-decoration: none;
+    border-bottom-color: #296aa3;
+  }
+</style>

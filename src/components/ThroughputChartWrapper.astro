@@ -1,0 +1,18 @@
+---
+import ThroughputChart from "@components/ThroughputChart";
+
+interface Props {
+  data: Array<{
+    users: number;
+    BF16: number;
+    FP8: number;
+    W4A16: number;
+    W8A8: number;
+  }>;
+  caption: string;
+}
+
+const { data, caption } = Astro.props;
+---
+
+<ThroughputChart client:visible data={data} caption={caption} />
