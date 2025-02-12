@@ -14,7 +14,6 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: "vitesse-light",
-      defaultColor: false,
     },
     rehypePlugins: [rehypeSection],
   },

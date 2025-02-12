@@ -218,12 +218,7 @@ pre > code {
 
 .astro-code,
 .astro-code span {
-  color: var(--shiki-light) !important;
   background-color: #f9f9f9 !important;
-  /* Optional styles */
-  font-style: var(--shiki-light-font-style) !important;
-  font-weight: var(--shiki-light-font-weight) !important;
-  text-decoration: var(--shiki-light-text-decoration) !important;
 }
 
 .recharts-legend-item {
